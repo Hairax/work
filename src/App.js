@@ -1,11 +1,24 @@
+
+
 import React from 'react';
+import './App.css';
+import { Routes, Route } from "react-router-dom"
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
 
 function App() {
   return (
-    <div className='h-screen flex justify-center items-center bg-gray-200'>
-      <h1 className='text-4xl text-blue-500'>Hello World</h1>
-    </div>
+    <div className="app">
+    <Routes>
+      <Route path="/" element={ <Home /> } />
+      <Route path="about" element={ <About /> } />
+      <Route path="services" element={ <Services /> } />
+    </Routes>
+  </div>
   );
 }
 
 export default App;
+
+

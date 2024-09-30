@@ -12,7 +12,7 @@ function Services() {
   };
 
   return (
-    <div className="items-center bg-gray-200">
+    <div className="items-center">
       <Header />
       <div className="text-2xl font-bold text-center">
         <input

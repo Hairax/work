@@ -3,7 +3,7 @@ import Header from '../componentes/Header/Header';
 
 function Home() {
     return (
-      <div className=' items-center bg-gray-200'>
+      <div className=' items-center'>
         <Header />
       </div>
     );

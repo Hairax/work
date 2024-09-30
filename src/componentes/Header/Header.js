@@ -16,7 +16,7 @@ function Header() {
                     <a href="/" className="text-lg font-semibold text-gray-800 dark:text-white">Logo</a>
                     <ul className="hidden lg:flex space-x-8 ml-10">
                         <li><a href="/" className="text-gray-800 dark:text-white">Home</a></li>
-                        <li><a href="/about" className="text-gray-800 dark:text-white">About</a></li>
+                        <li><a href="/about" className="text-gray-700 dark:text-white">About</a></li>
                         <li><a href="/services" className="text-gray-800 dark:text-white">Services</a></li>
                     </ul>
                 </div>

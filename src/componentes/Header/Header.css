@@ -8,7 +8,7 @@
     position: absolute;
     top: -10px;
     left: -10px;
-    width: 60px; /* Ajusta el tamaño según sea necesario */
+    width: 60px;
     height: 60px;
     background-color: white;
     border-radius: 50%;
@@ -21,9 +21,8 @@
     position: absolute;
     top: -5px;
     left: -5px;
-    width: 50px; /* Ajusta el tamaño según sea necesario */
+    width: 50px;
     height: 50px;
-    /* bg-gray-800 que color de background-color es */
     background-color: #2d3748; 
     border-radius: 50%;
     z-index: -1;
@@ -32,9 +31,9 @@
 
 .nav-icon {
     position: relative;
-    transition: transform 0.2s ease-in-out; /* Transición para los iconos */
+    transition: transform 0.2s ease-in-out;
 }
 
 .nav-icon:hover {
-    transform: scale(1); /* Efecto hover para los iconos */
+    transform: scale(1.5);
 }

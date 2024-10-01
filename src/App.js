@@ -4,7 +4,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route } from "react-router-dom"
 import Home from './pages/Home'
-import About from './pages/About'
+import About from './pages/About/About'
 import Services from './pages/Services'
 
 function App() {

@@ -3,8 +3,8 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from "react-router-dom"
-import Home from './pages/Home'
 import About from './pages/About/About'
+import Home from './pages/Home/Home'
 import Services from './pages/Services'
 
 function App() {

@@ -10,7 +10,7 @@ function Services() {
   const [resultado, setResultado] = useState(0);
   // matriz
   const ejemplo = [
-    ["pb","Gmm","0%","3%" ,"4%","5%"],
+    ["pb","Gmm","Va 0%","Va 3%" ,"Va 4%","Va 5%"],
     [6.5,	2.452,	2.452,	2.378,	2.354,	2.329],
     [6.6,	2.448,	2.448,	2.375,	2.350,	2.326],
     [6.7,	2.445,	2.445,	2.371,	2.347,	2.322],
@@ -102,7 +102,7 @@ function Services() {
             Line chart
             columna 1 x
             columna 2 y
-            columna 3, 4 y 5 lines
+            columna 3, 4, 5 y  6 son las lineas a graficar
             */}
 
         <Chart

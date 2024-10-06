@@ -182,7 +182,7 @@ function Services() {
             </tr>
             <tr>
               <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={4}>VA %</th>
-              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>vam %</th>
+              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>VAM %</th>
               <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>VFA %</th>
             </tr>
             <tr>
@@ -204,7 +204,7 @@ function Services() {
                 ))}
               </tr>
             ))}
-        </table>
+        </table> 
 
 
         <Chart

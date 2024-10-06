@@ -31,10 +31,10 @@ function Services() {
     [8,	2.399,	2.399,	2.327,	2.303,	2.279]
   ];*/
 
-  let ejemplo = LGmm(2.525,2.712,1.03);
-  ejemplo = LGmb(2.525,2.712,1.03);
-  ejemplo = VFA(2.525,2.712,1.03);
-  ejemplo = ALLresult();
+  let tb1 = LGmm(2.525,2.712,1.03);
+  let tb2 = LGmb(2.525,2.712,1.03);
+  let tb3 = VFA(2.525,2.712,1.03);
+  let tball = ALLresult();
   
   const options = {
     title: "Company Performance",
@@ -94,8 +94,8 @@ function Services() {
       <div className="mt-4 text-xl">Resultado: {resultado}</div>
       <div className='flex flex-row justify-center gap-4 pt-10 pb-10'>
         <table className='table-auto '>
-            {/* tabla automatica con la matriz ejemplo*/}
-            {ejemplo.map((row, i) => (
+            {/* tabla automatica con la matriz tabla 1*/}
+            {tb1.map((row, i) => (
               <tr key={i} className=' border-2 border-gray-300 bg-gray opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
                 {row.map((column, j) => (
                   <td key={j} className='border-2 border-gray-300 bg-gray opacity-50 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
@@ -116,12 +116,106 @@ function Services() {
           chartType='LineChart'
           width='100%'
           height='400px'
-          data={ejemplo}
+          data={tb1}
           options={options}
         />
-
-            
       </div>
+      <div className='flex flex-row justify-center gap-4 pt-10 pb-10'>
+      <table className='table-auto '>
+            {/* tabla automatica con la matriz Tabla2*/}
+            {tb2.map((row, i) => (
+              <tr key={i} className=' border-2 border-gray-300 bg-gray opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                {row.map((column, j) => (
+                  <td key={j} className='border-2 border-gray-300 bg-gray opacity-50 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                    {column}
+                  </td>
+                ))}
+              </tr>
+            ))}
+        </table>
+
+
+        <Chart
+          chartType='LineChart'
+          width='100%'
+          height='400px'
+          data={tb2}
+          options={options}
+        />
+      </div>
+
+      <div className='flex flex-row justify-center gap-4 pt-10 pb-10'>
+      <table className='table-auto '>
+            {/* tabla automatica con la matriz Tabla2*/}
+            {tb3.map((row, i) => (
+              <tr key={i} className=' border-2 border-gray-300 bg-gray opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                {row.map((column, j) => (
+                  <td key={j} className='border-2 border-gray-300 bg-gray opacity-50 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                    {column}
+                  </td>
+                ))}
+              </tr>
+            ))}
+        </table>
+
+
+        <Chart
+          chartType='LineChart'
+          width='100%'
+          height='400px'
+          data={tb3}
+          options={options}
+        />
+      </div>
+
+      <div className='flex flex-row justify-center gap-4 pt-10 pb-10'>
+      <table className='table-auto '>
+            {/* tabla automatica con la matriz Tabla2*/}
+            <tr>
+              <th rowSpan={2} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>PARÁMETROS VOLUMETRIVOS</th>
+              <th rowSpan={2} className='border border-gray-400 px-4 py-2 text-center' colSpan={10}>ESPECIFICACIONES VOLUMÉTRICAS PARA T.M.N. DE 1/2” (12.5mm)</th>
+            </tr><td></td>
+            <tr>
+              <th rowSpan={3} className='border border-gray-400 px-4 py-2 text-center' colSpan={1}>Pb</th>
+              <th rowSpan={3} className='border border-gray-400 px-4 py-2 text-center' colSpan={1}>Gmm</th>
+              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={10}>Gmm</th>
+            </tr>
+            <tr>
+              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={4}>VA %</th>
+              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>vam %</th>
+              <th rowSpan={1} className='border border-gray-400 px-4 py-2 text-center' colSpan={2}>VFA %</th>
+            </tr>
+            <tr>
+              <th className='border border-gray-400 px-4 py-2 text-center'>0%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>3%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>4%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>5%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>14%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>16%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>65%</th>
+              <th className='border border-gray-400 px-4 py-2 text-center'>75%</th>
+            </tr>
+            {tball.map((row, i) => (
+              <tr key={i} className=' border-2 border-gray-300 bg-gray opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                {row.map((column, j) => (
+                  <td key={j} className='border-2 border-gray-300 bg-gray opacity-50 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none'>
+                    {column}
+                  </td>
+                ))}
+              </tr>
+            ))}
+        </table>
+
+
+        <Chart
+          chartType='LineChart'
+          width='100%'
+          height='400px'
+          data={tball}
+          options={options}
+        />
+      </div>
+
     </div>
   );
 }

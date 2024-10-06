@@ -3,6 +3,7 @@ import Header from '../../componentes/Header/Header';
 import './Services.css';
 import Graphics from './Graphics'; // Importamos el nuevo componente gráfico
 import { ALLresult, LGmb, LGmm, VFA } from './Calculate';
+import { FaSpinner } from 'react-icons/fa'; // Importa el ícono de carga
 
 function Services() {
   // Estados para los inputs editables
@@ -33,6 +34,7 @@ function Services() {
   // Función que se ejecuta al presionar el botón "Iniciar"
   const iniciarProceso = () => {
     setLoading(true); // Muestra la pantalla de carga
+    setShowGraphics(false); // Oculta los gráficos mientras se carga
 
     setTimeout(() => {
       // Actualiza los valores confirmados y oculta la pantalla de carga
@@ -88,11 +90,18 @@ function Services() {
         </div>
       </div>
 
-      {loading && <div>Cargando...</div>} {/* Muestra la pantalla de carga */}
+      {/* Pantalla de carga estilizada */}
+      {loading && (
+        <div className="flex flex-col items-center justify-center h-64">
+          <FaSpinner className="animate-spin text-4xl mb-4" /> {/* Ícono de carga */}
+          <span className="text-xl font-bold text-gray-700 shadow-md">Cargando...</span>
+        </div>
+      )}
 
+      {/* Muestra los gráficos basados en los valores confirmados */}
       {showGraphics && (
         <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tball={tball} options={options} />
-      )} {/* Muestra los gráficos basados en los valores confirmados */}
+      )}
     </div>
   );
 }

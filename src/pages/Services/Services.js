@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import Header from '../../componentes/Header/Header';
-<<<<<<< Updated upstream
 import './Services.css';
 import { Chart } from "react-google-charts";
-import { LGmb, LGmm } from './Calculate';
-=======
->>>>>>> Stashed changes
+import { ALLresult, LGmb, LGmm, VFA } from './Calculate';
 
 function Services() {
   const [input1, setInput1] = useState(0);
   const [input2, setInput2] = useState(0);
   const [input3, setInput3] = useState(0);
   const [resultado, setResultado] = useState(0);
-<<<<<<< Updated upstream
   // matriz
   /*
   const ejemplo = [
@@ -35,22 +31,22 @@ function Services() {
     [8,	2.399,	2.399,	2.327,	2.303,	2.279]
   ];*/
 
-  const ejemplo = LGmm(2.525,2.712,1.03);
-
+  let ejemplo = LGmm(2.525,2.712,1.03);
+  ejemplo = LGmb(2.525,2.712,1.03);
+  ejemplo = VFA(2.525,2.712,1.03);
+  ejemplo = ALLresult();
+  
   const options = {
     title: "Company Performance",
     curveType: "function",
     legend: { position: "bottom" },
   };
-=======
->>>>>>> Stashed changes
 
   const sumarValores = () => {
     setResultado(Number(input1) + Number(input2) + Number(input3));
   };
 
   return (
-<<<<<<< Updated upstream
     <div className="items-cente0r">
       <Header />
       <div className="text-2xl font-bold text-center flex flex-row items-center justify-center gap-4 pt-10 pb-10">
@@ -125,44 +121,6 @@ function Services() {
         />
 
             
-=======
-    <div className="items-center">
-      <Header />
-      <div className="text-2xl font-bold text-center">
-        <input
-          type="number"
-          className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          placeholder=""
-          value={input1}
-          onChange={(e) => setInput1(e.target.value)}
-        />
-        <input
-          type="number"
-          className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          placeholder=""
-          value={input2}
-          onChange={(e) => setInput2(e.target.value)}
-        />
-        <input
-          type="number"
-          className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-          placeholder=""
-          value={input3}
-          onChange={(e) => setInput3(e.target.value)}
-        />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={sumarValores}
-        >
-          Sumar
-        </button>
-        <div className="mt-4 text-xl">Resultado: {resultado}</div>
-      </div>
-      <div className='color: red'>
-        <div>
-
-        </div>
->>>>>>> Stashed changes
       </div>
     </div>
   );

@@ -1,15 +1,34 @@
 import React from 'react';
 import { Chart } from "react-google-charts";
 
-export default function Graphics({ tb1, tb2, tb3, tball, options }) {
+function NewOptions(BeforeOptions,nameTable,nameX,nameY){
+  let noptions ={
+    ...BeforeOptions,
+    title: nameTable,
+      hAxis: {
+        ...BeforeOptions.hAxis,
+        title: nameX,
+      },
+      vAxis: {
+        ...BeforeOptions.hAxis,
+        title: nameY
+      }
+      
+  }
+  return noptions;
+}
+export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
   return (
     <div className="flex flex-col items-center">
       
-      <div className="w-full lg:w-4/4 flex flex-col lg:flex-row gap-4 pt-10 pb-10">
+      <div className="w-full lg:w-4/4 flex flex-col lg:flex-row gap-4 pt-10 pb-10 text-center">
         <div className="p-4 pr-4">
           <table className="table-auto w-full border-separate">
             {tb1.map((row, i) => (
-              <tr key={i} className="border-2 border-gray-300">
+                <tr
+                  key={i}
+                  className={`border-2 border-gray-300 ${i === 0 ? "font-bold" : ""}`} // Aplica negrita si es la primera fila
+                >
                 {row.map((column, j) => (
                   <td key={j} className="border-2 border-gray-300 p-2">{column}</td>
                 ))}
@@ -18,7 +37,8 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="100%" height="400px" data={tb1} options={options} />
+          <Chart chartType="LineChart" width="100%" height="400px" data={tb1} options={NewOptions(options,
+            "Figura 1 Isolíneas de % de Va","CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
 
@@ -26,7 +46,10 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
         <div className="p-4 pr-4">
           <table className="table-auto w-full border-separate">
             {tb2.map((row, i) => (
-              <tr key={i} className="border-2 border-gray-300">
+              <tr
+                key={i}
+                className={`border-2 border-gray-300 ${i === 0 ? "font-bold" : ""}`} // Aplica negrita si es la primera fila
+              >
                 {row.map((column, j) => (
                   <td key={j} className="border-2 border-gray-300 p-2">{column}</td>
                 ))}
@@ -35,7 +58,9 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="100%" height="400px" data={tb2} options={options} />
+          <Chart chartType="LineChart" width="100%" height="400px" data={tb2} options={NewOptions(options,
+            "Figura 2 Isolíneas de % de VAM de diseño para la construcción del polígono",
+            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
 
@@ -43,7 +68,10 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
         <div className=" p-4 pr-4">
           <table className="table-auto w-full border-separate">
             {tb3.map((row, i) => (
-              <tr key={i} className="border-2 border-gray-300">
+              <tr
+                key={i}
+                className={`border-2 border-gray-300 ${i === 0 ? "font-bold" : ""}`} // Aplica negrita si es la primera fila
+              >
                 {row.map((column, j) => (
                   <td key={j} className="border-2 border-gray-300 p-2">{column}</td>
                 ))}
@@ -56,7 +84,7 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
         </div>
       </div>
 
-      <div className="w-full lg:w-4/4 flex flex-col gap-4 pt-10 pb-10">
+      <div className="w-full lg:w-4/4 flex flex-col gap-4 pt-10 pb-10 text-center">
         <div className="w-full p-4 pr-4">
           <table className="table-auto w-full border-separate ">
             {/* tabla automatica con la matriz Tabla2*/}
@@ -84,7 +112,7 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
               <th className='border border-gray-400 text-center'>65%</th>
               <th className='border border-gray-400 text-center'>75%</th>
             </tr>
-            {tball.map((row, i) => (
+            {tb2all.map((row, i) => (
               <tr key={i} className="border-2 border-gray-300">
                 
                 {row.map((column, j) => (
@@ -95,7 +123,8 @@ export default function Graphics({ tb1, tb2, tb3, tball, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="100%" height="400px" data={tball} options={options} />
+          <Chart chartType="LineChart" 
+          width="100%" height="600px" data={tb1all} options={options} />
         </div>
       </div>
     </div>

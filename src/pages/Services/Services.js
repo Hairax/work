@@ -23,14 +23,42 @@ function Services() {
   let tb1 = LGmm(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb2 = LGmb(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb3 = VFA(confirmedInput1, confirmedInput2, confirmedInput3);
-  let tball = ALLresult();
+  let {tb1all, tb2all} = ALLresult();
 
   const options = {
     title: "Company Performance",
+    titleTextStyle: {
+      color: '#2C3E50', //color de titulo
+      fontSize: 20
+    },
+    pointsVisible: true,
     curveType: "function",
     legend: { position: "bottom" },
+    backgroundColor: {
+      fill: '#ffe8d8', // Color de relleno
+      stroke: '#000000', // Color del borde (contorno)
+      strokeWidth: 2 // Opcional: ancho del borde
+    }, // Fondo color durazno
+    hAxis: {
+      titleTextStyle :{
+        bold : true
+      },
+      textStyle: { 
+        color: '#111',
+        bold: true
+      }
+    },
+    vAxis: {
+      titleTextStyle :{
+        bold : true
+      },
+      textStyle: { 
+        color: '#111',
+        bold: true
+      }
+    }
   };
-
+  
   // Función que se ejecuta al presionar el botón "Iniciar"
   const iniciarProceso = () => {
     setLoading(true); // Muestra la pantalla de carga
@@ -100,7 +128,7 @@ function Services() {
 
       {/* Muestra los gráficos basados en los valores confirmados */}
       {showGraphics && (
-        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tball={tball} options={options} />
+        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} options={options} />
       )}
     </div>
   );

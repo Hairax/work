@@ -16,7 +16,7 @@ export const pb = [];
   export function LGmm(Gsb, Gse, Gb) {
    // let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
 
-    for (let i = 6.5, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
       pb[j] = round(i,1); 
       gmm[j] = round(100 / (((100 - i) / Gse) + (i / Gb)),3); 
       Va3[j] = round((1 - (3 / 100)) * gmm[j],3); 
@@ -38,7 +38,7 @@ export const pb = [];
 export function LGmb(Gsb, Gse, Gb) {
   //  let  Vam14 = [], Vam16 = [], pb = [];
 
-    for (let i = 6.5, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
       pb[j] = round(i,1); 
 
       Vam14[j] = round(((100-14) / (100-i)) * Gsb,3);
@@ -59,7 +59,7 @@ export function LGmb(Gsb, Gse, Gb) {
 export function VFA(Gsb, Gse, Gb) {
  // let  Vam14 = [], Vam16 = [], pb = [];
 
-  for (let i = 6.5, j = 0; i <= 8; i += 0.1, j++) {
+  for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
     pb[j] = round(i,1); 
 
     VFA65[j] = round(65/ ((100/gmm[j])+((65*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
@@ -77,11 +77,13 @@ export function VFA(Gsb, Gse, Gb) {
 }
 
 export function ALLresult(){
-  const result = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
+  const result1 = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
+  const result2 = [];
   
   for (let k = 0; k < pb.length; k++) {
-      result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
+      result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
+      result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
   }
 
-  return result;  
+  return { tb1all: result1, tb2all: result2 };
 }

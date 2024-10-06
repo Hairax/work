@@ -77,7 +77,7 @@ export function VFA(Gsb, Gse, Gb) {
 }
 
 export function ALLresult(){
-  const result = [];
+  const result = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
   
   for (let k = 0; k < pb.length; k++) {
       result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);

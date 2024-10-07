@@ -12,13 +12,13 @@ function About() {
         <Header />
         <div className='text-2xl text-center gap-4 flex flex-row justify-center'>
           <div  className=" flex flex-col mt-4 text-xl w-1/2">
-            <div className='flex flex-row justify-center w-full'>
+            <div className='flex flex-row justify-center w-full '>
               <div className='w-1/6'></div>
               <div class="w-2/6 max-w-sm bg-gray-100 rounded-lg shadow-lg dark:border-gray-700 pt-6">
                 <div className='flex flex-row items-center justify-center'>
-                  <div class="flex flex-col items-center pb-10 pt-10x">
+                  <div class="flex flex-col items-center pb-10 pt-10">
                       <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src={Logo} alt="logo imagen"/>
-                      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black">Bonnie Green</h5>
+                      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black">Richard Raul<br></br> Josephia Santos</h5>
                       <span class="text-sm text-gray-500 dark:text-gray-400">Ingeniero</span>
                       <div class="flex mt-4 md:mt-6">
                           <a href="#" class="inline-flex items-center ">
@@ -40,7 +40,7 @@ function About() {
               <div className='w-3/6'></div>
               <div class="w-2/6 max-w-sm bg-gray-100 rounded-lg shadow-lg dark:border-gray-700 pt-6">
                 <div className='flex flex-row items-center justify-center'>
-                  <div class="flex flex-col items-center pb-10 pt-10x">
+                  <div class="flex flex-col items-center pb-10 pt-10">
                     <div className="w-24 h-24 mb-3 rounded-full shadow-lg overflow-hidden">
                       <img className="w-full h-full object-cover" src={RodrigoE} alt="RodrigoEsprella"/>
                     </div>

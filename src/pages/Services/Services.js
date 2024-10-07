@@ -24,6 +24,7 @@ function Services() {
   let tb2 = LGmb(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb3 = VFA(confirmedInput1, confirmedInput2, confirmedInput3);
   let {tb1all, tb2all} = ALLresult();
+  //let pol = findDuplicates();
 
   const options = {
     title: "Company Performance",
@@ -35,7 +36,7 @@ function Services() {
     curveType: "function",
     legend: { position: "bottom" },
     backgroundColor: {
-      fill: '#ffe8d8', // Color de relleno
+      //fill: '#ffe8d8', // Color de relleno
       stroke: '#000000', // Color del borde (contorno)
       strokeWidth: 2 // Opcional: ancho del borde
     }, // Fondo color durazno
@@ -76,9 +77,7 @@ function Services() {
   };
 
   return (
-    <div className="items-center" style={{
-      background: 'linear-gradient(to right, rgba(59,157,255,0.5) 20%, rgba(7, 131, 255,0.5) 50%, rgba(0, 29, 210,0.5) 90%)'
-    }}>
+    <div className="items-center" style={{ backgroundColor: 'rgb(227, 218, 201)' }}>
       <Header />
       <div className="text-2xl font-bold text-center flex flex-row items-center justify-center gap-4 pt-10 pb-10">
         <div className=' flex flex-col pr-4 pl-4'>
@@ -131,6 +130,7 @@ function Services() {
       {/* Muestra los gráficos basados en los valores confirmados */}
       {showGraphics && (
         <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} options={options} />
+        
       )}
     </div>
   );

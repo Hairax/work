@@ -1,3 +1,5 @@
+import { MdCompareArrows } from "react-icons/md";
+
 function round(value, decimals) {
     const factor = Math.pow(10, decimals);
     return Math.round(value * factor) / factor;
@@ -87,3 +89,29 @@ export function ALLresult(){
 
   return { tb1all: result1, tb2all: result2 };
 }
+
+/*export function findDuplicates() {
+  const duplicates = [["",""]]; // Para almacenar los duplicados encontrados
+
+  // Crear un array de los otros arrays
+  const otherArrays = [gmm, Va3, Va4, Va5, Vam14, Vam16, VFA65, VFA75];
+
+  for (let i = 0; i < gmm.length; i++) {
+      // Almacenar valores únicos para el índice actual
+      const currentValues = new Set();
+
+      for (const array of otherArrays) {
+          const value = array[i];
+
+          if (currentValues.has(value)) {
+              // Si el valor ya existe en el Set, es un duplicado
+              duplicates.push([pb[i], value]); // Almacenar pb y el valor duplicado como un array
+              break; // Salir del bucle una vez que se encuentra un duplicado
+          }
+
+          currentValues.add(value); // Agregar el valor al Set
+      }
+  }
+console.log(duplicates);
+  return duplicates; // Retorna un array de duplicados encontrados
+}*/

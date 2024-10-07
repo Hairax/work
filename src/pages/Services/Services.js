@@ -76,32 +76,34 @@ function Services() {
   };
 
   return (
-    <div className="items-center">
+    <div className="items-center" style={{
+      background: 'linear-gradient(to right, rgba(59,157,255,0.5) 20%, rgba(7, 131, 255,0.5) 50%, rgba(0, 29, 210,0.5) 90%)'
+    }}>
       <Header />
       <div className="text-2xl font-bold text-center flex flex-row items-center justify-center gap-4 pt-10 pb-10">
         <div className=' flex flex-col pr-4 pl-4'>
-          <label className="text-black font-normal">GMB</label>
+          <label className=" text-black font-normal">Gsb<br></br>(g/cm³)</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input1}
             onChange={(e) => setInput1(e.target.value)} // Actualiza los valores editables
           />
         </div>
         <div className='flex flex-col pr-4 pl-4'>
-          <label className="text-black font-normal">GMB</label>
+          <label className=" text-black font-normal">Gse<br></br>(g/cm³)</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input2}
             onChange={(e) => setInput2(e.target.value)} // Actualiza los valores editables
           />
         </div>
-        <div className='flex flex-col pr-4 pl-4'>
-          <label className="text-black font-normal">GMB</label>
+        <div className='flex flex-col pr-4 pl-4 '>
+          <label className=" text-black font-normal">Gb<br></br>Gravedad específica de asfalto</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-75 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input3}
             onChange={(e) => setInput3(e.target.value)} // Actualiza los valores editables
           />

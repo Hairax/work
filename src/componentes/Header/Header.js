@@ -18,7 +18,6 @@ function Header() {
                         <a href="/" className={`nav-icon text-gray-800 dark:text-white flex items-center ${getIconClass("/")}`}>
                             <MdHome className="w-10 h-10" />
                         </a>
-                        {/* Tooltip */}
                         <span className="tooltip-text">Home</span>
                     </li>
                     <li className="relative group">

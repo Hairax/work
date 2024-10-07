@@ -77,32 +77,32 @@ function Services() {
   };
 
   return (
-    <div className="items-center" style={{ backgroundColor: 'rgb(227, 218, 201)' }}>
+    <div className="items-center">
       <Header />
       <div className="text-2xl font-bold text-center flex flex-row items-center justify-center gap-4 pt-10 pb-10">
-        <div className=' flex flex-col pr-4 pl-4'>
-          <label className=" text-black font-normal">Gsb<br></br>(g/cm³)</label>
+        <div className=' flex flex-col pr-4 pl-4 items-center'>
+          <label className=" text-black font-normal pb-3">Gsb<br></br>(g/cm³)</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 w-52 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input1}
             onChange={(e) => setInput1(e.target.value)} // Actualiza los valores editables
           />
         </div>
-        <div className='flex flex-col pr-4 pl-4'>
-          <label className=" text-black font-normal">Gse<br></br>(g/cm³)</label>
+        <div className='flex flex-col pr-4 pl-4 items-center'>
+          <label className=" text-black font-normal pb-3">Gse<br></br>(g/cm³)</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 w-52 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input2}
             onChange={(e) => setInput2(e.target.value)} // Actualiza los valores editables
           />
         </div>
-        <div className='flex flex-col pr-4 pl-4 '>
-          <label className=" text-black font-normal">Gb<br></br>Gravedad específica de asfalto</label>
+        <div className='flex flex-col pr-4 pl-4 items-center'>
+          <label className=" text-black font-normal pb-3">Gb<br></br>Gravedad específica de asfalto</label>
           <input
             type="number"
-            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 px-5 pr-1 rounded-lg text-sm focus:outline-none"
+            className="border-2 border-gray-300 bg-orangeabout opacity-65 h-10 w-52 px-5 pr-1 rounded-lg text-sm focus:outline-none"
             value={input3}
             onChange={(e) => setInput3(e.target.value)} // Actualiza los valores editables
           />

@@ -37,7 +37,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="90%" height="400px" data={tb1} options={NewOptions(options,
+          <Chart chartType="LineChart" width="100%" height="400px" data={tb1} options={NewOptions(options,
             "Figura 1: Isolíneas de % de Va","CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="90%" height="400px" data={tb2} options={NewOptions(options,
+          <Chart chartType="LineChart" width="100%" height="400px" data={tb2} options={NewOptions(options,
             "Figura 2: Isolíneas de % de VAM de diseño para la construcción del polígono",
             "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
         </div>
@@ -80,7 +80,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
           </table>
         </div>
         <div className="w-full p-4 pr-4">
-          <Chart chartType="LineChart" width="90%" height="400px" data={tb3} options={NewOptions(options,
+          <Chart chartType="LineChart" width="100%" height="400px" data={tb3} options={NewOptions(options,
             "Figura 3: Isolíneas de % de VFA de diseño para la construcción del polígono",
             "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
         </div>

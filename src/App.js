@@ -9,7 +9,7 @@ import Services from './pages/Services/Services'
 
 function App() {
   return (
-    <div className="app">
+    <div className="app bg-slate-200 min-h-screen">
     <Routes>
       <Route path="/" element={ <Home /> } />
       <Route path="about" element={ <About /> } />

@@ -90,28 +90,28 @@ export function ALLresult(){
   return { tb1all: result1, tb2all: result2 };
 }
 
-/*export function findDuplicates() {
-  const duplicates = [["",""]]; // Para almacenar los duplicados encontrados
+function Detpuntos(list) {
+  let x = 0, c = 0, m = 0;
+  // Cálculo de 'm', 'x' y 'c'
+  m = (list[list.length - 1] - list[0]) / 2;
+  x = m;
+  c = list[0]-(m * 6);
 
-  // Crear un array de los otros arrays
-  const otherArrays = [gmm, Va3, Va4, Va5, Vam14, Vam16, VFA65, VFA75];
+  return { x, c }; // Retorna 'x', 'y', 'c'
+}
 
-  for (let i = 0; i < gmm.length; i++) {
-      // Almacenar valores únicos para el índice actual
-      const currentValues = new Set();
+function Intersección(li1,li2) {
+  const { x: x1, c: c1 } = Detpuntos(li1);
+  const { x: x2, c: c2 } = Detpuntos(li2);
+  const px=-((c1-c2)/(x1-x2));
+  const py=(x1*px)+c1;
+  console.log(x1, c1); 
+  console.log(x2,c2);
+  console.log(px,py);
+  return {px , py};
+}
 
-      for (const array of otherArrays) {
-          const value = array[i];
-
-          if (currentValues.has(value)) {
-              // Si el valor ya existe en el Set, es un duplicado
-              duplicates.push([pb[i], value]); // Almacenar pb y el valor duplicado como un array
-              break; // Salir del bucle una vez que se encuentra un duplicado
-          }
-
-          currentValues.add(value); // Agregar el valor al Set
-      }
-  }
-console.log(duplicates);
-  return duplicates; // Retorna un array de duplicados encontrados
-}*/
+export function poligono(){
+  const pA = Intersección(Vam14,VFA65);
+  
+}

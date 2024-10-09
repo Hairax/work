@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../componentes/Header/Header';
 import './Services.css';
 import Graphics from './Graphics'; // Importamos el nuevo componente gráfico
-import { ALLresult, LGmb, LGmm, VFA } from './Calculate';
+import { ALLresult, LGmb, LGmm, poligono, VFA } from './Calculate';
 import { FaSpinner } from 'react-icons/fa'; // Importa el ícono de carga
 
 function Services() {
@@ -24,7 +24,7 @@ function Services() {
   let tb2 = LGmb(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb3 = VFA(confirmedInput1, confirmedInput2, confirmedInput3);
   let {tb1all, tb2all} = ALLresult();
-  //let pol = findDuplicates();
+  let pol = poligono();
 
   const options = {
     title: "Company Performance",

@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors:{
         'orangeabout': '#FF8540',
-        'celeste': '#80E0FF'
+        'celeste': '#80E0FF',
+        'background': "F8F9FA"
       },
       spacing: {
         '20px': '20px',

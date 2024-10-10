@@ -86,7 +86,6 @@ export function ALLresult(){
       result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
   }
-
   return { tb1all: result1, tb2all: result2 };
 }
 
@@ -103,15 +102,43 @@ function Detpuntos(list) {
 function Intersección(li1,li2) {
   const { x: x1, c: c1 } = Detpuntos(li1);
   const { x: x2, c: c2 } = Detpuntos(li2);
-  const px=-((c1-c2)/(x1-x2));
-  const py=(x1*px)+c1;
-  console.log(x1, c1); 
-  console.log(x2,c2);
+  const px=round(-((c1-c2)/(x1-x2)),3);
+  const py=round((x1*px)+c1,3);
+ // console.log(x1, c1); 
+ // console.log(x2,c2);
   console.log(px,py);
-  return {px , py};
+  return [px , py];
 }
 
 export function poligono(){
   const pA = Intersección(Vam14,VFA65);
+  const pB = Intersección(Vam14,VFA75);
+  const pC = Intersección(VFA75,Vam16);
+  const pD = Intersección(Vam16,Va5);
+  const pE = Intersección(Va5,VFA65);
   
+
+  let rt = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%","area"]];
+  for (let k = 0; k < pb.length; k++) {
+    rt.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],null]);
+  }
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
+  rt.push([pB[0],null,null,null,null,null,null,null,null,null,pB[1]]);
+  rt.push([pC[0],null,null,null,null,null,null,null,null,null,pC[1]]);
+  rt.push([pD[0],null,null,null,null,null,null,null,null,null,pD[1]]);
+  rt.push([pE[0],null,null,null,null,null,null,null,null,null,pE[1]]);
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
+
+  const mp = [["",""]];
+
+  mp.push(pA);
+  mp.push(pB);
+  mp.push(pC);
+  mp.push(pD);
+  mp.push(pE);
+  mp.push(pA);
+
+  console.log(rt);
+  return {rt:rt , mp:mp};
 }
+

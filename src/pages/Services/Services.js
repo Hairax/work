@@ -24,7 +24,8 @@ function Services() {
   let tb2 = LGmb(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb3 = VFA(confirmedInput1, confirmedInput2, confirmedInput3);
   let {tb1all, tb2all} = ALLresult();
-  let pol = poligono();
+  let {rt:pol1 , mp:pol2} = poligono();
+
 
   const options = {
     title: "Company Performance",
@@ -129,7 +130,7 @@ function Services() {
 
       {/* Muestra los gráficos basados en los valores confirmados */}
       {showGraphics && (
-        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} options={options} />
+        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} pol1={pol1}  pol2={pol2} options={options} />
         
       )}
     </div>

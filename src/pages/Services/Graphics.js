@@ -17,7 +17,7 @@ function NewOptions(BeforeOptions,nameTable,nameX,nameY){
   }
   return noptions;
 }
-export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
+export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
   return (
     <div className="flex flex-col items-center">
       
@@ -129,7 +129,33 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, options }) {
           width="100%" height="600px" data={tb1all} options={NewOptions(options,
             "Figura 4: Intersección de las isolíneas de Va, VAM y VFA",
             "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")} />
+            
         </div>
+
+        <div className="w-full p-4 pr-4">
+        <Chart chartType="ComboChart" 
+       width="100%" height="600px" 
+       data={pol1} 
+       options={{
+        ...NewOptions(options,
+        "Figura 5: Intersección de las isolíneas de Va, VAM y VFA",
+        "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
+          seriesType: "line", // El tipo por defecto es line
+          series: {
+            9: { type: "area" }, // Especifica que la segunda serie sea de tipo área
+          },
+        }} 
+        />
+        </div>
+
+        <div className="w-full p-4 pr-4">
+          <Chart chartType="AreaChart" 
+          width="100%" height="600px" data={pol2} options={NewOptions(options,
+            "Figura 6: Polígono..",
+            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")} />
+            
+        </div>
+
       </div>
     </div>
   );

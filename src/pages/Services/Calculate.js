@@ -118,7 +118,7 @@ export function poligono(){
   const pE = Intersección(Va5,VFA65);
   
 
-  let rt = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%","area"]];
+  let rt = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%","Área"]];
   for (let k = 0; k < pb.length; k++) {
     rt.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],null]);
   }
@@ -129,14 +129,14 @@ export function poligono(){
   rt.push([pE[0],null,null,null,null,null,null,null,null,null,pE[1]]);
   rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
 
-  const mp = [["",""]];
+  const mp = [["","",{ role: 'annotation' }]];
 
-  mp.push(pA);
-  mp.push(pB);
-  mp.push(pC);
-  mp.push(pD);
-  mp.push(pE);
-  mp.push(pA);
+  mp.push([pA[0],pA[1],"A"]);
+  mp.push([pB[0],pB[1],"B"]);
+  mp.push([pC[0],pC[1],"C"]);
+  mp.push([pD[0],pD[1],"D"]);
+  mp.push([pE[0],pE[1],"E"]);
+  mp.push([pA[0],pA[1],null]);
 
   console.log(rt);
   return {rt:rt , mp:mp};

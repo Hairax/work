@@ -29,9 +29,10 @@ function Services() {
 
   const options = {
     title: "Company Performance",
+    titlePosition: 'center',
     titleTextStyle: {
       color: '#2C3E50', //color de titulo
-      fontSize: 20
+      fontSize: 20,
     },
     pointsVisible: true,
     curveType: "function",

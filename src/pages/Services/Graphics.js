@@ -8,11 +8,46 @@ function NewOptions(BeforeOptions,nameTable,nameX,nameY){
       hAxis: {
         ...BeforeOptions.hAxis,
         title: nameX,
+        titleTextStyle: {
+          //color: <string>,
+          fontName: 'Times New Roman',
+          fontSize: 20,
+          bold: true,
+          italic: false,
+        },
+        textStyle: {
+          fontName: 'Times New Roman',
+          fontSize: 18,  // Tamaño de los números en el eje X
+          bold : true,
+          color: "#000",  // Color opcional
+        },
+        gridlines: {
+          count: 10  // Ajusta el número de intervalos en el eje X
+        },
       },
       vAxis: {
         ...BeforeOptions.hAxis,
-        title: nameY
-      }
+        title: nameY,
+        titleTextStyle: {
+          //color: <string>,
+          fontName: 'Times New Roman',
+          fontSize: 25,
+          bold: true,
+          italic: false
+        },
+        textStyle: {
+          fontName: 'Times New Roman',
+          fontSize: 18,  // Tamaño de los números en el eje X
+          bold : true,
+          color: "#000",  // Color opcional
+        },
+        gridlines: {
+          count: 8  // Ajusta el número de intervalos en el eje X
+        },
+      },
+      legend: {
+        position: "right", // Mueve la leyenda al costado derecho
+      },
       
   }
   return noptions;
@@ -38,7 +73,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         </div>
         <div className="w-full p-4 pr-4">
           <Chart chartType="LineChart" width="100%" height="400px" data={tb1} options={NewOptions(options,
-            "Figura 1: Isolíneas de % de Va","CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
+            "Figura 1: Isolíneas de Porcentaje de Vacíos de Aire (%Va)","Contenido de Asfalto (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
 
@@ -59,8 +94,8 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         </div>
         <div className="w-full p-4 pr-4">
           <Chart chartType="LineChart" width="100%" height="400px" data={tb2} options={NewOptions(options,
-            "Figura 2: Isolíneas de % de VAM de diseño para la construcción del polígono",
-            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
+            "Figura 2: Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)",
+            "Contenido de Asfalto (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
 
@@ -81,8 +116,8 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         </div>
         <div className="w-full p-4 pr-4">
           <Chart chartType="LineChart" width="100%" height="400px" data={tb3} options={NewOptions(options,
-            "Figura 3: Isolíneas de % de VFA de diseño para la construcción del polígono",
-            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")}/>
+            "Figura 3: Isolíneas de Porcentaje de Vacíos LLenos de Asfalto (%VFA)",
+            "Contenido de Asfalto (%)", "Gmb (g/cm³)")}/>
         </div>
       </div>
 
@@ -138,7 +173,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
        data={pol1} 
        options={{
         ...NewOptions(options,
-        "Figura 5: Intersección de las isolíneas de Va, VAM y VFA",
+        "Figura 5: Polígono de Intersección de las isolíneas de Va, VAM y VFA",
         "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
           seriesType: "line", // El tipo por defecto es line
           series: {
@@ -149,10 +184,22 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         </div>
 
         <div className="w-full p-4 pr-4">
-          <Chart chartType="AreaChart" 
-          width="100%" height="600px" data={pol2} options={NewOptions(options,
-            "Figura 6: Polígono..",
-            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")} />
+          <Chart chartType="ComboChart" 
+          width="100%" height="600px" data={pol2} options={{
+            ...NewOptions(options,
+            "Figura 6: Área del Polígono de Intersección",
+            "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
+            seriesType: "area", // El tipo por defecto es line
+            series: {
+              2: { type: "line" }, // Especifica que la segunda serie sea de tipo área
+            },
+            legend: { position: 'none' },
+            ...options.hAxis,
+            hAxis :{
+              minValue: 6, // Establece un valor mínimo para el eje X
+              maxValue: 8, // Establece un valor máximo para el eje X
+            }
+            }} />
             
         </div>
 

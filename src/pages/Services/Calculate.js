@@ -86,32 +86,59 @@ export function ALLresult(){
       result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
   }
-
   return { tb1all: result1, tb2all: result2 };
 }
 
-/*export function findDuplicates() {
-  const duplicates = [["",""]]; // Para almacenar los duplicados encontrados
+function Detpuntos(list) {
+  let x = 0, c = 0, m = 0;
+  // Cálculo de 'm', 'x' y 'c'
+  m = (list[list.length - 1] - list[0]) / 2;
+  x = m;
+  c = list[0]-(m * 6);
 
-  // Crear un array de los otros arrays
-  const otherArrays = [gmm, Va3, Va4, Va5, Vam14, Vam16, VFA65, VFA75];
+  return { x, c }; // Retorna 'x', 'y', 'c'
+}
 
-  for (let i = 0; i < gmm.length; i++) {
-      // Almacenar valores únicos para el índice actual
-      const currentValues = new Set();
+function Intersección(li1,li2) {
+  const { x: x1, c: c1 } = Detpuntos(li1);
+  const { x: x2, c: c2 } = Detpuntos(li2);
+  const px=round(-((c1-c2)/(x1-x2)),3);
+  const py=round((x1*px)+c1,3);
+ // console.log(x1, c1); 
+ // console.log(x2,c2);
+  console.log(px,py);
+  return [px , py];
+}
 
-      for (const array of otherArrays) {
-          const value = array[i];
+export function poligono(){
+  const pA = Intersección(Vam14,VFA65);
+  const pB = Intersección(Vam14,VFA75);
+  const pC = Intersección(VFA75,Vam16);
+  const pD = Intersección(Vam16,Va5);
+  const pE = Intersección(Va5,VFA65);
+  
 
-          if (currentValues.has(value)) {
-              // Si el valor ya existe en el Set, es un duplicado
-              duplicates.push([pb[i], value]); // Almacenar pb y el valor duplicado como un array
-              break; // Salir del bucle una vez que se encuentra un duplicado
-          }
-
-          currentValues.add(value); // Agregar el valor al Set
-      }
+  let rt = [["pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%","Área"]];
+  for (let k = 0; k < pb.length; k++) {
+    rt.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],null]);
   }
-console.log(duplicates);
-  return duplicates; // Retorna un array de duplicados encontrados
-}*/
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
+  rt.push([pB[0],null,null,null,null,null,null,null,null,null,pB[1]]);
+  rt.push([pC[0],null,null,null,null,null,null,null,null,null,pC[1]]);
+  rt.push([pD[0],null,null,null,null,null,null,null,null,null,pD[1]]);
+  rt.push([pE[0],null,null,null,null,null,null,null,null,null,pE[1]]);
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
+
+  const mp = [["","",{ role: 'annotation' }]];
+
+  mp.push([pA[0],pA[1],"A"]);
+  mp.push([pB[0],pB[1],"B"]);
+  mp.push([pC[0],pC[1],"C"]);
+  mp.push([pD[0],pD[1],"D"]);
+  mp.push([pE[0],pE[1],"E"]);
+  mp.push([pA[0],pA[1],null]);
+
+  console.log(rt);
+  return {rt:rt , mp:mp};
+}
+

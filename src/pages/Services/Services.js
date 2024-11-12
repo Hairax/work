@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from '../../componentes/Header/Header';
 import './Services.css';
 import Graphics from './Graphics'; // Importamos el nuevo componente gráfico
-import { ALLresult, LGmb, LGmm, VFA } from './Calculate';
+import { ALLresult, LGmb, LGmm, poligono, VFA } from './Calculate';
 import { FaSpinner } from 'react-icons/fa'; // Importa el ícono de carga
 
 function Services() {
@@ -24,13 +24,15 @@ function Services() {
   let tb2 = LGmb(confirmedInput1, confirmedInput2, confirmedInput3);
   let tb3 = VFA(confirmedInput1, confirmedInput2, confirmedInput3);
   let {tb1all, tb2all} = ALLresult();
-  //let pol = findDuplicates();
+  let {rt:pol1 , mp:pol2} = poligono();
+
 
   const options = {
     title: "Company Performance",
+    titlePosition: 'center',
     titleTextStyle: {
       color: '#2C3E50', //color de titulo
-      fontSize: 20
+      fontSize: 20,
     },
     pointsVisible: true,
     curveType: "function",
@@ -129,7 +131,7 @@ function Services() {
 
       {/* Muestra los gráficos basados en los valores confirmados */}
       {showGraphics && (
-        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} options={options} />
+        <Graphics tb1={tb1} tb2={tb2} tb3={tb3} tb1all={tb1all} tb2all={tb2all} pol1={pol1}  pol2={pol2} options={options} />
         
       )}
     </div>

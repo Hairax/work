@@ -1,112 +1,73 @@
 import React from 'react';
-import Header from '../../componentes/Header/Header';
-import Logo from './imgs/logo192.png';
 import { MdOutlineFacebook } from "react-icons/md";
 import { AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
 import RodrigoE from './imgs/RodrigoEsprella.png';
 import JoseG from './imgs/JoseGarcia.jpg';
+import Richard from './imgs/Richard.png';
 
 function About() {
     return (
-      <div className=' items-center'>
-        <Header />
-        <div className='text-2xl text-center gap-4 flex flex-row justify-center'>
-          <div  className=" flex flex-col mt-4 text-xl w-1/2">
-            <div className='flex flex-row justify-center w-full '>
-              <div className='w-1/6'></div>
-              <div class="w-2/6 max-w-sm bg-gray-100 rounded-lg shadow-lg dark:border-gray-700 pt-6">
-                <div className='flex flex-row items-center justify-center'>
-                  <div class="flex flex-col items-center pb-10 pt-10">
-                      <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src={Logo} alt="logo imagen"/>
-                      <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black">Richard Raul<br></br> Josephia Santos</h5>
-                      <span class="text-sm text-gray-500 dark:text-gray-400">Ingeniero</span>
-                      <div class="flex mt-4 md:mt-6">
-                          <a href="#" class="inline-flex items-center ">
-                            <MdOutlineFacebook className="w-8 h-8" />
-                          </a>
-                          <a href="#" class="inline-flex items-center ">
-                            <AiFillLinkedin className="w-8 h-8" />
-                          </a>
-                          <a href="#" class="inline-flex items-center ">
-                            <AiFillInstagram className="w-8 h-8" />
-                          </a>
-                      </div>
-                  </div>
+        <div className="bg-gray-100 min-h-screen p-8">
+            <div className="text-center mb-8">
+                <h2 className="text-4xl font-semibold text-gray-800">Equipo de Trabajo</h2>
+                <p className="text-lg text-gray-600 mt-2">Conoce a los miembros detrás del proyecto</p>
+            </div>
+
+            <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
+                <div className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full text-center">
+                    <img src={Richard} alt="logo imagen" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4" />
+                    <h3 className="text-xl font-semibold text-gray-800">Richard Raul<br />Josephia Santos</h3>
+                    <p className="text-gray-500 mb-4">Ingeniero</p>
+                    <div className="flex justify-center gap-4 text-gray-500">
+                        <a href="#" className="hover:text-blue-600">
+                            <MdOutlineFacebook className="w-6 h-6" />
+                        </a>
+                        <a href="#" className="hover:text-blue-500">
+                            <AiFillLinkedin className="w-6 h-6" />
+                        </a>
+                        <a href="#" className="hover:text-pink-500">
+                            <AiFillInstagram className="w-6 h-6" />
+                        </a>
+                    </div>
                 </div>
-              </div>
-              <div className='w-3/6'></div>
-            </div>
-            <div className='flex flex-row justify-center w-full pt-[30px]'>
-              <div className='w-3/6'></div>
-              <div class="w-2/6 max-w-sm bg-gray-100 rounded-lg shadow-lg dark:border-gray-700 pt-6">
-                <div className='flex flex-row items-center justify-center'>
-                  <div class="flex flex-col items-center pb-10 pt-10">
-                    <div className="w-24 h-24 mb-3 rounded-full shadow-lg overflow-hidden">
-                      <img className="w-full h-full object-cover" src={RodrigoE} alt="RodrigoEsprella"/>
+                <div className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full text-center">
+                    <img src={RodrigoE} alt="Rodrigo Esprella" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4 object-cover" />
+                    <h3 className="text-xl font-semibold text-gray-800">Rodrigo Esprella</h3>
+                    <p className="text-gray-500 mb-4">Desarrollador Full Stack</p>
+                    <div className="flex justify-center gap-4 text-gray-500">
+                        <a href="https://www.facebook.com/profile.php?id=100005222862936" className="hover:text-blue-600">
+                            <MdOutlineFacebook className="w-6 h-6" />
+                        </a>
+                        <a href="https://www.instagram.com/hairax_uwu/" className="hover:text-pink-500">
+                            <AiFillInstagram className="w-6 h-6" />
+                        </a>
                     </div>
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-black">Rodrigo Esprella</h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Desarrollador Full Stack</span>
-                    <div class="flex mt-4 md:mt-6">
-                      <a href="https://www.facebook.com/profile.php?id=100005222862936" class="inline-flex items-center ">
-                        <MdOutlineFacebook className="w-8 h-8" />
-                      </a>
-                      {/* <a href="#" class="inline-flex items-center ">
-                        <AiFillLinkedin className="w-8 h-8" />
-                      </a> */}
-                      <a href="https://www.instagram.com/hairax_uwu/" class="inline-flex items-center ">
-                        <AiFillInstagram className="w-8 h-8" />
-                      </a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div className='w-1/6'></div>
-            </div>
-            <div className='flex flex-row justify-center w-full pt-[30px]'>
-              <div className='w-1/6'></div>
-              <div class="w-2/6 max-w-sm bg-gray-100 rounded-lg shadow-lg dark:border-gray-700 pt-6">
-                <div className='flex flex-row items-center justify-center'>
-                  <div className="flex flex-col items-center pb-10 pt-10">
-                    <div className="w-24 h-24 mb-3 rounded-full shadow-lg overflow-hidden">
-                      <img className="w-full h-full object-cover" src={JoseG} alt="JoseGarcia"/>
+
+                {/* Tarjeta 3 */}
+                <div className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full text-center">
+                    <img src={JoseG} alt="Jose Garcia" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4 object-cover" />
+                    <h3 className="text-xl font-semibold text-gray-800">Jose Garcia</h3>
+                    <p className="text-gray-500 mb-4">Project Manager</p>
+                    <div className="flex justify-center gap-4 text-gray-500">
+                        <a href="https://www.facebook.com/josedaniel.garcia.587" className="hover:text-blue-600">
+                            <MdOutlineFacebook className="w-6 h-6" />
+                        </a>
+                        <a href="https://www.instagram.com/jdg69219/" className="hover:text-pink-500">
+                            <AiFillInstagram className="w-6 h-6" />
+                        </a>
                     </div>
-                    <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-black">Jose Garcia</h5>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">Project Manager</span>
-                    <div className="flex mt-4 md:mt-6">
-                      <a href="https://www.facebook.com/josedaniel.garcia.587" className="inline-flex items-center">
-                        <MdOutlineFacebook className="w-8 h-8" />
-                      </a>
-                      {/* <a href="#" class="inline-flex items-center ">
-                        <AiFillLinkedin className="w-8 h-8" />
-                      </a> */}
-                      <a href="https://www.instagram.com/jdg69219/" className="inline-flex items-center">
-                        <AiFillInstagram className="w-8 h-8" />
-                      </a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div className='w-3/6'></div>
             </div>
-          </div>
-          <div className='mt-4 text-xl w-1/2 '>
-            <div className='flex flex-row items-center justify-center'>
-              <div className='w-1/3'></div>
-              <div className='text-35px text-left justify-right font-inter bg-orangeabout opacity-75 py-20px pl-[80px] rounded-l-full w-2/3'>
-                Equipo de trabajo
-              </div>
+
+            <div className="mt-12 max-w-3xl mx-auto p-6 bg-blue-100 rounded-lg shadow-lg text-center">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-4">Sobre el Proyecto</h3>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                    En el crecimiento de la tecnología es necesario simplificar tareas y optimizar cálculos manuales para acelerar el tiempo de producción en distintas áreas. Con la guía del Ing. Richard Jhosepia y el esfuerzo del equipo de desarrollo, logramos llevar este proyecto a la realidad.
+                </p>
             </div>
-            <div className='flex flex-row items-center justify-center mt-[30px]'>
-              <div className='w-1/5'></div>
-              <div className='text-35px text-left justify-right font-inter bg-celeste opacity-75 py-20px pl-[40px] pr-[10px] rounded-l-3xl w-4/5'>
-              En el crecimiento de la tecnología es necesario la simplificación de tareas y optimizar cálculos manuales que permitan acelerar el tiempo de producción o trabajo en distintas áreas.
-              Con la guía del Ing. Richard Jhosepia y el trabajo conjunto del equipo de desarrollo [  ] se logró realizar este proyecto.
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     );
-  }
-  
-  export default About;
+}
+
+export default About;

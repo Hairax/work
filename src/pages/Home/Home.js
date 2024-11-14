@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../../componentes/Header/Header';
 
 import FNIL from './imgs/FNI.png';
 import SISL from './imgs/SIS.png';
@@ -8,8 +7,7 @@ import SoceL from './imgs/Soce.png';
 
 function Home() {
     return (
-      <div className=' items-center'>
-        <Header />
+      <div className=' items-center flex flex-col-2'>
         <div className='text-2xl text-center gap-4 flex flex-row justify-center'>
         <div className="flex flex-col w-full">
             <div className="flex flex-col mt-2 text-2xl w-full">

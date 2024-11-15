@@ -12,7 +12,7 @@ function Sidebar() {
   };
 
   return (
-    <nav className="fixed top-0= left-4 h-screen w-20 bg-gradient-to-t from-indigo-900 to-blue-800 text-white flex flex-col items-center py-8 rounded-2xl shadow-xl">
+    <nav className="fixed top-0= left-1 h-screen w-20 bg-gradient-to-t from-indigo-900 to-blue-800 text-white flex flex-col items-center py-8 rounded-2xl shadow-xl">
       <div className="mb-8">
         <div className="text-center text-xs font-semibold tracking-wide text-gray-200">
             <img src="/logoAba.jpg" alt="logo" className="w-12 h-12 rounded-full" />

@@ -1,6 +1,7 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { MdHome, MdBookmark, MdPlayArrow, MdNoteAlt } from 'react-icons/md';
+import logoAba from './logoAba.jpg';
 
 function Sidebar() {
   const location = useLocation();
@@ -12,38 +13,39 @@ function Sidebar() {
   };
 
   return (
-    <nav className="fixed top-0= left-1 h-screen w-20 bg-gradient-to-t from-indigo-900 to-blue-800 text-white flex flex-col items-center py-8 rounded-2xl shadow-xl">
+    <nav className="fixed top-0 left-1 h-screen w-20 bg-gradient-to-t from-indigo-900 to-blue-800 text-white flex flex-col items-center py-8 rounded-2xl shadow-xl">
       <div className="mb-8">
         <div className="text-center text-xs font-semibold tracking-wide text-gray-200">
-            <img src="/logoAba.jpg" alt="logo" className="w-12 h-12 rounded-full" />
+          <img src={logoAba} alt="logo" className="w-12 h-12 rounded-full" />
         </div>
       </div>
       <ul className="flex flex-col items-center space-y-6">
+        {/* Home */}
         <li className="relative">
-          <a href="/" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/')}`}>
+          <Link to="/" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/')}`}>
             <MdHome className="w-6 h-6" />
-          </a>
+          </Link>
         </li>
-        
+
         {/* Services */}
         <li className="relative">
-          <a href="/services" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/services')}`}>
+          <Link to="/services" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/services')}`}>
             <MdPlayArrow className="w-6 h-6" />
-          </a>
+          </Link>
         </li>
-        
+
         {/* About */}
         <li className="relative">
-          <a href="/about" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/about')}`}>
+          <Link to="/about" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/about')}`}>
             <MdBookmark className="w-6 h-6" />
-          </a>
+          </Link>
         </li>
-        
+
         {/* References */}
         <li className="relative">
-          <a href="/references" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/references')}`}>
+          <Link to="/references" className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass('/references')}`}>
             <MdNoteAlt className="w-6 h-6" />
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

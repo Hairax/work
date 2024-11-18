@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.js",
+  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -53,21 +54,16 @@
     "tailwindcss": "^3.4.13"
   },
   "build": {
-  "appId": "com.tuaplicacion.reactelectron",
-  "productName": "Ramcodes",
-  "directories": {
-    "output": "dist_electron"
-  },
+  "appId": "com.example.app",
+  "productName": "RamCodes",
   "files": [
-    "build/**/*",
-    "main.js"
+    "**/*"
   ],
-  "win": {
-    "target": "nsis"
+  "directories": {
+    "buildResources": "build"
   },
-  "mac": {
-    "target": "dmg"
-  }
+  "asar": true
 }
+
 
 }

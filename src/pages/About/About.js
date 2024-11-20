@@ -16,17 +16,10 @@ function About() {
             <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
                 <div className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full text-center">
                     <img src={Richard} alt="logo imagen" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-800">Richard Raul<br />Josephia Santos</h3>
-                    <p className="text-gray-500 mb-4">Ingeniero</p>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Richard Raul<br />Josephia Santos</h3>
                     <div className="flex justify-center gap-4 text-gray-500">
                         <a href="#" className="hover:text-blue-600">
                             <MdOutlineFacebook className="w-6 h-6" />
-                        </a>
-                        <a href="#" className="hover:text-blue-500">
-                            <AiFillLinkedin className="w-6 h-6" />
-                        </a>
-                        <a href="#" className="hover:text-pink-500">
-                            <AiFillInstagram className="w-6 h-6" />
                         </a>
                     </div>
                 </div>

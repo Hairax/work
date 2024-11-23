@@ -129,16 +129,48 @@ export function poligono(){
   rt.push([pE[0],null,null,null,null,null,null,null,null,null,pE[1]]);
   rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
 
-  const mp = [["","",{ role: 'annotation' }]];
+  const mp = [["","","",{ role: 'annotation' }]];
 
-  mp.push([pA[0],pA[1],"A"]);
-  mp.push([pB[0],pB[1],"B"]);
-  mp.push([pC[0],pC[1],"C"]);
-  mp.push([pD[0],pD[1],"D"]);
-  mp.push([pE[0],pE[1],"E"]);
-  mp.push([pA[0],pA[1],null]);
+  mp.push([pA[0],pA[1],pA[1],"A"]);
+  mp.push([pB[0],pB[1],pB[1],"B"]);
+  mp.push([pC[0],pC[1],pC[1],"C"]);
+  mp.push([pD[0],pD[1],pD[1],"D"]);
+  mp.push([pE[0],pE[1],pE[1],"E"]);
+  mp.push([pA[0],pA[1],pA[1],null]);
+
 
   console.log(rt);
-  return {rt:rt , mp:mp};
+  let areaPol = mp.slice(1).map(([x, y]) => [x, y]);
+  areaPol = areaPol.reverse();
+
+  // Cálculo del área
+  let CalArea = 0, Sx = 0, Sy = 0, Cx = 0, Cy = 0;
+
+  for (let k = 0; k < areaPol.length - 1; k++) {
+    const xi = areaPol[k][0];
+    const yi = areaPol[k][1];
+    const xi1 = areaPol[k + 1][0];
+    const yi1 = areaPol[k + 1][1];
+
+    // Cálculo de la suma para el área
+    const termino = (xi * yi1 - xi1 * yi);
+    CalArea += termino;
+
+    // Sumas para las coordenadas del centroide
+    Sx += (xi + xi1) * termino;
+    Sy += (yi + yi1) * termino;
+  }
+
+  // Ajustar el área
+  CalArea = Math.abs(CalArea * 0.5);
+
+  // Coordenadas
+  Cx = Sx / (6 * CalArea);
+  Cy = Sy / (6 * CalArea);
+
+  mp.push([Cx,Cy,null,"Centroide"]);
+
+
+  return {rt:rt , mp:mp,  CalArea:CalArea};
 }
 

@@ -73,6 +73,7 @@ function Services() {
             tb2all={ALLresult().tb2all}
             pol1={poligono().rt}
             pol2={poligono().mp}
+            CalArea = {poligono().CalArea}
             options={{
               title: 'Company Performance',
               titleTextStyle: { color: '#2C3E50', fontSize: 20 },

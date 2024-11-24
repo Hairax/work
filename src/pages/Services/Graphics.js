@@ -1,3 +1,4 @@
+import { type } from '@testing-library/user-event/dist/type';
 import React from 'react';
 import { Chart } from "react-google-charts";
 
@@ -159,10 +160,11 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
           data={pol2} 
           options={{
             ...NewOptions(options, "Figura 6: Área del Polígono de Intersección", "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
-            seriesType: "area",
-            series: { 2: { type: "line" } },
+            seriesType: "scatter",
+            series: { 1: { type: "area", } },
             legend: { position: 'none' },
             hAxis: { minValue: 6, maxValue: 8 },
+
           }} 
         />
       </div>

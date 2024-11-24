@@ -1,5 +1,3 @@
-import { MdCompareArrows } from "react-icons/md";
-
 function round(value, decimals) {
     const factor = Math.pow(10, decimals);
     return Math.round(value * factor) / factor;
@@ -106,7 +104,6 @@ function Intersección(li1,li2) {
   const py=round((x1*px)+c1,3);
  // console.log(x1, c1); 
  // console.log(x2,c2);
-  console.log(px,py);
   return [px , py];
 }
 
@@ -139,7 +136,6 @@ export function poligono(){
   mp.push([pA[0],pA[1],pA[1],null]);
 
 
-  console.log(rt);
   let areaPol = mp.slice(1).map(([x, y]) => [x, y]);
   areaPol = areaPol.reverse();
 
@@ -173,4 +169,3 @@ export function poligono(){
 
   return {rt:rt , mp:mp,  CalArea:CalArea};
 }
-

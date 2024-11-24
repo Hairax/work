@@ -4,7 +4,8 @@ import FNIL from './imgs/FNI.png';
 import SISL from './imgs/SIS.png';
 import INFL from './imgs/INF.png';
 import SoceL from './imgs/Soce.png';
-
+import Oscecfrom from './imgs/OSCElogoB.jpg';
+import Uto from './imgs/UTOlogo.jpg';
 function Home() {
   return (
     <div className="bg-gray-50 min-h-screen p-8">
@@ -48,9 +49,11 @@ function Home() {
       </div>
       <div className="flex flex-row w-full justify-center gap-4">
         {[
+          { src: Uto, alt: 'UTO', link: 'https://www.uto.edu.bo/' },
           { src: FNIL, alt: 'FNI', link: 'https://www.fni.uto.edu.bo/' },
           { src: SISL, alt: 'SIS', link: 'https://portal2.sistemas.edu.bo/sistemas/' },
           { src: INFL, alt: 'INF', link: 'https://portal2.sistemas.edu.bo/informatica/' },
+          { src: Oscecfrom, alt: 'OSCE', link: 'https://www.facebook.com/share/1Wza4PM4t2/' },
           { src: SoceL, alt: 'Soce', link: 'https://www.facebook.com/profile.php?id=61558661454001&mibextid=ZbWKwL' },
         ].map((item, index) => (
           <div

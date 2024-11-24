@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdOutlineFacebook } from "react-icons/md";
-import { AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
+import { AiFillInstagram } from "react-icons/ai";
 import RodrigoE from './imgs/RodrigoEsprella.png';
 import JoseG from './imgs/JoseGarcia.jpg';
 import Richard from './imgs/Richard.png';
@@ -18,7 +18,7 @@ function About() {
                     <img src={Richard} alt="logo imagen" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4" />
                     <h3 className="text-xl font-semibold text-gray-800 mb-4">Richard Raul<br />Josephia Santos</h3>
                     <div className="flex justify-center gap-4 text-gray-500">
-                        <a href="#" className="hover:text-blue-600">
+                        <a href="/" className="hover:text-blue-600">
                             <MdOutlineFacebook className="w-6 h-6" />
                         </a>
                     </div>

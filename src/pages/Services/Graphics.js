@@ -1,4 +1,3 @@
-import { type } from '@testing-library/user-event/dist/type';
 import React from 'react';
 import { Chart } from "react-google-charts";
 
@@ -45,13 +44,15 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
       <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
         <div className="w-full p-4">
           <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            {tb1.map((row, i) => (
-              <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                {row.map((column, j) => (
-                  <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                ))}
-              </tr>
-            ))}
+            <tbody>
+              {tb1.map((row, i) => (
+                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                  {row.map((column, j) => (
+                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="w-full p-4">
@@ -68,13 +69,15 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
       <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
         <div className="w-full p-4">
           <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            {tb2.map((row, i) => (
-              <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                {row.map((column, j) => (
-                  <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                ))}
-              </tr>
-            ))}
+            <tbody>
+              {tb2.map((row, i) => (
+                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                  {row.map((column, j) => (
+                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="w-full p-4">
@@ -91,13 +94,15 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
       <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
         <div className="w-full p-4">
           <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            {tb3.map((row, i) => (
-              <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                {row.map((column, j) => (
-                  <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                ))}
-              </tr>
-            ))}
+            <tbody>
+              {tb3.map((row, i) => (
+                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                  {row.map((column, j) => (
+                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="w-full p-4">

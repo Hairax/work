@@ -7,6 +7,7 @@ import SoceL from './imgs/Soce.png';
 import Oscecfrom from './imgs/OSCElogoB.jpg';
 import Uto from './imgs/UTOlogo.jpg';
 import USPlogo from './imgs/USPlogo.jpg';
+import Aba from './imgs/logoAba.jpg';
 
 function Home() {
   return (
@@ -37,7 +38,7 @@ function Home() {
       {/* ABA Section */}
       <div className="mt-16 bg-blue-100 rounded-xl shadow-lg p-8 max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-semibold text-gray-800 mb-6">ABA</h2>
-        <img src="/logoAba.jpg" alt="Logo ABA" className="mx-auto w-48 h-48 rounded-lg mb-6 shadow-md" />
+        <img src={Aba} alt="Logo ABA" className="mx-auto w-48 h-48 rounded-lg mb-6 shadow-md" />
         <p className="text-gray-700 leading-relaxed text-lg">
           La Asociación Boliviana de Asfalto es una entidad que promueve la capacitación de profesionales en ingeniería civil, en ingeniería vial; así mismo, promueve la investigación, asegurando el cumplimiento de normas y estándares de calidad.
         </p>

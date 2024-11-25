@@ -5,8 +5,8 @@ let mainWindow;
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
-    width: 1240,
-    height: 800,
+    width: 1600,
+    height: 900,
     minHeight: 800,
     minWidth: 1240,
     webPreferences: {
@@ -16,7 +16,27 @@ app.on('ready', () => {
     },
   });
 
-  Menu.setApplicationMenu(null);
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate([
+      {
+        label: 'File',
+        submenu: [
+          {
+            label: 'Home',
+            click: () => {
+              mainWindow.loadFile(path.join(__dirname, 'build', 'index.html'));
+            },
+          },
+          {
+            label: 'Exit',
+            click: () => {
+              app.quit();
+            },
+          },
+        ],
+      },
+    ])
+  );
   
   mainWindow.loadFile(path.join(__dirname, 'build', 'index.html'));
 });

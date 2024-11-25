@@ -41,82 +41,38 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
 export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
   return (
     <div className="flex flex-col items-center w-full px-6">
-      <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
-        <div className="w-full p-4">
-          <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            <tbody>
-              {tb1.map((row, i) => (
-                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                  {row.map((column, j) => (
-                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {[
+        { table: tb1, chartData: tb1, title: "Figura 1: Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
+        { table: tb2, chartData: tb2, title: "Figura 2: Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
+        { table: tb3, chartData: tb3, title: "Figura 3: Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
+      ].map((item, index) => (
+        <div key={index} className="w-full flex flex-col lg:flex-row gap-6 py-10 graph-container">
+          <div className="w-full p-4">
+            <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
+              <tbody>
+                {item.table.map((row, i) => (
+                  <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                    {row.map((column, j) => (
+                      <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="w-full p-4">
+            <Chart 
+              chartType="LineChart" 
+              width="100%" 
+              height="500px" 
+              data={item.chartData} 
+              options={NewOptions(options, item.title, "Contenido de Asfalto (%)", "Gmb (g/cm³)")} 
+            />
+          </div>
         </div>
-        <div className="w-full p-4">
-          <Chart 
-            chartType="LineChart" 
-            width="100%" 
-            height="500px" 
-            data={tb1} 
-            options={NewOptions(options, "Figura 1: Isolíneas de Porcentaje de Vacíos de Aire (%Va)", "Contenido de Asfalto (%)", "Gmb (g/cm³)")} 
-          />
-        </div>
-      </div>
+      ))}
 
-      <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
-        <div className="w-full p-4">
-          <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            <tbody>
-              {tb2.map((row, i) => (
-                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                  {row.map((column, j) => (
-                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="w-full p-4">
-          <Chart 
-            chartType="LineChart" 
-            width="100%" 
-            height="500px" 
-            data={tb2} 
-            options={NewOptions(options, "Figura 2: Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)", "Contenido de Asfalto (%)", "Gmb (g/cm³)")} 
-          />
-        </div>
-      </div>
-
-      <div className="w-full flex flex-col lg:flex-row gap-6 py-10">
-        <div className="w-full p-4">
-          <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-            <tbody>
-              {tb3.map((row, i) => (
-                <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                  {row.map((column, j) => (
-                    <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="w-full p-4">
-          <Chart 
-            chartType="LineChart" 
-            width="100%" 
-            height="500px" 
-            data={tb3} 
-            options={NewOptions(options, "Figura 3: Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)", "Contenido de Asfalto (%)", "Gmb (g/cm³)")} 
-          />
-        </div>
-      </div>
-
-      <div className="w-full py-10">
+      <div className="w-full py-10 graph-container">
         <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden mb-10">
           <thead>
             <tr>
@@ -143,7 +99,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         />
       </div>
 
-      <div className="w-full py-10">
+      <div className="w-full py-10 graph-container">
         <Chart 
           chartType="ComboChart" 
           width="100%" 
@@ -155,9 +111,6 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
             series: { 9: { type: "area" } },
           }} 
         />
-      </div>
-
-      <div className="w-full py-10">
         <Chart 
           chartType="ComboChart" 
           width="100%" 

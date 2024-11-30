@@ -10,6 +10,7 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       bold: true,
       color: "#000",
     },
+   
     hAxis: {
       ...BeforeOptions.hAxis,
       title: nameX,
@@ -66,13 +67,15 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
               width="100%" 
               height="500px" 
               data={item.chartData} 
-              options={NewOptions(options, item.title, "Contenido de Asfalto (%)", "Gmb (g/cm³)")} 
+              options={{...NewOptions(options, item.title, "Contenido de Asfalto (%)", "Gmb (g/cm³)") ,
+                chartArea:{left:70,top:60,width:'70%',height:'70%'},
+              }}
             />
           </div>
         </div>
       ))}
 
-      <div className="w-full py-10 graph-container">
+      <div className="w-full py-10 graph-container justify-center items-center">
         <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden mb-10">
           <thead>
             <tr>
@@ -95,11 +98,13 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
           width="100%" 
           height="600px" 
           data={tb1all} 
-          options={NewOptions(options, "Figura 4: Intersección de las isolíneas de Va, VAM y VFA", "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)")} 
+          options={{...NewOptions(options, "Figura 4: Intersección de las isolíneas de Va, VAM y VFA", "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
+            chartArea:{width:'80%',height:'60%'},
+          }}
         />
       </div>
 
-      <div className="w-full py-10 graph-container">
+      <div className="w-full py-0 graph-container">
         <Chart 
           chartType="ComboChart" 
           width="100%" 
@@ -109,6 +114,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
             ...NewOptions(options, "Figura 5: Polígono de Intersección de las isolíneas de Va, VAM y VFA", "CONTENIDO DE ASFALTO (%)", "Gmb (g/cm³)"),
             seriesType: "line",
             series: { 9: { type: "area" } },
+            chartArea:{width:'80%',height:'60%'},
           }} 
         />
         <Chart 
@@ -122,6 +128,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
             series: { 1: { type: "area", } },
             legend: { position: 'none' },
             hAxis: { minValue: 6, maxValue: 8 },
+            chartArea:{width:'80%',height:'60%'},
 
           }} 
         />

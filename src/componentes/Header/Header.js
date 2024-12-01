@@ -13,9 +13,9 @@ function Sidebar() {
 
   const menuItems = [
     { href: '/', icon: <MdHome className="w-6 h-6" />, label: 'Home' },
-    { href: '/services', icon: <MdPlayArrow className="w-6 h-6" />, label: 'Services' },
+    { href: '/services', icon: <MdPlayArrow className="w-6 h-6" />, label: 'Servicio' },
+    { href: '/references', icon: <MdNoteAlt className="w-6 h-6" />, label: 'Referencias teoricas' },
     { href: '/about', icon: <MdBookmark className="w-6 h-6" />, label: 'About' },
-    { href: '/references', icon: <MdNoteAlt className="w-6 h-6" />, label: 'References' },
   ];
 
   return (

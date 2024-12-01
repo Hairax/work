@@ -87,7 +87,7 @@ function Services() {
           ))}
         </div>
 
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-center">
           <button
             className="bg-indigo-500 text-white text-[25px] font-semibold py-2 px-6 rounded-full hover:bg-indigo-600 focus:outline-none mb-6"
             onClick={iniciarProceso}
@@ -106,6 +106,10 @@ function Services() {
         {showGraphics && (
           <div ref={graphicsRef}>
             <Graphics
+              date1={confirmedInput1}
+              date2={confirmedInput2}
+              date3={confirmedInput3}
+
               tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3)}
               tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3)}
               tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3)}

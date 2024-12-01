@@ -28,7 +28,7 @@ function Home() {
             de geomateriales (F. J. Sánchez Leal, 2002).
           </p>
           <p className="text-lg mt-4">
-            Este metodo acelera el disenio de de mezclas asfalticas, con facilidad de uso. 
+            Este metodo acelera el diseño de de mezclas asfalticas, con facilidad de uso. 
             Esta plataforma permite a los usuarios realizar cálculos de manera rápida y eficiente, 
             introduciendo solo 3 datos y obteniendo resultados con un solo clic.
           </p>

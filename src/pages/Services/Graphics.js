@@ -48,43 +48,43 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
         { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
-        <div key={index} className="w-full flex flex-col">
+        <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
           <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
             {item.title}
           </h1>
-        <div key={index} className="w-full flex flex-col lg:flex-row gap-6 py-30 graph-container">
-          <div className="w-full p-4">
-            <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
-              <tbody>
-                {item.table.map((row, i) => (
-                  <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
-                    {row.map((column, j) => (
-                      <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="w-full p-4 ">
-            <Chart 
-              chartType="LineChart" 
-              width="100%" 
-              height="500px" 
-              data={item.chartData} 
-              options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
-                chartArea:{left:70,top:60,width:'70%',height:'70%'},
-              }}
-            />
+          <div className="flex flex-col lg:flex-row w-full gap-6">
+            <div className="w-full lg:w-1/2 p-4">
+              <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
+                <tbody>
+                  {item.table.map((row, i) => (
+                    <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                      {row.map((column, j) => (
+                        <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="w-full lg:w-1/2 p-4">
+              <Chart 
+                chartType="LineChart" 
+                width="100%" 
+                height="500px" 
+                data={item.chartData} 
+                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
+                  chartArea:{left:70,top:60,width:'70%',height:'70%'},
+                }}
+              />
+            </div>
           </div>
         </div>
-        </div>
-      ))}
+    ))}
 
       <div className="w-full py-10 graph-container justify-center items-center">
-      <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-              Intersección de las isolíneas de Va, VAM y VFA
-            </h1>
+        <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
+          Intersección de las isolíneas de Va, VAM y VFA
+        </h1>
         <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden mb-10">
           <thead>
             <tr>
@@ -114,39 +114,41 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
       </div>
 
       <div className="w-full py-0 graph-container">
-        <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-              Polígono de Intersección de las isolíneas de Va, VAM y VFA
-        </h1>
-        <Chart 
-          chartType="ComboChart" 
-          width="100%" 
-          height="600px" 
-          data={pol1} 
-          options={{
-            ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
-            seriesType: "line",
-            series: { 9: { type: "area" } },
-            chartArea:{top:'10', width:'80%',height:'80%'},
-          }} 
-        />
-      </div>
-      <div className="w-full py-0 graph-container">
-        <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-              Área del Polígono de Intersección
-        </h1>
-        <Chart 
-          chartType="ComboChart" 
-          width="100%" 
-          height="600px" 
-          data={pol2} 
-          options={{
-            ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
-            seriesType: "scatter",
-            series: { 1: { type: "area", } },
-            legend: { position: 'none' },
-            chartArea:{ top:'10', width:'80%',height:'80%'},
-          }} 
-        />
+        <div className="w-full py-0">
+          <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
+                Polígono de Intersección de las isolíneas de Va, VAM y VFA
+          </h1>
+          <Chart 
+            chartType="ComboChart" 
+            width="100%" 
+            height="600px" 
+            data={pol1} 
+            options={{
+              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+              seriesType: "line",
+              series: { 9: { type: "area" } },
+              chartArea:{top:'10', width:'80%',height:'80%'},
+            }} 
+          />
+        </div>
+        <div className="w-full py-0">
+          <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
+                Área del Polígono de Intersección
+          </h1>
+          <Chart 
+            chartType="ComboChart" 
+            width="100%" 
+            height="600px" 
+            data={pol2} 
+            options={{
+              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+              seriesType: "scatter",
+              series: { 1: { type: "area", } },
+              legend: { position: 'none' },
+              chartArea:{ top:'10', width:'80%',height:'80%'},
+            }} 
+          />
+        </div>
       </div>
      
       <div>

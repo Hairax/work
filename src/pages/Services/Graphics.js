@@ -40,15 +40,40 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
   };
 }
 
-export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
+export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
   return (
     <div className="flex flex-col items-center w-full px-6">
+
       {[
         { table: tb1, chartData: tb1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
         { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
         { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
+          {index === 0 &&
+            <div className="w-full py-10">
+            <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
+              Datos Trabajados
+            </h1>
+            <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
+              <thead>
+                <tr>
+                  <th className="border border-gray-400 p-3 text-center font-semibold">Gsb</th>
+                  <th className="border border-gray-400 p-3 text-center font-semibold">Gse</th>
+                  <th className="border border-gray-400 p-3 text-center font-semibold">Gb</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border border-gray-200">
+                  <td className="border border-gray-300 p-3 text-center">{date1}</td>
+                  <td className="border border-gray-300 p-3 text-center">{date2}</td>
+                  <td className="border border-gray-300 p-3 text-center">{date3}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          }
+
           <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
             {item.title}
           </h1>
@@ -113,7 +138,7 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
         />
       </div>
 
-      <div className="w-full py-0 graph-container">
+      <div className="w-full py-0 graph-container flex flex-col items-center">
         <div className="w-full py-0">
           <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
                 Polígono de Intersección de las isolíneas de Va, VAM y VFA
@@ -149,28 +174,27 @@ export default function Graphics({ tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, op
             }} 
           />
         </div>
-      </div>
-     
-      <div>
-        <h1 className="text-[30px] font-bold text-green-600 text-center my-6">
-          Resultados por el Método Ramcodes
-        </h1>
-        <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
-          <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
-            Gₘᵦ
-          </div>
-          <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
-            {pol2.at(-1)[1].toFixed(3)}
-          </div>
-          <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
-            Contenido de Asfalto Óptimo
-          </div>
-          <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
-          {pol2.at(-1)[0].toFixed(3)}
+
+        <div>
+          <h1 className="text-[30px] font-bold text-green-600 text-center my-6">
+            Resultados por el Método Ramcodes
+          </h1>
+          <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
+            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
+              Gₘᵦ
+            </div>
+            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
+              {pol2.at(-1)[1].toFixed(3)}
+            </div>
+            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
+              Contenido de Asfalto Óptimo
+            </div>
+            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
+            {pol2.at(-1)[0].toFixed(3)}
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

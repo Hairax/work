@@ -3,6 +3,10 @@ function round(value, decimals) {
     return Math.round(value * factor) / factor;
 }
 
+function EcuLin(){
+  
+}
+
 export const gmm = [];
 export const Va3 = [];
 export const Va4 = [];
@@ -12,6 +16,20 @@ export const Vam16 = [];
 export const VFA65 = [];
 export const VFA75 = [];
 export const pb = [];
+
+
+  function regLineal(PromX, SXX, x, y){
+    let SumY = y.reduce((acc, yi) => acc + yi, 0);      
+    let PromY = SumY/y.length;
+
+    let SXY2 = x.reduce((acc, xi, i) => acc + (xi * y[i]) ** 2, 0);
+    let SSXY = SXY2 - ((SumX*SumY)/x.length);
+
+    let b1 = SSXY/SXX;
+    let b0 = PromY - (b1*PromX);
+
+    return {b0 , b1}
+  }
 
   export function LGmm(Gsb, Gse, Gb) {
    // let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
@@ -24,7 +42,24 @@ export const pb = [];
       Va5[j] = round((1 - (5 / 100)) * gmm[j],3); 
     }
 
+    //Funciones para calcular la linea de regresion
+    const SumX = pb.reduce((acc, xi) => acc + xi, 0);      
+    const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
+    const SXX = SumX2 - ((SumX ** 2)/pb.length);
+    const PromX = SumX/x.length;
+
+    const {gmmBO , gmmB1 } = regLineal(PromX, SXX , pb , gmm);
+    const {Va3BO , Va3B1 } = regLineal(PromX, SXX , pb , Va3); 
+    const {Va4BO , Va4B1 } = regLineal(PromX, SXX , pb , Va4); 
+    const {Va5BO , Va5B1 } = regLineal(PromX, SXX , pb , Va5); 
     
+    console.log("BO Y B1" + gmmBO +" " + gmmB1);
+    console.log("BO Y B1 VA3" + Va3BO +" " + Va3B1);
+    console.log("BO Y B1 VA4" + Va4BO +" " + Va4B1);
+    console.log("BO Y B1 VA5" + Va5BO +" " + Va5B1);
+
+
+
     const result = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
     
     for (let k = 0; k < gmm.length; k++) {

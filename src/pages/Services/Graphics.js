@@ -53,15 +53,15 @@ const serieslist = [
       
   },
   {
-    
+        0: { type: "scatter" },
         1: { type: "scatter" },
-        2: { type: "scatter" },
-        3: { type: "scatter" },
+        2: { type: "line" },
+        3: { type: "line" },
         4: { type: "line" }
     
   },
   {
-   
+    0: { type: "scatter" },
         1: { type: "scatter" },
         4: { type: "line" }
    
@@ -74,9 +74,9 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
     <div className="flex flex-col items-center w-full px-6">
 
       {[
-        { table: tb1, chartData: tb1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
-        { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
-        { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
+        { table: tb1, chartData: tb1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" , num:0},
+        { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)", num:1 },
+        { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)", num:2 }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
           {index === 0 &&
@@ -121,7 +121,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
               </table>
             </div>
             <div className="w-full lg:w-1/2 p-4">
-              <Chart 
+              <Chart
                 chartType="ComboChart" 
                 width="100%" 
                 height="500px" 
@@ -129,10 +129,9 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                 options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
                   series: serieslist[index],
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
-                
                 }}
-
               />
+              {console.log("index " + index)}
             </div>
           </div>
         </div>

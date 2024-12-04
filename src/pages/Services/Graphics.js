@@ -40,6 +40,35 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
   };
 }
 
+const serieslist = [
+  {
+      
+          1: { type: "scatter" },
+          2: { type: "scatter" },
+          3: { type: "scatter" },
+          4: { type: "scatter" },
+          6: { type: "line" }
+          
+          
+      
+  },
+  {
+    
+        1: { type: "scatter" },
+        2: { type: "scatter" },
+        3: { type: "scatter" },
+        4: { type: "line" }
+    
+  },
+  {
+   
+        1: { type: "scatter" },
+        4: { type: "line" }
+   
+  }
+];
+
+
 export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
   return (
     <div className="flex flex-col items-center w-full px-6">
@@ -93,13 +122,16 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             </div>
             <div className="w-full lg:w-1/2 p-4">
               <Chart 
-                chartType="LineChart" 
+                chartType="ComboChart" 
                 width="100%" 
                 height="500px" 
                 data={item.chartData} 
                 options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
+                  series: serieslist[index],
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
+                
                 }}
+
               />
             </div>
           </div>

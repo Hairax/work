@@ -3,9 +3,6 @@ function round(value, decimals) {
     return Math.round(value * factor) / factor;
 }
 
-function EcuLin(){
-  
-}
 
 export const gmm = [];
 export const Va3 = [];
@@ -18,56 +15,57 @@ export const VFA75 = [];
 export const pb = [];
 
 
-  function regLineal(PromX, SXX, x, y){
+function regLineal(PromX, SXX, x, y) {
     let SumX = x.reduce((acc, xi) => acc + xi, 0);
-    let SumY = y.reduce((acc, yi) => acc + yi, 0);      
-    let PromY = SumY/y.length;
+    let SumY = y.reduce((acc, yi) => acc + yi, 0);
+    let PromY = SumY / y.length;
 
-    let SXY2 = x.reduce((acc, xi, i) => acc + (xi * y[i]) ** 2, 0);
-    let SSXY = SXY2 - ((SumX*SumY)/x.length);
+    // Producto cruzado
+    let SXY = x.reduce((acc, xi, i) => acc + (xi * y[i]), 0);
+    let SSXY = SXY - ((SumX * SumY) / x.length);
 
-    let b1 = SSXY/SXX;
-    let b0 = PromY - (b1*PromX);
+    let b1 = SSXY / SXX;
+    let b0 = PromY - (b1 * PromX);
 
-    return {b0 , b1}
-  }
+    return { b0, b1 };
+}
 
-  export function LGmm(Gsb, Gse, Gb) {
-   // let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
+export function LGmm(Gsb, Gse, Gb) {
+    const round = (value, decimals) => Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+
+    let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
 
     for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
-      pb[j] = round(i,1); 
-      gmm[j] = round(100 / (((100 - i) / Gse) + (i / Gb)),3); 
-      Va3[j] = round((1 - (3 / 100)) * gmm[j],3); 
-      Va4[j] = round((1 - (4 / 100)) * gmm[j],3); 
-      Va5[j] = round((1 - (5 / 100)) * gmm[j],3); 
+        pb[j] = round(i, 1);
+        gmm[j] = round(100 / (((100 - i) / Gse) + (i / Gb)), 3);
+        Va3[j] = round((1 - (3 / 100)) * gmm[j], 3);
+        Va4[j] = round((1 - (4 / 100)) * gmm[j], 3);
+        Va5[j] = round((1 - (5 / 100)) * gmm[j], 3);
     }
 
-    //Funciones para calcular la linea de regresion
-    const SumX = pb.reduce((acc, xi) => acc + xi, 0);      
+    // Cálculos para regresión lineal
+    const SumX = pb.reduce((acc, xi) => acc + xi, 0);
     const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
-    const SXX = SumX2 - ((SumX ** 2)/pb.length);
-    const PromX = SumX/pb.length;
+    const SXX = SumX2 - ((SumX ** 2) / pb.length);
+    const PromX = SumX / pb.length;
 
-    const {gmmBO , gmmB1 } = regLineal(PromX, SXX , pb , gmm);
-    const {Va3BO , Va3B1 } = regLineal(PromX, SXX , pb , Va3); 
-    const {Va4BO , Va4B1 } = regLineal(PromX, SXX , pb , Va4); 
-    const {Va5BO , Va5B1 } = regLineal(PromX, SXX , pb , Va5); 
-    console.log(regLineal(PromX, SXX , pb , gmm));
-    
-    console.log("BO Y B1" + gmmBO +" " + gmmB1);
-    console.log("BO Y B1 VA3" + Va3BO +" " + Va3B1);
-    console.log("BO Y B1 VA4" + Va4BO +" " + Va4B1);
-    console.log("BO Y B1 VA5" + Va5BO +" " + Va5B1);
+    const { b0: gmmBO, b1: gmmB1 } = regLineal(PromX, SXX, pb, gmm);
+    const { b0: Va3BO, b1: Va3B1 } = regLineal(PromX, SXX, pb, Va3);
+    const { b0: Va4BO, b1: Va4B1 } = regLineal(PromX, SXX, pb, Va4);
+    const { b0: Va5BO, b1: Va5B1 } = regLineal(PromX, SXX, pb, Va5);
 
+    console.log("Regresión GMM:", { gmmBO, gmmB1 });
+    console.log("Regresión Va3:", { Va3BO, Va3B1 });
+    console.log("Regresión Va4:", { Va4BO, Va4B1 });
+    console.log("Regresión Va5:", { Va5BO, Va5B1 });
 
 
-    const result = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
+    const result = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
     
     for (let k = 0; k < gmm.length; k++) {
-      result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]); 
-     // result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (gmmBO+(pb[k]*gmmB1)) ,
-       // (Va3BO+(pb[k]*Va3B1)), (Va4BO+(pb[k]*Va4B1)), (Va5BO+(pb[k]*Va5B1)) ]);
+      //result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]); 
+      result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (gmmBO+(pb[k]*gmmB1)) ,
+      (Va3BO+(pb[k]*Va3B1)), (Va4BO+(pb[k]*Va4B1)), (Va5BO+(pb[k]*Va5B1)) ]);
     }
 
     return result; 
@@ -84,11 +82,19 @@ export function LGmb(Gsb, Gse, Gb) {
       Vam16[j] = round(((100-16) / (100-i)) * Gsb,3); 
     }
 
+    // Cálculos para regresión lineal
+    const SumX = pb.reduce((acc, xi) => acc + xi, 0);
+    const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
+    const SXX = SumX2 - ((SumX ** 2) / pb.length);
+    const PromX = SumX / pb.length;
+
+    const { b0: Vam14b0, b1: Vam14b1 } = regLineal(PromX, SXX, pb, Vam14);
+    const { b0: Vam16b0, b1: Vam16B1 } = regLineal(PromX, SXX, pb, Vam16);
     
-    const result = [["Pᵦ", "VAM 14%", "VAM 16%"]];
+    const result = [["Pᵦ", "VAM 14%", "VAM 16%", "", ""]];
     
     for (let k = 0; k < pb.length; k++) {
-        result.push([pb[k],Vam14[k], Vam16[k]]);
+        result.push([pb[k],Vam14[k], Vam16[k], (Vam14b0+(pb[k]*Vam14b1)), (Vam16b0+(pb[k]*Vam16B1))]);
     }
 
     return result; 
@@ -105,11 +111,20 @@ export function VFA(Gsb, Gse, Gb) {
     VFA75[j] = round(75/ ((100/gmm[j])+((75*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
   }
 
+      // Cálculos para regresión lineal
+      const SumX = pb.reduce((acc, xi) => acc + xi, 0);
+      const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
+      const SXX = SumX2 - ((SumX ** 2) / pb.length);
+      const PromX = SumX / pb.length;
   
-  const result = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%"]];
+      const { b0: gmmBO, b1: gmmB1 } = regLineal(PromX, SXX, pb, gmm);
+      const { b0: VFA65BO, b1: VFA65B1 } = regLineal(PromX, SXX, pb, VFA65);
+      const { b0: VFA75BO, b1: VFA75B1 } = regLineal(PromX, SXX, pb, VFA75);
+  
+  const result = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%","","",""]];
   
   for (let k = 0; k < pb.length; k++) {
-      result.push([pb[k],gmm[k],VFA65[k], VFA75[k]]);
+      result.push([pb[k],gmm[k],VFA65[k], VFA75[k], (gmmBO+(pb[k]*gmmB1)), (VFA65BO+(pb[k]*VFA65B1)) ,(VFA75BO+(pb[k]*VFA75B1)) ]);
   }
 
   return result; 

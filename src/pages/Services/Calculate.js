@@ -19,6 +19,7 @@ export const pb = [];
 
 
   function regLineal(PromX, SXX, x, y){
+    let SumX = x.reduce((acc, xi) => acc + xi, 0);
     let SumY = y.reduce((acc, yi) => acc + yi, 0);      
     let PromY = SumY/y.length;
 
@@ -46,12 +47,13 @@ export const pb = [];
     const SumX = pb.reduce((acc, xi) => acc + xi, 0);      
     const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
     const SXX = SumX2 - ((SumX ** 2)/pb.length);
-    const PromX = SumX/x.length;
+    const PromX = SumX/pb.length;
 
     const {gmmBO , gmmB1 } = regLineal(PromX, SXX , pb , gmm);
     const {Va3BO , Va3B1 } = regLineal(PromX, SXX , pb , Va3); 
     const {Va4BO , Va4B1 } = regLineal(PromX, SXX , pb , Va4); 
     const {Va5BO , Va5B1 } = regLineal(PromX, SXX , pb , Va5); 
+    console.log(regLineal(PromX, SXX , pb , gmm));
     
     console.log("BO Y B1" + gmmBO +" " + gmmB1);
     console.log("BO Y B1 VA3" + Va3BO +" " + Va3B1);
@@ -63,7 +65,9 @@ export const pb = [];
     const result = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
     
     for (let k = 0; k < gmm.length; k++) {
-        result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]);
+      result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]); 
+     // result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (gmmBO+(pb[k]*gmmB1)) ,
+       // (Va3BO+(pb[k]*Va3B1)), (Va4BO+(pb[k]*Va4B1)), (Va5BO+(pb[k]*Va5B1)) ]);
     }
 
     return result; 

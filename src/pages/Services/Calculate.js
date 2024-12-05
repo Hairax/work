@@ -73,13 +73,13 @@ export function LGmm(Gsb, Gse, Gb) {
 
 
 //Resultados para la tabla
-const result1 = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
+const result1 = [["Pb","Gmm", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
     
 for (let k = 0; k < gmm.length; k++) {
   result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]);
 }
 // Resultados para el gráfico
-    const result2 = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
+    const result2 = [["Pb","Gmm", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
     
     for (let k = 0; k < gmm.length; k++) {
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (F_gmm[0]+(pb[k]*F_gmm[1] )) ,
@@ -111,13 +111,13 @@ export function LGmb(Gsb, Gse, Gb) {
     [F_Vam16[0] , F_Vam16[1]] = Object.values(regLineal(PromX, SXX, pb, Vam16));
 
     //para la tabla
-    const result1 = [["Pᵦ", "VAM 14%", "VAM 16%"]];
+    const result1 = [["Pb", "VAM 14%", "VAM 16%"]];
     
     for (let k = 0; k < pb.length; k++) {
         result1.push([pb[k],Vam14[k], Vam16[k]]);
     }
     //resultados para la grafica
-    const result2 = [["Pᵦ", "VAM 14%", "VAM 16%", "", ""]];
+    const result2 = [["Pb", "VAM 14%", "VAM 16%", "", ""]];
     
     for (let k = 0; k < pb.length; k++) {
         result2.push([pb[k],Vam14[k], Vam16[k], (F_Vam14[0]+(pb[k]*F_Vam14[1])), (F_Vam16[0]+(pb[k]*F_Vam16[1]))]);
@@ -149,13 +149,13 @@ export function VFA(Gsb, Gse, Gb) {
 
 
 //para la tabla
-const result1 = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%"]];
+const result1 = [["Pb","Gmm", "VFA 65%", "VFA 75%"]];
   
 for (let k = 0; k < pb.length; k++) {
     result1.push([pb[k],gmm[k],VFA65[k], VFA75[k] ]);
 }
 //para el grafico
-  const result2 = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%","","",""]];
+  const result2 = [["Pb","Gmm", "VFA 65%", "VFA 75%","","",""]];
   
   for (let k = 0; k < pb.length; k++) {
       result2.push([pb[k],gmm[k],VFA65[k], VFA75[k], (F_gmm[0]+(pb[k]*F_gmm[1])),
@@ -166,8 +166,8 @@ for (let k = 0; k < pb.length; k++) {
 }
 
 export function ALLresult(){
-  const result1 = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
-  const result2 = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+  const result1 = [["Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
+  const result2 = [["Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
                           "","","","","","","",""
   ]];
 
@@ -210,7 +210,7 @@ export function poligono(){
   const pE = Intersección(Va5,VFA65);
   
 
-  let rt = [[ "Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+  let rt = [[ "Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
                       "","","","","","","","","Área" ]];
   for (let k = 0; k < pb.length; k++) {
     rt.push( [pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],

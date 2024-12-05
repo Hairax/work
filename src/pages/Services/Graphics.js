@@ -17,12 +17,13 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       titleTextStyle: {
         fontSize: 16,
         bold: true,
+        scaleType: 'log',
       },
       textStyle: {
         fontSize: 14,
         color: "#000",
       },
-      minValue: 6, maxValue: 8 ,
+     // minValue: 6, maxValue: 8 ,
     },
     vAxis: {
       ...BeforeOptions.vAxis,
@@ -30,6 +31,7 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       titleTextStyle: {
         fontSize: 16,
         bold: true,
+        scaleType: 'log',
       },
       textStyle: {
         fontSize: 14,
@@ -127,7 +129,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                 width="100%" 
                 height="500px" 
                 data={item.chartData} 
-                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
+                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)") ,
                   series: serieslist[index],
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
                 }}
@@ -163,7 +165,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           width="100%" 
           height="600px" 
           data={tb2all} 
-          options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+          options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
             series: {  
               1: { type: "scatter" },
               2: { type: "scatter" },
@@ -192,7 +194,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             height="600px" 
             data={pol1} 
             options={{
-              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
               seriesType: "scatter",
               series: { 
                 9: { type: "line" },
@@ -205,6 +207,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                 16: { type: "line" },
                 17: { type: "area" } },
               chartArea:{top:'10', width:'76%',height:'80%'},
+              
             }} 
           />
         </div>
@@ -218,11 +221,13 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             height="600px" 
             data={pol2} 
             options={{
-              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
               seriesType: "scatter",
               series: { 1: { type: "area", } },
               legend: { position: 'none' },
               chartArea:{ top:'10', width:'80%',height:'80%'},
+              
+              
             }} 
           />
         </div>
@@ -233,7 +238,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           </h1>
           <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
-              Gₘᵦ
+              Gmb
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
               {pol2.at(-1)[1].toFixed(3)}

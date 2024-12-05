@@ -1,3 +1,5 @@
+//import { GiConsoleController } from "react-icons/gi";
+
 function round(value, decimals) {
     const factor = Math.pow(10, decimals);
     return Math.round(value * factor) / factor;
@@ -14,18 +16,32 @@ export const VFA65 = [];
 export const VFA75 = [];
 export const pb = [];
 
+//para las funciones lineales
+export const F_gmm = [];
+export const F_Va3 = [];
+export const F_Va4 = [];
+export const F_Va5 = [];
+export const F_Vam14 = [];
+export const F_Vam16 = [];
+export const F_VFA65 = [];
+export const F_VFA75 = [];
+//De la regresion
+export let SumX = 0 ;
+export let SumX2 = 0;
+export let SXX = 0;
+export let PromX = 0;
 
 function regLineal(PromX, SXX, x, y) {
-    let SumX = x.reduce((acc, xi) => acc + xi, 0);
-    let SumY = y.reduce((acc, yi) => acc + yi, 0);
-    let PromY = SumY / y.length;
+    let fSumX = x.reduce((acc, xi) => acc + xi, 0);
+    let fSumY = y.reduce((acc, yi) => acc + yi, 0);
+    let fPromY = fSumY / y.length;
 
     // Producto cruzado
     let SXY = x.reduce((acc, xi, i) => acc + (xi * y[i]), 0);
-    let SSXY = SXY - ((SumX * SumY) / x.length);
+    let SSXY = SXY - ((fSumX * fSumY) / x.length);
 
     let b1 = SSXY / SXX;
-    let b0 = PromY - (b1 * PromX);
+    let b0 = fPromY - (b1 * PromX);
 
     return { b0, b1 };
 }
@@ -33,7 +49,7 @@ function regLineal(PromX, SXX, x, y) {
 export function LGmm(Gsb, Gse, Gb) {
     const round = (value, decimals) => Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 
-    let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
+    //let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
 
     for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
         pb[j] = round(i, 1);
@@ -44,31 +60,33 @@ export function LGmm(Gsb, Gse, Gb) {
     }
 
     // Cálculos para regresión lineal
-    const SumX = pb.reduce((acc, xi) => acc + xi, 0);
-    const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
-    const SXX = SumX2 - ((SumX ** 2) / pb.length);
-    const PromX = SumX / pb.length;
+    SumX = pb.reduce((acc, xi) => acc + xi, 0);
+    SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
+    SXX = SumX2 - ((SumX ** 2) / pb.length);
+    PromX = SumX / pb.length;
 
-    const { b0: gmmBO, b1: gmmB1 } = regLineal(PromX, SXX, pb, gmm);
-    const { b0: Va3BO, b1: Va3B1 } = regLineal(PromX, SXX, pb, Va3);
-    const { b0: Va4BO, b1: Va4B1 } = regLineal(PromX, SXX, pb, Va4);
-    const { b0: Va5BO, b1: Va5B1 } = regLineal(PromX, SXX, pb, Va5);
+    [F_gmm[0] , F_gmm[1]] = Object.values(regLineal(PromX, SXX, pb, gmm));
+    [F_Va3[0] , F_Va3[1]] = Object.values(regLineal(PromX, SXX, pb, Va3));
+    [F_Va4[0] , F_Va4[1]] = Object.values(regLineal(PromX, SXX, pb, Va4));
+    [F_Va5[0] , F_Va5[1]] = Object.values(regLineal(PromX, SXX, pb, Va5));
 
-    console.log("Regresión GMM:", { gmmBO, gmmB1 });
-    console.log("Regresión Va3:", { Va3BO, Va3B1 });
-    console.log("Regresión Va4:", { Va4BO, Va4B1 });
-    console.log("Regresión Va5:", { Va5BO, Va5B1 });
+    console.log("fff "+F_gmm);
 
-
-    const result = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
+//Resultados para la tabla
+const result1 = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
+    
+for (let k = 0; k < gmm.length; k++) {
+  result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]);
+}
+// Resultados para el gráfico
+    const result2 = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
     
     for (let k = 0; k < gmm.length; k++) {
-      //result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]); 
-      result.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (gmmBO+(pb[k]*gmmB1)) ,
-      (Va3BO+(pb[k]*Va3B1)), (Va4BO+(pb[k]*Va4B1)), (Va5BO+(pb[k]*Va5B1)) ]);
+      result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (F_gmm[0]+(pb[k]*F_gmm[1] )) ,
+      (F_Va3[0]+(pb[k]*F_Va3[1])), (F_Va4[0]+(pb[k]*F_Va4[1])), (F_Va5[0]+(pb[k]*F_Va5[1])) ]);
     }
 
-    return result; 
+    return [result1,result2]; 
 }
 
 
@@ -82,61 +100,85 @@ export function LGmb(Gsb, Gse, Gb) {
       Vam16[j] = round(((100-16) / (100-i)) * Gsb,3); 
     }
 
-    // Cálculos para regresión lineal
+    /* Cálculos para regresión lineal
     const SumX = pb.reduce((acc, xi) => acc + xi, 0);
     const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
     const SXX = SumX2 - ((SumX ** 2) / pb.length);
     const PromX = SumX / pb.length;
+    */
 
-    const { b0: Vam14b0, b1: Vam14b1 } = regLineal(PromX, SXX, pb, Vam14);
-    const { b0: Vam16b0, b1: Vam16B1 } = regLineal(PromX, SXX, pb, Vam16);
-    
-    const result = [["Pᵦ", "VAM 14%", "VAM 16%", "", ""]];
+    [F_Vam14[0] , F_Vam14[1]] = Object.values(regLineal(PromX, SXX, pb, Vam14));
+    [F_Vam16[0] , F_Vam16[1]] = Object.values(regLineal(PromX, SXX, pb, Vam16));
+
+    //para la tabla
+    const result1 = [["Pᵦ", "VAM 14%", "VAM 16%"]];
     
     for (let k = 0; k < pb.length; k++) {
-        result.push([pb[k],Vam14[k], Vam16[k], (Vam14b0+(pb[k]*Vam14b1)), (Vam16b0+(pb[k]*Vam16B1))]);
+        result1.push([pb[k],Vam14[k], Vam16[k]]);
+    }
+    //resultados para la grafica
+    const result2 = [["Pᵦ", "VAM 14%", "VAM 16%", "", ""]];
+    
+    for (let k = 0; k < pb.length; k++) {
+        result2.push([pb[k],Vam14[k], Vam16[k], (F_Vam14[0]+(pb[k]*F_Vam14[1])), (F_Vam16[0]+(pb[k]*F_Vam16[1]))]);
     }
 
-    return result; 
+    return [result1,result2]; 
 }
 
 
 export function VFA(Gsb, Gse, Gb) {
- // let  Vam14 = [], Vam16 = [], pb = [];
 
   for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
     pb[j] = round(i,1); 
-
     VFA65[j] = round(65/ ((100/gmm[j])+((65*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
     VFA75[j] = round(75/ ((100/gmm[j])+((75*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
+    
   }
 
-      // Cálculos para regresión lineal
-      const SumX = pb.reduce((acc, xi) => acc + xi, 0);
-      const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
-      const SXX = SumX2 - ((SumX ** 2) / pb.length);
-      const PromX = SumX / pb.length;
+    /* Cálculos para regresión lineal
+    const SumX = pb.reduce((acc, xi) => acc + xi, 0);
+    const SumX2 = pb.reduce((acc, xi) => acc + xi ** 2, 0);
+    const SXX = SumX2 - ((SumX ** 2) / pb.length);
+    const PromX = SumX / pb.length;
+    */
   
-      const { b0: gmmBO, b1: gmmB1 } = regLineal(PromX, SXX, pb, gmm);
-      const { b0: VFA65BO, b1: VFA65B1 } = regLineal(PromX, SXX, pb, VFA65);
-      const { b0: VFA75BO, b1: VFA75B1 } = regLineal(PromX, SXX, pb, VFA75);
+
+  [F_VFA65[0] , F_VFA65[1]] = Object.values(regLineal(PromX, SXX, pb, VFA65));
+  [F_VFA75[0] , F_VFA75[1]] = Object.values(regLineal(PromX, SXX, pb, VFA75));
+
+
+//para la tabla
+const result1 = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%"]];
   
-  const result = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%","","",""]];
+for (let k = 0; k < pb.length; k++) {
+    result1.push([pb[k],gmm[k],VFA65[k], VFA75[k] ]);
+}
+//para el grafico
+  const result2 = [["Pᵦ","Gₘₘ", "VFA 65%", "VFA 75%","","",""]];
   
   for (let k = 0; k < pb.length; k++) {
-      result.push([pb[k],gmm[k],VFA65[k], VFA75[k], (gmmBO+(pb[k]*gmmB1)), (VFA65BO+(pb[k]*VFA65B1)) ,(VFA75BO+(pb[k]*VFA75B1)) ]);
+      result2.push([pb[k],gmm[k],VFA65[k], VFA75[k], (F_gmm[0]+(pb[k]*F_gmm[1])),
+       (F_VFA65[0]+(pb[k]*F_VFA65[1])) ,(F_VFA75[0]+(pb[k]*F_VFA75[1])) ]);
   }
 
-  return result; 
+  return [result1,result2]; 
 }
 
 export function ALLresult(){
   const result1 = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
-  const result2 = [];
-  
+  const result2 = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+                          "","","","","","","",""
+  ]];
+  console.log("AAAAA" + F_gmm[0]);
   for (let k = 0; k < pb.length; k++) {
       result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
-      result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
+      result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],
+        (F_gmm[0]+(pb[k]*F_gmm[1])) ,(F_Va3[0]+(pb[k]*F_Va3[1])), 
+        (F_Va4[0]+(pb[k]*F_Va4[1])) , (F_Va5[0]+(pb[k]*F_Va5[1])),
+        (F_Vam14[0]+(pb[k]*F_Vam14[1])) , (F_Vam16[0]+(pb[k]*F_Vam16[1])),
+        (F_VFA65[0]+(pb[k]*F_VFA65[1])) ,(F_VFA75[0]+(pb[k]*F_VFA75[1])) ] 
+      );
   }
   return { tb1all: result1, tb2all: result2 };
 }

@@ -62,8 +62,9 @@ const serieslist = [
   },
   {
     0: { type: "scatter" },
-        1: { type: "scatter" },
-        4: { type: "line" }
+    1: { type: "scatter" },
+    2: { type: "scatter" },
+    4: { type: "line" }
    
   }
 ];
@@ -74,9 +75,9 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
     <div className="flex flex-col items-center w-full px-6">
 
       {[
-        { table: tb1, chartData: tb1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" , num:0},
-        { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)", num:1 },
-        { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)", num:2 }
+        { table: tb1[0], chartData: tb1[1], title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
+        { table: tb2[0], chartData: tb2[1], title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
+        { table: tb3[0], chartData: tb3[1], title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
           {index === 0 &&
@@ -149,7 +150,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             </tr>
           </thead>
           <tbody>
-            {tb2all.map((row, i) => (
+            {tb1all.map((row, i) => (
               <tr key={i} className="border border-gray-200">
                 {row.map((column, j) => (
                   <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
@@ -162,8 +163,20 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           chartType="LineChart" 
           width="100%" 
           height="600px" 
-          data={tb1all} 
+          data={tb2all} 
           options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+            series: {  
+              1: { type: "scatter" },
+              2: { type: "scatter" },
+              3: { type: "scatter" },
+              4: { type: "scatter" },
+              5: { type: "scatter" },
+              6: { type: "scatter" },
+              7: { type: "scatter" },
+              8: { type: "scatter" },
+              9: { type: "scatter" },
+              10: { type: "line" }
+            },
             chartArea:{top:'30', width:'80%',height:'80%'},
           }}
         />

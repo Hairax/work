@@ -134,7 +134,6 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
                 }}
               />
-              {console.log("index " + index)}
             </div>
           </div>
         </div>

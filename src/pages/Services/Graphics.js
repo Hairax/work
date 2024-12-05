@@ -132,7 +132,6 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
                 }}
               />
-              {console.log("index " + index)}
             </div>
           </div>
         </div>
@@ -177,7 +176,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
               9: { type: "scatter" },
               10: { type: "line" }
             },
-            chartArea:{top:'30', width:'80%',height:'80%'},
+            chartArea:{top:'30', width:'76%',height:'80%'},
           }}
         />
       </div>
@@ -194,9 +193,18 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             data={pol1} 
             options={{
               ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
-              seriesType: "line",
-              series: { 9: { type: "area" } },
-              chartArea:{top:'10', width:'80%',height:'80%'},
+              seriesType: "scatter",
+              series: { 
+                9: { type: "line" },
+                10: { type: "line" },
+                11: { type: "line" },
+                12: { type: "line" },
+                13: { type: "line" },
+                14: { type: "line" },
+                15: { type: "line" },
+                16: { type: "line" },
+                17: { type: "area" } },
+              chartArea:{top:'10', width:'76%',height:'80%'},
             }} 
           />
         </div>

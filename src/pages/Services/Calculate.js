@@ -70,7 +70,7 @@ export function LGmm(Gsb, Gse, Gb) {
     [F_Va4[0] , F_Va4[1]] = Object.values(regLineal(PromX, SXX, pb, Va4));
     [F_Va5[0] , F_Va5[1]] = Object.values(regLineal(PromX, SXX, pb, Va5));
 
-    console.log("fff "+F_gmm);
+
 
 //Resultados para la tabla
 const result1 = [["Pᵦ","Gₘₘ", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
@@ -170,7 +170,7 @@ export function ALLresult(){
   const result2 = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
                           "","","","","","","",""
   ]];
-  console.log("AAAAA" + F_gmm[0]);
+
   for (let k = 0; k < pb.length; k++) {
       result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k]]);
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],
@@ -198,8 +198,7 @@ function Intersección(li1,li2) {
   const { x: x2, c: c2 } = Detpuntos(li2);
   const px=round(-((c1-c2)/(x1-x2)),3);
   const py=round((x1*px)+c1,3);
- // console.log(x1, c1); 
- // console.log(x2,c2);
+
   return [px , py];
 }
 
@@ -211,16 +210,26 @@ export function poligono(){
   const pE = Intersección(Va5,VFA65);
   
 
-  let rt = [["Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%","Área"]];
+  let rt = [[ "Pᵦ","Gₘₘ", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+                      "","","","","","","","","Área" ]];
   for (let k = 0; k < pb.length; k++) {
-    rt.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],null]);
+    rt.push( [pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],
+      (F_gmm[0]+(pb[k]*F_gmm[1])) ,
+      (F_Va3[0]+(pb[k]*F_Va3[1])), 
+      (F_Va4[0]+(pb[k]*F_Va4[1])), 
+      (F_Va5[0]+(pb[k]*F_Va5[1])),
+      (F_Vam14[0]+(pb[k]*F_Vam14[1])), 
+      (F_Vam16[0]+(pb[k]*F_Vam16[1])),
+      (F_VFA65[0]+(pb[k]*F_VFA65[1])),
+      (F_VFA75[0]+(pb[k]*F_VFA75[1])), null ]  );
   }
-  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
-  rt.push([pB[0],null,null,null,null,null,null,null,null,null,pB[1]]);
-  rt.push([pC[0],null,null,null,null,null,null,null,null,null,pC[1]]);
-  rt.push([pD[0],null,null,null,null,null,null,null,null,null,pD[1]]);
-  rt.push([pE[0],null,null,null,null,null,null,null,null,null,pE[1]]);
-  rt.push([pA[0],null,null,null,null,null,null,null,null,null,pA[1]]);
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pA[1]]);
+  rt.push([pB[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pB[1]]);
+  rt.push([pC[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pC[1]]);
+  rt.push([pD[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pD[1]]);
+  rt.push([pE[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pE[1]]);
+  rt.push([pA[0],null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,pA[1]]);
+
 
   const mp = [["","","",{ role: 'annotation' }]];
 

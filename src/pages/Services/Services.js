@@ -21,6 +21,9 @@ function Services() {
   const [includeFooter, setIncludeFooter] = useState(false);
   const [headerText, setHeaderText] = useState('');
   const [footerText, setFooterText] = useState('');
+  const [rangeMin, setRangeMin] = useState(6);
+  const [rangeMax, setRangeMax] = useState(8);
+  const [enableRange, setEnableRange] = useState(false);
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
 
@@ -117,6 +120,46 @@ function Services() {
           ))}
         </div>
 
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input
+              type="checkbox"
+              className="mr-2"
+              checked={enableRange}
+              onChange={() => setEnableRange(!enableRange)}
+            />
+            ¿Desea ingresar valores de rango? (por defecto 6-8)
+          </label>
+
+          {enableRange && (
+            <div className="flex gap-4 mt-4">
+              <input
+                type="number"
+                placeholder="Mínimo"
+                className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400"
+                value={rangeMin}
+                min={0} // Restringir el valor mínimo
+                onChange={(e) => {
+                  const newValue = Math.max(0, Number(e.target.value)); // Evitar valores negativos
+                  setRangeMin(newValue);
+                  if (newValue > rangeMax) setRangeMax(newValue); // Ajustar automáticamente el máximo
+                }}
+              />
+              <input
+                type="number"
+                placeholder="Máximo"
+                className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400"
+                value={rangeMax}
+                min={rangeMin} // Restringir el mínimo del máximo al valor de rangeMin
+                onChange={(e) => {
+                  const newValue = Math.max(rangeMin, Number(e.target.value)); // Evitar que sea menor que rangeMin
+                  setRangeMax(newValue);
+                }}
+              />
+            </div>
+          )}
+        </div>
+
         <div className="flex justify-center">
           <button
             className="bg-indigo-500 text-white text-[25px] font-semibold py-2 px-6 rounded-full hover:bg-indigo-600 focus:outline-none mb-6"
@@ -155,6 +198,8 @@ function Services() {
                 hAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
                 vAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
               }}
+              x1= {rangeMin}
+              x2= {rangeMax}
             />
           </div>
         )}

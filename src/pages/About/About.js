@@ -1,6 +1,7 @@
 import React from 'react';
 import { MdOutlineFacebook } from "react-icons/md";
 import { AiFillInstagram } from "react-icons/ai";
+import { FaLinkedin } from "react-icons/fa";
 import RodrigoE from './imgs/RodrigoEsprella.png';
 import JoseG from './imgs/JoseGarcia.jpg';
 import Richard from './imgs/Richard.png';
@@ -22,6 +23,9 @@ function About() {
                         <a href="/" className="hover:text-blue-600">
                             <MdOutlineFacebook className="w-6 h-6" />
                         </a>
+                        <a href="/" className="hover:text-pink-500">
+                            <FaLinkedin className="w-6 h-6" />
+                        </a>
                     </div>
                 </div>
                 <div className="bg-white rounded-lg shadow-lg p-6 max-w-xs w-full text-center">
@@ -34,6 +38,9 @@ function About() {
                         </a>
                         <a href="https://www.instagram.com/hairax_uwu/" className="hover:text-pink-500">
                             <AiFillInstagram className="w-6 h-6" />
+                        </a>
+                        <a href="/" className="hover:text-pink-500">
+                            <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>
                 </div>
@@ -49,6 +56,9 @@ function About() {
                         </a>
                         <a href="https://www.instagram.com/jdg69219/" className="hover:text-pink-500">
                             <AiFillInstagram className="w-6 h-6" />
+                        </a>
+                        <a href="/" className="hover:text-pink-500">
+                            <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>
                 </div>

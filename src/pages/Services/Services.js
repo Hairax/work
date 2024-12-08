@@ -130,7 +130,13 @@ function Services() {
               type="checkbox"
               className="mr-2"
               checked={enableRange}
-              onChange={() => setEnableRange(!enableRange)}
+              onChange={() => {setEnableRange(!enableRange);
+                  // Reiniciar valores al deseleccionar
+                  if (enableRange) {
+                    setRangeMin(6); // Valor inicial para rango mínimo
+                    setRangeMax(8); // Valor inicial para rango máximo
+                  }
+              }}
             />
             ¿Desea ingresar valores de rango en el eje x? (por defecto 6-8)
           </label>

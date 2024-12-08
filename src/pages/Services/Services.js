@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './Services.css';
 import Graphics from './Graphics';
-import { ALLresult, LGmb, LGmm, poligono, VFA } from './Calculate';
+import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial} from './Calculate';
 import { FaSpinner } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -23,6 +23,8 @@ function Services() {
   const [footerText, setFooterText] = useState('');
   const [rangeMin, setRangeMin] = useState(6);
   const [rangeMax, setRangeMax] = useState(8);
+  const [ConfirmedRangeMin, setConfirmedRangeMin] = useState(6);
+  const [ConfirmedRangeMax, setConfirmedRangeMax] = useState(8);
   const [enableRange, setEnableRange] = useState(false);
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
@@ -35,6 +37,8 @@ function Services() {
       setConfirmedInput1(Number(input1));
       setConfirmedInput2(Number(input2));
       setConfirmedInput3(Number(input3));
+      setConfirmedRangeMin(Number(rangeMin));
+      setConfirmedRangeMax(Number(rangeMax));
       setLoading(false);
       setShowGraphics(true);
     }, 2000);
@@ -182,10 +186,10 @@ function Services() {
               date1={confirmedInput1}
               date2={confirmedInput2}
               date3={confirmedInput3}
-
-              tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3)}
-              tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3)}
-              tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3)}
+              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb1all={ALLresult().tb1all}
               tb2all={ALLresult().tb2all}
               pol1={poligono().rt}
@@ -198,8 +202,8 @@ function Services() {
                 hAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
                 vAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
               }}
-              x1= {rangeMin}
-              x2= {rangeMax}
+          /*    x1= {rangeMin}
+              x2= {rangeMax} */
             />
           </div>
         )}

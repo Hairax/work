@@ -5,6 +5,41 @@ function round(value, decimals) {
     return Math.round(value * factor) / factor;
 }
 
+export function  xinitial( x1 , x2){
+  Rx1=x1;
+  Rx2=x2;
+// Vaciando todas las listas con splice
+gmm.splice(0, gmm.length);
+Va3.splice(0, Va3.length);
+Va4.splice(0, Va4.length);
+Va5.splice(0, Va5.length);
+Vam14.splice(0, Vam14.length);
+Vam16.splice(0, Vam16.length);
+VFA65.splice(0, VFA65.length);
+VFA75.splice(0, VFA75.length);
+pb.splice(0, pb.length);
+
+// Vaciando las listas de funciones lineales
+F_gmm.splice(0, F_gmm.length);
+F_Va3.splice(0, F_Va3.length);
+F_Va4.splice(0, F_Va4.length);
+F_Va5.splice(0, F_Va5.length);
+F_Vam14.splice(0, F_Vam14.length);
+F_Vam16.splice(0, F_Vam16.length);
+F_VFA65.splice(0, F_VFA65.length);
+F_VFA75.splice(0, F_VFA75.length);
+
+
+
+//De la regresion
+SumX = 0 ;
+SumX2 = 0;
+SXX = 0;
+PromX = 0;
+}
+
+export let Rx1=6;
+export let Rx2=8;
 
 export const gmm = [];
 export const Va3 = [];
@@ -47,11 +82,12 @@ function regLineal(PromX, SXX, x, y) {
 }
 
 export function LGmm(Gsb, Gse, Gb) {
+  
     const round = (value, decimals) => Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 
     //let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
 
-    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
         pb[j] = round(i, 1);
         gmm[j] = round(100 / (((100 - i) / Gse) + (i / Gb)), 3);
         Va3[j] = round((1 - (3 / 100)) * gmm[j], 3);
@@ -93,7 +129,7 @@ for (let k = 0; k < gmm.length; k++) {
 export function LGmb(Gsb, Gse, Gb) {
   //  let  Vam14 = [], Vam16 = [], pb = [];
 
-    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
       pb[j] = round(i,1); 
 
       Vam14[j] = round(((100-14) / (100-i)) * Gsb,3);
@@ -128,8 +164,8 @@ export function LGmb(Gsb, Gse, Gb) {
 
 
 export function VFA(Gsb, Gse, Gb) {
-
-  for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+  
+  for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
     pb[j] = round(i,1); 
     VFA65[j] = round(65/ ((100/gmm[j])+((65*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
     VFA75[j] = round(75/ ((100/gmm[j])+((75*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
@@ -183,12 +219,13 @@ export function ALLresult(){
   return { tb1all: result1, tb2all: result2 };
 }
 
+
 function Detpuntos(list) {
   let x = 0, c = 0, m = 0;
   // Cálculo de 'm', 'x' y 'c'
-  m = (list[list.length - 1] - list[0]) / 2;
+  m = (list[list.length - 1] - list[0]) / (Rx2-Rx1);
   x = m;
-  c = list[0]-(m * 6);
+  c = list[0]-(m * Rx1);
 
   return { x, c }; // Retorna 'x', 'y', 'c'
 }

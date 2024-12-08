@@ -20,10 +20,10 @@ function About() {
                     <img src={Richard} alt="logo imagen" className="w-24 h-24 mx-auto rounded-full shadow-lg mb-4" />
                     <h3 className="text-xl font-semibold text-gray-800 mb-4">Richard Raul<br />Josephia Santos</h3>
                     <div className="flex justify-center gap-4 text-gray-500">
-                        <a href="/" className="hover:text-blue-600">
+                        <a href="https://www.facebook.com/people/Richard-Ra%C3%BAl-Josephia-Santos/pfbid0ZyCP5zUJ1GgtPkpEGppcmheTiejTMqtibcSPJn3K4ucRSjrkV79nroKRp3jsezN3l/" className="hover:text-blue-600">
                             <MdOutlineFacebook className="w-6 h-6" />
                         </a>
-                        <a href="/" className="hover:text-pink-500">
+                        <a href="https://www.linkedin.com/in/richard-raul-josephia-santos-7783a63a/" className="hover:text-pink-500">
                             <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>
@@ -39,7 +39,7 @@ function About() {
                         <a href="https://www.instagram.com/hairax_uwu/" className="hover:text-pink-500">
                             <AiFillInstagram className="w-6 h-6" />
                         </a>
-                        <a href="/" className="hover:text-pink-500">
+                        <a href="https://www.linkedin.com/in/rodrigo-esprella-valdez-4947a6278/" className="hover:text-pink-500">
                             <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>
@@ -57,7 +57,7 @@ function About() {
                         <a href="https://www.instagram.com/jdg69219/" className="hover:text-pink-500">
                             <AiFillInstagram className="w-6 h-6" />
                         </a>
-                        <a href="/" className="hover:text-pink-500">
+                        <a href="https://www.linkedin.com/in/jose-daniel-garcia-escobar-9ab6b4328/" className="hover:text-pink-500">
                             <FaLinkedin className="w-6 h-6" />
                         </a>
                     </div>

@@ -17,12 +17,13 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       titleTextStyle: {
         fontSize: 16,
         bold: true,
+        scaleType: 'log',
       },
       textStyle: {
         fontSize: 14,
         color: "#000",
       },
-      minValue: 6, maxValue: 8 ,
+     // minValue: 6, maxValue: 8 ,
     },
     vAxis: {
       ...BeforeOptions.vAxis,
@@ -30,6 +31,7 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       titleTextStyle: {
         fontSize: 16,
         bold: true,
+        scaleType: 'log',
       },
       textStyle: {
         fontSize: 14,
@@ -40,14 +42,44 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
   };
 }
 
-export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
+const serieslist = [
+  {
+      
+          1: { type: "scatter" },
+          2: { type: "scatter" },
+          3: { type: "scatter" },
+          4: { type: "scatter" },
+          6: { type: "line" }
+          
+          
+      
+  },
+  {
+        0: { type: "scatter" },
+        1: { type: "scatter" },
+        2: { type: "line" },
+        3: { type: "line" },
+        4: { type: "line" }
+    
+  },
+  {
+    0: { type: "scatter" },
+    1: { type: "scatter" },
+    2: { type: "scatter" },
+    4: { type: "line" }
+   
+  }
+];
+
+
+export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options, x1,x2 }) {
   return (
     <div className="flex flex-col items-center w-full px-6">
 
       {[
-        { table: tb1, chartData: tb1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
-        { table: tb2, chartData: tb2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
-        { table: tb3, chartData: tb3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
+        { table: tb1[0], chartData: tb1[1], title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
+        { table: tb2[0], chartData: tb2[1], title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
+        { table: tb3[0], chartData: tb3[1], title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
           {index === 0 &&
@@ -92,12 +124,13 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
               </table>
             </div>
             <div className="w-full lg:w-1/2 p-4">
-              <Chart 
-                chartType="LineChart" 
+              <Chart
+                chartType="ComboChart" 
                 width="100%" 
                 height="500px" 
                 data={item.chartData} 
-                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)") ,
+                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)") ,
+                  series: serieslist[index],
                   chartArea:{left:70,top:60,width:'70%',height:'70%'},
                 }}
               />
@@ -118,7 +151,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             </tr>
           </thead>
           <tbody>
-            {tb2all.map((row, i) => (
+            {tb1all.map((row, i) => (
               <tr key={i} className="border border-gray-200">
                 {row.map((column, j) => (
                   <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
@@ -131,9 +164,21 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           chartType="LineChart" 
           width="100%" 
           height="600px" 
-          data={tb1all} 
-          options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
-            chartArea:{top:'30', width:'80%',height:'80%'},
+          data={tb2all} 
+          options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
+            series: {  
+              1: { type: "scatter" },
+              2: { type: "scatter" },
+              3: { type: "scatter" },
+              4: { type: "scatter" },
+              5: { type: "scatter" },
+              6: { type: "scatter" },
+              7: { type: "scatter" },
+              8: { type: "scatter" },
+              9: { type: "scatter" },
+              10: { type: "line" }
+            },
+            chartArea:{top:'30', width:'76%',height:'80%'},
           }}
         />
       </div>
@@ -149,10 +194,20 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             height="600px" 
             data={pol1} 
             options={{
-              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
-              seriesType: "line",
-              series: { 9: { type: "area" } },
-              chartArea:{top:'10', width:'80%',height:'80%'},
+              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
+              seriesType: "scatter",
+              series: { 
+                9: { type: "line" },
+                10: { type: "line" },
+                11: { type: "line" },
+                12: { type: "line" },
+                13: { type: "line" },
+                14: { type: "line" },
+                15: { type: "line" },
+                16: { type: "line" },
+                17: { type: "area" } },
+              chartArea:{top:'10', width:'76%',height:'80%'},
+              
             }} 
           />
         </div>
@@ -166,11 +221,13 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             height="600px" 
             data={pol2} 
             options={{
-              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gₘᵦ(g/cm³)"),
+              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
               seriesType: "scatter",
               series: { 1: { type: "area", } },
               legend: { position: 'none' },
               chartArea:{ top:'10', width:'80%',height:'80%'},
+              
+              
             }} 
           />
         </div>
@@ -181,7 +238,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           </h1>
           <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
-              Gₘᵦ
+              Gmb
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
               {pol2.at(-1)[1].toFixed(3)}

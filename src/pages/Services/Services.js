@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './Services.css';
 import Graphics from './Graphics';
-import { ALLresult, LGmb, LGmm, poligono, VFA } from './Calculate';
+import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial} from './Calculate';
 import { FaSpinner } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -21,6 +21,11 @@ function Services() {
   const [includeFooter, setIncludeFooter] = useState(false);
   const [headerText, setHeaderText] = useState('');
   const [footerText, setFooterText] = useState('');
+  const [rangeMin, setRangeMin] = useState(6);
+  const [rangeMax, setRangeMax] = useState(8);
+  const [ConfirmedRangeMin, setConfirmedRangeMin] = useState(6);
+  const [ConfirmedRangeMax, setConfirmedRangeMax] = useState(8);
+  const [enableRange, setEnableRange] = useState(false);
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
 
@@ -32,6 +37,8 @@ function Services() {
       setConfirmedInput1(Number(input1));
       setConfirmedInput2(Number(input2));
       setConfirmedInput3(Number(input3));
+      setConfirmedRangeMin(Number(rangeMin));
+      setConfirmedRangeMax(Number(rangeMax));
       setLoading(false);
       setShowGraphics(true);
     }, 2000);
@@ -117,6 +124,52 @@ function Services() {
           ))}
         </div>
 
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input
+              type="checkbox"
+              className="mr-2"
+              checked={enableRange}
+              onChange={() => {setEnableRange(!enableRange);
+                  // Reiniciar valores al deseleccionar
+                  if (enableRange) {
+                    setRangeMin(6); // Valor inicial para rango mínimo
+                    setRangeMax(8); // Valor inicial para rango máximo
+                  }
+              }}
+            />
+            ¿Desea ingresar valores de rango en el eje x? (por defecto 6-8)
+          </label>
+
+          {enableRange && (
+            <div className="flex gap-4 mt-4">
+              <input
+                type="number"
+                placeholder="Mínimo"
+                className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400"
+                value={rangeMin}
+                min={0} // Restringir el valor mínimo
+                onChange={(e) => {
+                  const newValue = Math.max(0, Number(e.target.value)); // Evitar valores negativos
+                  setRangeMin(newValue);
+                  if (newValue > rangeMax ) setRangeMax(newValue + 2); // Ajustar automáticamente el máximo
+                }}
+              />
+              <input
+                type="number"
+                placeholder="Máximo"
+                className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400"
+                value={rangeMax}
+                min={rangeMin} // Restringir el mínimo del máximo al valor de rangeMin
+                onChange={(e) => {
+                  const newValue = Math.max(rangeMin, Number(e.target.value)); // Evitar que sea menor que rangeMin
+                  setRangeMax(newValue);
+                }}
+              />
+            </div>
+          )}
+        </div>
+
         <div className="flex justify-center">
           <button
             className="bg-indigo-500 text-white text-[25px] font-semibold py-2 px-6 rounded-full hover:bg-indigo-600 focus:outline-none mb-6"
@@ -139,10 +192,10 @@ function Services() {
               date1={confirmedInput1}
               date2={confirmedInput2}
               date3={confirmedInput3}
-
-              tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3)}
-              tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3)}
-              tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3)}
+              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
+              tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb1all={ALLresult().tb1all}
               tb2all={ALLresult().tb2all}
               pol1={poligono().rt}
@@ -155,6 +208,8 @@ function Services() {
                 hAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
                 vAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
               }}
+          /*    x1= {rangeMin}
+              x2= {rangeMax} */
             />
           </div>
         )}

@@ -128,7 +128,7 @@ function Services() {
               checked={enableRange}
               onChange={() => setEnableRange(!enableRange)}
             />
-            ¿Desea ingresar valores de rango? (por defecto 6-8)
+            ¿Desea ingresar valores de rango en el eje x? (por defecto 6-8)
           </label>
 
           {enableRange && (
@@ -142,7 +142,7 @@ function Services() {
                 onChange={(e) => {
                   const newValue = Math.max(0, Number(e.target.value)); // Evitar valores negativos
                   setRangeMin(newValue);
-                  if (newValue > rangeMax) setRangeMax(newValue); // Ajustar automáticamente el máximo
+                  if (newValue > rangeMax ) setRangeMax(newValue + 2); // Ajustar automáticamente el máximo
                 }}
               />
               <input

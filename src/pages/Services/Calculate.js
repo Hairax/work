@@ -1,4 +1,6 @@
 //import { GiConsoleController } from "react-icons/gi";
+import Latex from "react-latex-next";
+
 
 function round(value, decimals) {
     const factor = Math.pow(10, decimals);
@@ -109,7 +111,7 @@ export function LGmm(Gsb, Gse, Gb) {
 
 
 //Resultados para la tabla
-const result1 = [["Pb","Gmm", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
+const result1 = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
     
 for (let k = 0; k < gmm.length; k++) {
   result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]);

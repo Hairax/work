@@ -13,7 +13,7 @@ function Home() {
     <div className="bg-gray-50 min-h-screen p-8">
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-gray-800">MÉTODO RAMCODES</h1>
+        <h1 className="text-5xl font-bold text-gray-800">Polígono de Vacíos</h1>
         <p className="text-lg text-gray-500 mt-2">F. J. Sánchez Leal</p>
       </div>
 
@@ -21,8 +21,7 @@ function Home() {
       <div className="flex flex-col items-center gap-8 md:flex-row md:justify-center">
         <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-3xl text-center text-gray-700 leading-relaxed">
           <p className="text-lg">
-            Esta metodología de diseño de mezcla asfáltica denominada <b>RAMCODES</b><b> </b>
-            (RAtional Methodology for Compacted geomaterial’s Densification and Strength analysis) 
+            Esta metodología de diseño de mezcla asfáltica denominada <b>Polígono de Vacíos</b><b> </b> 
             se basa en experimentos factoriales, en conceptos de la Mecánica de Suelos No Saturados, 
             y en la experiencia práctica de diseño y control para análisis de densificación y resistencia 
             de geomateriales (F. J. Sánchez Leal, 2002).

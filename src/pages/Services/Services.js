@@ -5,6 +5,7 @@ import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial} from './Calculate';
 import { FaSpinner } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Latex from "react-latex-next";
 
 function Services() {
   const [input1, setInput1] = useState(0);
@@ -111,9 +112,16 @@ function Services() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 p-4 text-[24px]">
-          {[['Gsb', input1, setInput1], ['Gse', input2, setInput2], ['Gb', input3, setInput3]].map(([label, value, setter], idx) => (
+          {[
+            [<Latex>${`G_{sb}`}$</Latex>, input1, setInput1, "Gravedad Específica Bulk del Agregado"],
+            [<Latex>${`G_{se}`}$</Latex>, input2, setInput2, "Gravedad Específica Efectiva del Agregado"],
+            [<Latex>${`G_{b}`}$</Latex>, input3, setInput3, "Gravedad Específica del Cemento Asfáltico"]
+          ].map(([label, value, setter, description], idx) => (
             <div key={idx} className="flex flex-col items-center bg-indigo-100 p-4 shadow rounded-lg">
-              <label className="text-gray-600 font-medium mb-2">{label} (g/cm³)</label>
+              <p className="text-sm text-gray-500 mb-1">{description}</p> {/* Descripción antes del label */}
+              <label className="text-gray-600 font-medium mb-2">
+                {label}(g/cm³)
+              </label>
               <input
                 type="number"
                 className="border border-gray-300 rounded-lg w-full h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 text-[20px]"
@@ -123,6 +131,7 @@ function Services() {
             </div>
           ))}
         </div>
+
 
         <div className="flex flex-col items-center mb-6">
           <label className="flex items-center text-lg text-gray-600">

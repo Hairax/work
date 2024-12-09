@@ -6,7 +6,7 @@ export default function References() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-4xl font-semibold text-gray-800 mb-8 text-center">
-        Referencias Teóricas
+        Polígono de Vacíos
       </h1>
 
       <div className="text-gray-700 leading-relaxed max-w-4xl mx-auto">

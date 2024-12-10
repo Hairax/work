@@ -93,7 +93,7 @@ for (let k = 0; k < gmm.length; k++) {
 export function LGmb(Gsb, Gse, Gb) {
   //  let  Vam14 = [], Vam16 = [], pb = [];
 
-    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
       pb[j] = round(i,1); 
 
       Vam14[j] = round(((100-14) / (100-i)) * Gsb,3);
@@ -183,12 +183,13 @@ export function ALLresult(){
   return { tb1all: result1, tb2all: result2 };
 }
 
+
 function Detpuntos(list) {
   let x = 0, c = 0, m = 0;
   // Cálculo de 'm', 'x' y 'c'
-  m = (list[list.length - 1] - list[0]) / 2;
+  m = (list[list.length - 1] - list[0]) / (Rx2-Rx1);
   x = m;
-  c = list[0]-(m * 6);
+  c = list[0]-(m * Rx1);
 
   return { x, c }; // Retorna 'x', 'y', 'c'
 }

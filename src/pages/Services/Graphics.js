@@ -1,5 +1,6 @@
 import React from 'react';
 import { Chart } from "react-google-charts";
+import Latex from "react-latex-next";
 
 function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
   return {
@@ -89,17 +90,17 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             </h1>
             <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
               <thead>
-                <tr>
-                  <th className="border border-gray-400 p-3 text-center font-semibold">Gsb</th>
-                  <th className="border border-gray-400 p-3 text-center font-semibold">Gse</th>
-                  <th className="border border-gray-400 p-3 text-center font-semibold">Gb</th>
+                <tr className="bg-violet-100 text-gray-600  text-sm ">
+                  <th className="px-6 py-4 border border-gray-300"><Latex>${`G_{sb}`}$</Latex></th>
+                  <th className="px-6 py-4 border border-gray-300"><Latex>${`G_{se}`}$</Latex></th>
+                  <th className="px-6 py-4 border border-gray-300"><Latex>${`G_{b}`}$</Latex></th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="border border-gray-200">
-                  <td className="border border-gray-300 p-3 text-center">{date1}</td>
-                  <td className="border border-gray-300 p-3 text-center">{date2}</td>
-                  <td className="border border-gray-300 p-3 text-center">{date3}</td>
+                <tr className="bg-violet-200 hover:bg-violet-400">
+                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
+                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
+                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
                 </tr>
               </tbody>
             </table>
@@ -111,12 +112,12 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           </h1>
           <div className="flex flex-col lg:flex-row w-full gap-6">
             <div className="w-full lg:w-1/2 p-4">
-              <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden">
+              <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden ">
                 <tbody>
                   {item.table.map((row, i) => (
-                    <tr key={i} className={`border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
+                    <tr key={i} className={`hover:bg-sky-100 border-2 border-gray-200 ${i === 0 ? "font-bold" : ""}`}>
                       {row.map((column, j) => (
-                        <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                        <td key={j} className="border border-gray-300 p-3 text-center hover:bg-sky-300">{column}</td>
                       ))}
                     </tr>
                   ))}
@@ -154,7 +155,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             {tb1all.map((row, i) => (
               <tr key={i} className="border border-gray-200">
                 {row.map((column, j) => (
-                  <td key={j} className="border border-gray-300 p-3 text-center">{column}</td>
+                  <td key={j} className="hover:bg-sky-300 border border-gray-300 p-3 text-center">{column}</td>
                 ))}
               </tr>
             ))}
@@ -234,7 +235,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
 
         <div>
           <h1 className="text-[30px] font-bold text-green-600 text-center my-6">
-            Resultados por el Método Ramcodes
+            Resultados
           </h1>
           <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">

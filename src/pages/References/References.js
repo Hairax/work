@@ -1,15 +1,16 @@
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
-import figura1 from "./figura1.png";
+import figura1 from "./Figura1.png";
+import figura2 from "./Figura2.jpeg";
 
 export default function References() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-4xl font-semibold text-gray-800 mb-8 text-center">
-        Referencias Teóricas
+        Polígono de Vacíos
       </h1>
 
-      <div className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
+      <div className="text-gray-700 leading-relaxed max-w-4xl mx-auto text-justify">
         <p>
           De acuerdo a Sánchez F. (2011), el polígono de vacíos es una
           construcción gráfica, en el espacio contenido de asfalto (
@@ -21,9 +22,17 @@ export default function References() {
           contenido óptimo de asfalto es luego verificado con otras pruebas como
           estabilidad y flujo (diseño Marshall), o pérdida en tracción indirecta
           (Superpave, Protocolo mexicano).
+        </p><br></br>
+        <p>
+        Para graficar el Polígono de Vacíos se debe cumplir con los requisitos del diseño volumétrico de la metodología SUPERPAVE, de acuerdo a la Tabla 1.
         </p>
 
-        <h2 className="text-2xl font-bold mt-6">Para graficar el Polígono de vacíos:</h2>
+        <div className="text-center mt-6">
+                <img src={figura2} alt="Figura 2" className="mx-auto" />
+                <p className="text-sm text-gray-500">Tabla 1: Requisitos volumétricos del diseño de mezclas SUPERPAVE</p>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-6">Pasos para graficar el Polígono de Vacíos:</h2>
         
         <section className="mt-4" id={1}>
             <h3 className="text-xl font-bold mt-4">Paso 1:</h3>
@@ -35,11 +44,11 @@ export default function References() {
 
             <p className="mt-4">
             Donde:
-            <ul className="list-disc ml-6">
-                <li><Latex>${`G_{mm}`}$</Latex>: gravedad específica teórica máxima de la mezcla asfáltica.</li>
-                <li><Latex>${`G_{se}`}$</Latex>: gravedad específica efectiva del agregado.</li>
-                <li><Latex>${`G_{b}`}$</Latex>: gravedad específica del cemento asfáltico.</li>
-                <li><Latex>${`P_{b}`}$</Latex>: por ciento de cemento asfáltico.</li>
+            <ul className="list-style-type-none ml-6">
+                <li><Latex>${`G_{mm}`}$</Latex> = gravedad específica teórica máxima de la mezcla asfáltica.</li>
+                <li><Latex>${`G_{se}`}$</Latex> = gravedad específica efectiva del agregado.</li>
+                <li><Latex>${`G_{b}`}$</Latex> = gravedad específica del cemento asfáltico.</li>
+                <li><Latex>${`P_{b}`}$</Latex> = por ciento de cemento asfáltico.</li>
             </ul>
             </p>
         </section>
@@ -53,10 +62,10 @@ export default function References() {
             
             <p className="mt-4">
             Donde:
-            <ul className="list-disc ml-6">
-                <li><Latex>${`G_{mb}`}$</Latex>: gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
-                <li><Latex>${`G_{mm}`}$</Latex>: gravedad específica teórica máxima de la mezcla asfáltica.</li>
-                <li><Latex>${`V_{a}`}$</Latex>: vacíos de aire.</li>
+            <ul className="list-style-type-none ml-6">
+                <li><Latex>${`G_{mb}`}$</Latex> =  gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
+                <li><Latex>${`G_{mm}`}$</Latex> = gravedad específica teórica máxima de la mezcla asfáltica.</li>
+                <li><Latex>${`V_{a}`}$</Latex> = vacíos de aire.</li>
             </ul>
             </p>
         </section>
@@ -66,15 +75,15 @@ export default function References() {
             <p>
             Para graficar las Iso-líneas del VMA (vacíos en el agregado mineral) con un porcentaje de 14% y 16%, se utiliza la siguiente ecuación:
             </p>
-            <Latex>{`$$G_{mb} = \\frac{100 - VAM}{100 - P_b} \\cdot G_{sb}$$`}</Latex>
+            <Latex>{`$$G_{mb} = \\frac{100 - VMA}{100 - P_b} \\cdot G_{sb}$$`}</Latex>
 
             <p className="mt-4">
             Donde:
-            <ul className="list-disc ml-6">
-                <li><Latex>${`G_{mb}`}$</Latex>: gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
-                <li><Latex>$VAM$</Latex>: vacíos en el agregado mineral.</li>
-                <li><Latex>${`G_{sb}`}$</Latex>: gravedad específica bulk del agregado.</li>
-                <li><Latex>${`P_{b}`}$</Latex>: por ciento de cemento asfáltico.</li>
+            <ul className="list-style-type-none ml-6">
+                <li><Latex>${`G_{mb}`}$</Latex> = gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
+                <li><Latex>$VMA$</Latex> = vacíos en el agregado mineral.</li>
+                <li><Latex>${`G_{sb}`}$</Latex> = gravedad específica bulk del agregado.</li>
+                <li><Latex>${`P_{b}`}$</Latex> = por ciento de cemento asfáltico.</li>
             </ul>
             </p>
         </section>
@@ -84,16 +93,15 @@ export default function References() {
             <p>
             Finalmente graficamos las Iso-líneas del VFA (vacíos rellenos de asfalto) con porcentajes de 65% y 75%, para tal efecto emplearemos la siguiente expresión:
             </p>
-            <Latex>{`$$G_{mb} = \\frac{VFA}{100} \\cdot G_{mm} + \\left(\\frac{VFA}{100} - \\frac{P_b}{100}\\right) \\cdot G_{sb} - \\frac{100 - P_b}{G_{sb} \\cdot G_{mm}}$$`}</Latex>
-
+            <Latex>{`$$G_{mb} = \\left(\\frac{VFA}{\\frac{100}{G_{mm}} + \\frac{VFA(100-P_b)}{100G_{sb}} - \\frac{100-P_b}{G_{sb}}}\\right)$$`}</Latex>
             <p className="mt-4">
             Donde:
-            <ul className="list-disc ml-6">
-                <li><Latex>${`G_{mb}`}$</Latex>: gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
-                <li><Latex>$VFA$</Latex>: vacíos rellenos de asfalto.</li>
-                <li><Latex>${`G_{sb}`}$</Latex>: gravedad específica bulk del agregado.</li>
-                <li><Latex>${`G_{mm}`}$</Latex>: gravedad específica teórica máxima de la mezcla asfáltica.</li>
-                <li><Latex>$P_b$</Latex>: por ciento de cemento asfáltico.</li>
+            <ul className="list-style-type-none ml-6">
+                <li><Latex>${`G_{mb}`}$</Latex> = gravedad específica bulk de la mezcla compactada (densidad bruta).</li>
+                <li><Latex>$VFA$</Latex> = vacíos rellenos de asfalto.</li>
+                <li><Latex>${`G_{sb}`}$</Latex> = gravedad específica bulk del agregado.</li>
+                <li><Latex>${`G_{mm}`}$</Latex> = gravedad específica teórica máxima de la mezcla asfáltica.</li>
+                <li><Latex>$P_b$</Latex> = por ciento de cemento asfáltico.</li>
             </ul>
             </p>
         </section>
@@ -104,14 +112,14 @@ export default function References() {
             Finalmente graficamos las Iso-líneas de <Latex>$V_a$</Latex>, <Latex>$VMA$</Latex>, y <Latex>$VFA$</Latex>, como se muestra en la Figura 1.
             </p>
 
-            <div className="text-center">
+            <div className="text-center mt-10">
                 <img src={figura1} alt="Figura 1" className="mx-auto" />
                 <p className="text-sm text-gray-500">Figura 1: Polígono de vacíos</p>
             </div>
             <p className="mt-4">
                 De donde obtenemos:
-                <ul className="list-disc ml-6">
-                    <li><Latex>$Pbo$</Latex> = contenido de asfalto óptimo</li>
+                <ul className="list-style-type-none ml-6">
+                    <li><Latex>${`P_{bo}`}$</Latex> = contenido de asfalto óptimo</li>
                     <li><Latex>${`G_{mb}`}$</Latex> = gravedad específica bulk de la mezcla compactada (densidad bruta)</li>
                 </ul>
             </p>

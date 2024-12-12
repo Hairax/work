@@ -5,6 +5,7 @@ import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial} from './Calculate';
 import { FaSpinner } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import Latex from "react-latex-next";
 
 function Services() {
   const [input1, setInput1] = useState(0);
@@ -26,6 +27,8 @@ function Services() {
   const [ConfirmedRangeMin, setConfirmedRangeMin] = useState(6);
   const [ConfirmedRangeMax, setConfirmedRangeMax] = useState(8);
   const [enableRange, setEnableRange] = useState(false);
+  const [esal, setEsal] = useState(0);
+  const [nominalSize, setNominalSize] = useState(12.5);
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
 
@@ -104,26 +107,69 @@ function Services() {
   };
 
   return (
-    <div className="items-center">
+    <div className="items-center ">
       <div className="w-full bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700 pt-6">
           Parámetros de Entrada
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 p-4 text-[24px]">
-          {[['Gsb', input1, setInput1], ['Gse', input2, setInput2], ['Gb', input3, setInput3]].map(([label, value, setter], idx) => (
+          {[
+            [<Latex>${`G_{sb} `}$</Latex>, input1, setInput1, "Gravedad Específica Bulk del Agregado"],
+            [<Latex>${`G_{se} `}$</Latex>, input2, setInput2, "Gravedad Específica Efectiva del Agregado"],
+            [<Latex>${`G_{b} `}$</Latex>, input3, setInput3, "Gravedad Específica del Cemento Asfáltico"]
+          ].map(([label, value, setter, description], idx) => (
             <div key={idx} className="flex flex-col items-center bg-indigo-100 p-4 shadow rounded-lg">
-              <label className="text-gray-600 font-medium mb-2">{label} (g/cm³)</label>
+              <p className="text-sm text-gray-500 mb-1">{description}</p> {/* Descripción antes del label */}
+              <label className="text-gray-600 font-medium mb-2">
+                {label} (g/cm³)
+              </label>
               <input
                 type="number"
                 className="border border-gray-300 rounded-lg w-full h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 text-[20px]"
                 value={value}
-                onChange={(e) => setter(e.target.value)}
+                onChange={(e) => setter(Number(e.target.value))}
               />
             </div>
           ))}
         </div>
+        {/* ESAL de diseño */}
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input 
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2" 
+              type="number"
+              min="0" 
+              max="50"
+              value={esal}
+              onChange={(e) => {
+                const value = Math.min(50, Math.max(0, Number(e.target.value)));
+                setEsal(value);
+              }} 
+            />
+            ESALs de Diseño en Millones (min 0, max 50)
+          </label>
+        </div>
+        
+        {/* Tamanio nominal maximo */}
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <select
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              value={nominalSize}
+              onChange={(e) => setNominalSize(Number(e.target.value))}
+            >
+              <option value="9.5">9,5</option>
+              <option value="12.5">12,5</option>
+              <option value="19">19</option>
+              <option value="25">25</option>
+              <option value="37.5">37,5</option>
+            </select>
+            Tamaño Máximo Nominal del Agregado (mm)
+          </label>
+        </div>
 
+        {/* Rango de valores en el eje x */}
         <div className="flex flex-col items-center mb-6">
           <label className="flex items-center text-lg text-gray-600">
             <input
@@ -192,7 +238,7 @@ function Services() {
               date1={confirmedInput1}
               date2={confirmedInput2}
               date3={confirmedInput3}
-              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax)}
+              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax, esal, nominalSize)}
               tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}

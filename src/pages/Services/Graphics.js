@@ -81,7 +81,7 @@ const serieslist = [
 
 export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2,esal,nominalSize, options }) {
   return (
-    <div className="flex flex-col items-center w-full px-6">
+    <div className="flex flex-col items-center w-full px-6 ">
 
       {[
         { table: tb1[0], chartData: tb1[1], title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },

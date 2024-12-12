@@ -107,7 +107,7 @@ function Services() {
   };
 
   return (
-    <div className="items-center">
+    <div className="items-center ">
       <div className="w-full bg-white shadow-lg rounded-lg">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700 pt-6">
           Parámetros de Entrada
@@ -128,7 +128,7 @@ function Services() {
                 type="number"
                 className="border border-gray-300 rounded-lg w-full h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 text-[20px]"
                 value={value}
-                onChange={(e) => setter(e.target.value)}
+                onChange={(e) => setter(Number(e.target.value))}
               />
             </div>
           ))}
@@ -147,7 +147,7 @@ function Services() {
                 setEsal(value);
               }} 
             />
-            ESAL de Diseño (min 0, max 50)
+            ESALs de Diseño en Millones (min 0, max 50)
           </label>
         </div>
         
@@ -159,13 +159,13 @@ function Services() {
               value={nominalSize}
               onChange={(e) => setNominalSize(Number(e.target.value))}
             >
-              <option value="9.5">9.5</option>
-              <option value="12.5">12.5</option>
+              <option value="9.5">9,5</option>
+              <option value="12.5">12,5</option>
               <option value="19">19</option>
               <option value="25">25</option>
-              <option value="37.5">37.5</option>
+              <option value="37.5">37,5</option>
             </select>
-            Tamaño Nominal Máximo (mm)
+            Tamaño Máximo Nominal del Agregado (mm)
           </label>
         </div>
 

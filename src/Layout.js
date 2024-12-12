@@ -4,12 +4,12 @@ import { Outlet } from 'react-router-dom';
 
 function Layout() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Contenido de la página */}
-      <div className="flex-1 ml-20 p-8 overflow-auto">
+      <div className="flex-1 ml-20 p-8 overflow-y-auto">
         <Outlet />
       </div>
     </div>

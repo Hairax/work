@@ -113,14 +113,14 @@ function Services() {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8 p-4 text-[24px]">
           {[
-            [<Latex>${`G_{sb}`}$</Latex>, input1, setInput1, "Gravedad Específica Bulk del Agregado"],
-            [<Latex>${`G_{se}`}$</Latex>, input2, setInput2, "Gravedad Específica Efectiva del Agregado"],
-            [<Latex>${`G_{b}`}$</Latex>, input3, setInput3, "Gravedad Específica del Cemento Asfáltico"]
+            [<Latex>${`G_{sb} `}$</Latex>, input1, setInput1, "Gravedad Específica Bulk del Agregado"],
+            [<Latex>${`G_{se} `}$</Latex>, input2, setInput2, "Gravedad Específica Efectiva del Agregado"],
+            [<Latex>${`G_{b} `}$</Latex>, input3, setInput3, "Gravedad Específica del Cemento Asfáltico"]
           ].map(([label, value, setter, description], idx) => (
             <div key={idx} className="flex flex-col items-center bg-indigo-100 p-4 shadow rounded-lg">
               <p className="text-sm text-gray-500 mb-1">{description}</p> {/* Descripción antes del label */}
               <label className="text-gray-600 font-medium mb-2">
-                {label}(g/cm³)
+                {label} (g/cm³)
               </label>
               <input
                 type="number"

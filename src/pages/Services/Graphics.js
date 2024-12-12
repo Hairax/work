@@ -40,34 +40,39 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
       },
     },
     legend: { position: "right" },
+    
   };
 }
 
 const serieslist = [
   {
       
-          1: { type: "scatter" },
-          2: { type: "scatter" },
-          3: { type: "scatter" },
-          4: { type: "scatter" },
-          6: { type: "line" }
+          1: { type: "scatter" , color: "#000" },
+          2: { type: "scatter" , color: "#000"},
+          3: { type: "scatter" , color: "#000"},
+          4: { type: "scatter" , color: "#000"},
+          5: { type: "line" , color: "red"},
+          6: { type: "line" , color: "red"},
+          7: { type: "line" , color: "red"},
           
           
       
   },
   {
-        0: { type: "scatter" },
-        1: { type: "scatter" },
-        2: { type: "line" },
-        3: { type: "line" },
-        4: { type: "line" }
+        0: { type: "scatter" , color: "#000"},
+        1: { type: "scatter" , color: "#000"},
+        2: { type: "line" , color: "red"},
+        3: { type: "line" , color: "#000"},
     
   },
   {
-    0: { type: "scatter" },
-    1: { type: "scatter" },
-    2: { type: "scatter" },
-    4: { type: "line" }
+    0: { type: "scatter" , color: "#000"},
+    1: { type: "scatter" , color: "#000"},
+    2: { type: "scatter" , color: "#000"},
+    3: { type: "line" , color: "#000"},
+    4: { type: "line" , color: "#000"},
+    5: { type: "line" , color: "#000"},
+    6: { type: "line" , color: "#000"},
    
   }
 ];
@@ -79,7 +84,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
 
       {[
         { table: tb1[0], chartData: tb1[1], title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
-        { table: tb2[0], chartData: tb2[1], title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VAM)" },
+        { table: tb2[0], chartData: tb2[1], title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VMA)" },
         { table: tb3[0], chartData: tb3[1], title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
@@ -98,9 +103,9 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
               </thead>
               <tbody>
                 <tr className="bg-violet-200 hover:bg-violet-400">
-                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
-                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
-                  <td className="px-6 py-4 text-center border border-violet-300">0</td>
+                  <td className="px-6 py-4 text-center border border-violet-300">{date1}</td>
+                  <td className="px-6 py-4 text-center border border-violet-300">{date2}</td>
+                  <td className="px-6 py-4 text-center border border-violet-300">{date3}</td>
                 </tr>
               </tbody>
             </table>
@@ -130,9 +135,9 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
                 width="100%" 
                 height="500px" 
                 data={item.chartData} 
-                options={{...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)") ,
-                  series: serieslist[index],
-                  chartArea:{left:70,top:60,width:'70%',height:'70%'},
+                options={{...NewOptions(options,"", "Pb", "Gmb") ,
+                  series: serieslist[index] ,
+                  chartArea:{left:75,top:60,width:'70%',height:'70%'},
                 }}
               />
             </div>
@@ -142,13 +147,13 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
 
       <div className="w-full py-10 graph-container justify-center items-center">
         <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-          Intersección de las isolíneas de Va, VAM y VFA
+          Intersección de las isolíneas de Va, VMA y VFA
         </h1>
         <table className="table-auto w-full bg-white bg-opacity-90 shadow rounded-lg overflow-hidden mb-10">
           <thead>
             <tr>
               <th colSpan={2} className="border border-gray-400 p-3 text-center font-semibold">PARÁMETROS VOLUMÉTRICOS</th>
-              <th colSpan={10} className="border border-gray-400 p-3 text-center font-semibold">ESPECIFICACIONES VOLUMÉTRICAS PARA T.M.N. DE 1/2” (12.5mm)</th>
+              <th colSpan={10} className="border border-gray-400 p-3 text-center font-semibold">ESPECIFICACIONES VOLUMÉTRICAS</th>
             </tr>
           </thead>
           <tbody>
@@ -161,60 +166,14 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             ))}
           </tbody>
         </table>
-        <Chart 
-          chartType="LineChart" 
-          width="100%" 
-          height="600px" 
-          data={tb2all} 
-          options={{...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
-            series: {  
-              1: { type: "scatter" },
-              2: { type: "scatter" },
-              3: { type: "scatter" },
-              4: { type: "scatter" },
-              5: { type: "scatter" },
-              6: { type: "scatter" },
-              7: { type: "scatter" },
-              8: { type: "scatter" },
-              9: { type: "scatter" },
-              10: { type: "line" }
-            },
-            chartArea:{top:'30', width:'76%',height:'80%'},
-          }}
-        />
+        
       </div>
 
       <div className="w-full py-0 graph-container flex flex-col items-center">
+        
         <div className="w-full py-0">
           <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-                Polígono de Intersección de las isolíneas de Va, VAM y VFA
-          </h1>
-          <Chart 
-            chartType="ComboChart" 
-            width="100%" 
-            height="600px" 
-            data={pol1} 
-            options={{
-              ...NewOptions(options, "", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
-              seriesType: "scatter",
-              series: { 
-                9: { type: "line" },
-                10: { type: "line" },
-                11: { type: "line" },
-                12: { type: "line" },
-                13: { type: "line" },
-                14: { type: "line" },
-                15: { type: "line" },
-                16: { type: "line" },
-                17: { type: "area" } },
-              chartArea:{top:'10', width:'76%',height:'80%'},
-              
-            }} 
-          />
-        </div>
-        <div className="w-full py-0">
-          <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
-                Área del Polígono de Intersección
+                Polígono de Vacíos
           </h1>
           <Chart 
             chartType="ComboChart" 
@@ -222,7 +181,7 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             height="600px" 
             data={pol2} 
             options={{
-              ...NewOptions(options,"", "Contenido de Asfalto (%)", "Gmb(g/cm³)"),
+              ...NewOptions(options,"", "Pb", "Gmb"),
               seriesType: "scatter",
               series: { 1: { type: "area", } },
               legend: { position: 'none' },
@@ -237,15 +196,15 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           <h1 className="text-[30px] font-bold text-green-600 text-center my-6">
             Resultados
           </h1>
-          <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[600px] p-4">
-            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
-              Gmb
+          <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[700px] p-4">
+            <div className="bg-green-200 rounded-md h-20 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
+            <Latex>${`G_{mb}`}$</Latex> = (gravedad específica bulk de la mezcla compactada "densidad bruta")
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
               {pol2.at(-1)[1].toFixed(3)}
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
-              Contenido de Asfalto Óptimo
+            <Latex>${`P_{bo}`}$</Latex> = (contenido óptimo de asfalto)
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
             {pol2.at(-1)[0].toFixed(3)}

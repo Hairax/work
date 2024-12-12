@@ -1,9 +1,42 @@
 //import { GiConsoleController } from "react-icons/gi";
+import Latex from "react-latex-next";
 
 function round(value, decimals) {
     const factor = Math.pow(10, decimals);
     return Math.round(value * factor) / factor;
 }
+
+export function xinitial(rx1 , rx2){
+  Rx1 = rx1;
+  Rx2 = rx2;
+
+  gmm.splice(0, gmm.length);
+  Va3.splice(0, Va3.length);
+  Va4.splice(0, Va4.length);
+  Va5.splice(0, Va5.length);
+  Vam14.splice(0, Vam14.length);
+  Vam16.splice(0, Vam16.length);
+  VFA65.splice(0, VFA65.length);
+  VFA75.splice(0, VFA75.length);
+  pb.splice(0, pb.length);
+
+  // Vaciando las listas de funciones lineales
+  F_gmm.splice(0, F_gmm.length);
+  F_Va3.splice(0, F_Va3.length);
+  F_Va4.splice(0, F_Va4.length);
+  F_Va5.splice(0, F_Va5.length);
+  F_Vam14.splice(0, F_Vam14.length);
+  F_Vam16.splice(0, F_Vam16.length);
+  F_VFA65.splice(0, F_VFA65.length);
+  F_VFA75.splice(0, F_VFA75.length);
+  SumX = 0 ;
+  SumX2 = 0;
+  SXX = 0;
+  PromX = 0;
+}
+
+export let Rx1 = 6;
+export let Rx2 = 8;
 
 
 export const gmm = [];
@@ -51,7 +84,7 @@ export function LGmm(Gsb, Gse, Gb) {
 
     //let gmm = [], Va3 = [], Va4 = [], Va5 = [], pb = [];
 
-    for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+    for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
         pb[j] = round(i, 1);
         gmm[j] = round(100 / (((100 - i) / Gse) + (i / Gb)), 3);
         Va3[j] = round((1 - (3 / 100)) * gmm[j], 3);
@@ -73,13 +106,13 @@ export function LGmm(Gsb, Gse, Gb) {
 
 
 //Resultados para la tabla
-const result1 = [["Pb","Gmm", "Va 0%", "Va 3%", "Va 4%", "Va 5%"]];
+const result1 = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "Va = 0%", "Va = 3%", "Va = 4%", "Va = 5%"]];
     
 for (let k = 0; k < gmm.length; k++) {
   result1.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k]]);
 }
 // Resultados para el gráfico
-    const result2 = [["Pb","Gmm", "Va 0%", "Va 3%", "Va 4%", "Va 5%", "", "", "", ""]];
+    const result2 = [["Pb","Gmm", "Va = 0%", "Va = 3%", "Va = 4%", "Va = 5%", "", "", "", ""]];
     
     for (let k = 0; k < gmm.length; k++) {
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (F_gmm[0]+(pb[k]*F_gmm[1] )) ,
@@ -111,13 +144,13 @@ export function LGmb(Gsb, Gse, Gb) {
     [F_Vam16[0] , F_Vam16[1]] = Object.values(regLineal(PromX, SXX, pb, Vam16));
 
     //para la tabla
-    const result1 = [["Pb", "VAM 14%", "VAM 16%"]];
+    const result1 = [[<Latex>${`P_{b}`}$</Latex>, "VAM = 14%", "VAM = 16%"]];
     
     for (let k = 0; k < pb.length; k++) {
         result1.push([pb[k],Vam14[k], Vam16[k]]);
     }
     //resultados para la grafica
-    const result2 = [["Pb", "VAM 14%", "VAM 16%", "", ""]];
+    const result2 = [["Pb", "VAM = 14%", "VAM = 16%", "", ""]];
     
     for (let k = 0; k < pb.length; k++) {
         result2.push([pb[k],Vam14[k], Vam16[k], (F_Vam14[0]+(pb[k]*F_Vam14[1])), (F_Vam16[0]+(pb[k]*F_Vam16[1]))]);
@@ -149,13 +182,13 @@ export function VFA(Gsb, Gse, Gb) {
 
 
 //para la tabla
-const result1 = [["Pb","Gmm", "VFA 65%", "VFA 75%"]];
+const result1 = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "VFA = 65%", "VFA = 75%"]];
   
 for (let k = 0; k < pb.length; k++) {
     result1.push([pb[k],gmm[k],VFA65[k], VFA75[k] ]);
 }
 //para el grafico
-  const result2 = [["Pb","Gmm", "VFA 65%", "VFA 75%","","",""]];
+  const result2 = [["Pb","Gmm", "VFA = 65%", "VFA = 75%","","",""]];
   
   for (let k = 0; k < pb.length; k++) {
       result2.push([pb[k],gmm[k],VFA65[k], VFA75[k], (F_gmm[0]+(pb[k]*F_gmm[1])),
@@ -166,8 +199,10 @@ for (let k = 0; k < pb.length; k++) {
 }
 
 export function ALLresult(){
-  const result1 = [["Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%"]];
-  const result2 = [["Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+  const result1 = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "Va = 0%", "Va = 3%", "Va = 4%", "Va = 5%",
+                      "VAM = 14%", "VAM = 16%", "VFA = 65%", "VFA = 75%"]];
+  const result2 = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "Va = 0%", "Va = 3%", "Va = 4%", "Va = 5%",
+                      "VAM = 14%", "VAM = 16%", "VFA = 65%", "VFA = 75%",
                           "","","","","","","",""
   ]];
 
@@ -211,7 +246,8 @@ export function poligono(){
   const pE = Intersección(Va5,VFA65);
   
 
-  let rt = [[ "Pb","Gmm", "VA 0%", "Va 3%", "Va 4%", "Va 5%" ,"VAM 14%", "VAM 16%", "VFA 65%", "VFA 75%",
+  let rt = [[<Latex>${`P_{b}`}$</Latex>,<Latex>${`G_{mm}`}$</Latex>, "Va = 0%", "Va = 3%", "Va = 4%", "Va = 5%",
+    "VAM = 14%", "VAM = 16%", "VFA = 65%", "VFA = 75%",
                       "","","","","","","","","Área" ]];
   for (let k = 0; k < pb.length; k++) {
     rt.push( [pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], Vam14[k], Vam16[k], VFA65[k], VFA75[k],

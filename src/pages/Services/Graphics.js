@@ -199,17 +199,27 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             Resultados
           </h1>
           <div className="grid grid-cols-2 gap-4 place-content-evenly bg-green-100 rounded-md w-[700px] p-4">
-            <div className="bg-green-200 rounded-md h-20 p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
-            <Latex>${`G_{mb}`}$</Latex> = (gravedad específica bulk de la mezcla compactada "densidad bruta")
+            <div className="bg-green-200 rounded-md h-auto p-4 text-center font-semibold border-2 text-green-800 shadow-sm">
+            <Latex>${`G_{mb}`}$</Latex> =
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
               {pol2.at(-1)[1].toFixed(3)}
             </div>
-            <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
-            <Latex>${`P_{bo}`}$</Latex> = (contenido óptimo de asfalto)
+            <div className="bg-green-200 rounded-md h-auto p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
+            <Latex>${`P_{bo}`}$</Latex> = 
             </div>
             <div className="bg-green-200 rounded-md h-14 p-4 text-center font-semibold border-2 border-green-500 text-green-800 shadow-sm">
             {pol2.at(-1)[0].toFixed(3)}
+            </div>
+            <div className="bg-green-200 rounded-md h-auto p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
+              <p>
+              <Latex>${`G_{mb}`}$</Latex> = Gravedad específica bulk de la mezcla compactada "densidad bruta"
+              </p>
+            </div>
+            <div className="bg-green-200 rounded-md h-auto p-4 text-center font-semibold border-2  text-green-800 shadow-sm">
+              <p>
+              <Latex>${`P_{bo}`}$</Latex> = Porcentaje de cemento asfáltico óptimo
+              </p>
             </div>
           </div>
         </div>

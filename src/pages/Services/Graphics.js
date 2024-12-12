@@ -78,7 +78,7 @@ const serieslist = [
 ];
 
 
-export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2, options }) {
+export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2,esal,nominalSize, options }) {
   return (
     <div className="flex flex-col items-center w-full px-6">
 

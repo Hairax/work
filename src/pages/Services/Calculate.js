@@ -6,9 +6,49 @@ function round(value, decimals) {
     return Math.round(value * factor) / factor;
 }
 
-export function xinitial(rx1 , rx2){
+export function xinitial(rx1 , rx2, esal, nominalSize){
   Rx1 = rx1;
   Rx2 = rx2;
+
+  minVFA = 0;
+  maxVFA = 0;
+
+  if(esal < 0.3)
+  {
+    minVFA = 70;
+    maxVFA = 80;
+  }
+  else if(esal >= 0.3 && esal < 3)
+  {
+    minVFA = 65;
+    maxVFA = 78;
+  }
+
+  if(nominalSize === 37.5)
+  {
+    minVMA = 11;
+    maxVMA = 13;
+  }
+  else if(nominalSize === 25)
+  {
+    minVMA = 12;
+    maxVMA = 14;
+  }
+  else if(nominalSize === 19)
+  {
+    minVMA = 13;
+    maxVMA = 15;
+  }
+  else if(nominalSize === 12.5)
+  {
+    minVMA = 14;
+    maxVMA = 16;
+  }
+  else if(nominalSize === 9.5)
+  {
+    minVMA = 15;
+    maxVMA = 17;
+  }
 
   gmm.splice(0, gmm.length);
   Va3.splice(0, Va3.length);
@@ -37,7 +77,10 @@ export function xinitial(rx1 , rx2){
 
 export let Rx1 = 6;
 export let Rx2 = 8;
-
+export let minVFA = 65;
+export let maxVFA = 75;
+export let minVMA = 14;
+export let maxVMA = 16;
 
 export const gmm = [];
 export const Va3 = [];

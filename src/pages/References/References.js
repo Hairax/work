@@ -1,6 +1,6 @@
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
-import figura1 from "./Figura1.png";
+import figura1 from "./figura1.png";
 import figura2 from "./Figura2.jpeg";
 
 export default function References() {

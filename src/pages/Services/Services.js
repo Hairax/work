@@ -27,6 +27,8 @@ function Services() {
   const [ConfirmedRangeMin, setConfirmedRangeMin] = useState(6);
   const [ConfirmedRangeMax, setConfirmedRangeMax] = useState(8);
   const [enableRange, setEnableRange] = useState(false);
+  const [esal, setEsal] = useState(0);
+  const [nominalSize, setNominalSize] = useState(12.5);
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
 
@@ -131,8 +133,43 @@ function Services() {
             </div>
           ))}
         </div>
+        {/* ESAL de diseño */}
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input 
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2" 
+              type="number"
+              min="0" 
+              max="50"
+              value={esal}
+              onChange={(e) => {
+                const value = Math.min(50, Math.max(0, Number(e.target.value)));
+                setEsal(value);
+              }} 
+            />
+            ESAL de Diseño (min 0, max 50)
+          </label>
+        </div>
+        
+        {/* Tamanio nominal maximo */}
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <select
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              value={nominalSize}
+              onChange={(e) => setNominalSize(Number(e.target.value))}
+            >
+              <option value="9.5">9.5</option>
+              <option value="12.5">12.5</option>
+              <option value="19">19</option>
+              <option value="25">25</option>
+              <option value="37.5">37.5</option>
+            </select>
+            Tamaño Nominal Máximo (mm)
+          </label>
+        </div>
 
-
+        {/* Rango de valores en el eje x */}
         <div className="flex flex-col items-center mb-6">
           <label className="flex items-center text-lg text-gray-600">
             <input
@@ -201,7 +238,7 @@ function Services() {
               date1={confirmedInput1}
               date2={confirmedInput2}
               date3={confirmedInput3}
-              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax)}
+              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax, esal, nominalSize)}
               tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}

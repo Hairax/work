@@ -47,32 +47,33 @@ function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
 const serieslist = [
   {
       
-          1: { type: "scatter" , color: "#000" },
-          2: { type: "scatter" , color: "#000"},
-          3: { type: "scatter" , color: "#000"},
-          4: { type: "scatter" , color: "#000"},
-          5: { type: "line" , color: "red"},
-          6: { type: "line" , color: "red"},
-          7: { type: "line" , color: "red"},
+          1: { type: "scatter" , color: "#00FA23" },
+          2: { type: "scatter" , color: "#5100FA"},
+          3: { type: "scatter" , color: "#00F3FA"},
+          4: { type: "scatter" , color: "#FA261D"},
+          5: { type: "line" , color: "#00FA23"},
+          6: { type: "line" , color: "#5100FA"},
+          7: { type: "line" , color: "#00F3FA"},
+          8: { type: "line" , color: "#FA261D"},
           
           
       
   },
   {
-        0: { type: "scatter" , color: "#000"},
-        1: { type: "scatter" , color: "#000"},
-        2: { type: "line" , color: "red"},
-        3: { type: "line" , color: "#000"},
+    0: { type: "scatter" , color: "#00FA23" },
+    1: { type: "scatter" , color: "#5100FA"},
+    2: { type: "line" , color: "#00FA23"},
+    3: { type: "line" , color: "#5100FA"},
     
   },
   {
-    0: { type: "scatter" , color: "#000"},
-    1: { type: "scatter" , color: "#000"},
-    2: { type: "scatter" , color: "#000"},
-    3: { type: "line" , color: "#000"},
-    4: { type: "line" , color: "#000"},
-    5: { type: "line" , color: "#000"},
-    6: { type: "line" , color: "#000"},
+    0: { type: "scatter" , color: "#00FA23" },
+    1: { type: "scatter" , color: "#5100FA"},
+    2: { type: "scatter" , color: "#00F3FA"},
+    3: { type: "line" , color: "#00FA23"},
+    4: { type: "line" , color: "#5100FA"},
+    5: { type: "line" , color: "#00F3FA"},
+    6: { type: "line" , color: "#FA261D"},
    
   }
 ];
@@ -183,7 +184,8 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
             options={{
               ...NewOptions(options,"", "Pb", "Gmb"),
               seriesType: "scatter",
-              series: { 1: { type: "area", } },
+              series: { 0: { color: "#00FA32"},
+                1: { type: "area", color: "#70FA07"} },
               legend: { position: 'none' },
               chartArea:{ top:'10', width:'80%',height:'80%'},
               

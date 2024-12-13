@@ -146,10 +146,10 @@ function Services() {
               value={metodoEsal}
               onChange={(e) => setMetodoEsal(e.target.value)}
             >
-              <option value="esal">esal dependiente a tabla</option>
-              <option value="VFA">VFA manual</option>
+              <option value="esal">ESALs</option>
+              <option value="VFA">VFA</option>
             </select>
-            Seleccione el método de cálculo de ESAL
+            Seleccione el parámetro (ESALs - VFA)
           </label>
         </div>
 
@@ -210,10 +210,10 @@ function Services() {
               value={metodoVMA}
               onChange={(e) => setMetodoVMA(e.target.value)}
             >
-              <option value="vma">VMA dependiente a tabla</option>
-              <option value="VMAm">VMA manual</option>
+              <option value="vma">T.M.N.A.</option>
+              <option value="VMAm">VMA</option>
             </select>
-            Seleccione el método de cálculo de VMA
+            Seleccione el parámetro (Tamaño Máximo Nominal del Agregado - VMA)
           </label>
         </div>
         {metodoVMA === "vma" ? (
@@ -276,7 +276,7 @@ function Services() {
                   }
               }}
             />
-            ¿Desea ingresar valores de rango en el eje x? (por defecto 6-8)
+            ¿Desea ingresar el rango del contenido de asfalto? (eje x = Pb, por defecto 6-8)
           </label>
 
           {enableRange && (

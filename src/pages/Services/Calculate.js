@@ -221,7 +221,7 @@ export function LGmb(Gsb, Gse, Gb) {
 
 export function VFA(Gsb, Gse, Gb) {
 
-  for (let i = 6, j = 0; i <= 8; i += 0.1, j++) {
+  for (let i = Rx1, j = 0; i <= Rx2; i += 0.1, j++) {
     pb[j] = round(i,1); 
     VFA65[j] = round(minVFA/ ((100/gmm[j])+((minVFA*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);
     VFA75[j] = round(maxVFA/ ((100/gmm[j])+((maxVFA*(100-i))/(100*Gsb))-((100-i)/Gsb)),3);

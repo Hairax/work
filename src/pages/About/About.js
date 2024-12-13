@@ -6,6 +6,7 @@ import RodrigoE from './imgs/RodrigoEsprella.png';
 import JoseG from './imgs/JoseGarcia.jpg';
 import Richard from './imgs/Richard.png';
 import Fredy from '../About/imgs/FreddySnachez.jpg';
+import { FaYoutube } from "react-icons/fa";
 
 function About() {
     return (
@@ -25,6 +26,9 @@ function About() {
                         </a>
                         <a href="https://www.linkedin.com/in/richard-raul-josephia-santos-7783a63a/" className="hover:text-pink-500">
                             <FaLinkedin className="w-6 h-6" />
+                        </a>
+                        <a href="https://www.youtube.com/@AsociacionBolivianadelAsfalto" className="hover:text-pink-500">
+                            <FaYoutube className="w-6 h-6" />
                         </a>
                     </div>
                 </div>

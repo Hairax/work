@@ -29,6 +29,12 @@ function Services() {
   const [enableRange, setEnableRange] = useState(false);
   const [esal, setEsal] = useState(0);
   const [nominalSize, setNominalSize] = useState(12.5);
+  const [metodoEsal, setMetodoEsal] = useState("esal");
+  const [vfaMin, setVfaMin] = useState(0); // Para VFA mínimo
+  const [vfaMax, setVfaMax] = useState(0); // Para VFA máximo
+  const [metodoVMA, setMetodoVMA] = useState("vma");
+  const [vmaMin, setVmaMin] = useState(0); // Para VMA mínimo
+  const [vmaMax, setVmaMax] = useState(0); // Para VMA máximo
 
   const graphicsRef = useRef(); // Referencia para capturar el contenido de Graphics
 
@@ -133,26 +139,85 @@ function Services() {
             </div>
           ))}
         </div>
-        {/* ESAL de diseño */}
+        
         <div className="flex flex-col items-center mb-6">
           <label className="flex items-center text-lg text-gray-600">
-            <input 
-              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2" 
+            <select className="border border-gray-300 rounded-lg w-50 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              value={metodoEsal}
+              onChange={(e) => setMetodoEsal(e.target.value)}
+            >
+              <option value="esal">esal dependiente a tabla</option>
+              <option value="VFA">VFA manual</option>
+            </select>
+            Seleccione el método de cálculo de ESAL
+          </label>
+        </div>
+
+      {/* ESAL de diseño depende del metodo */}
+      {metodoEsal === "esal" ? (
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              
               type="number"
-              min="0" 
+              min="0"
               max="50"
               value={esal}
               onChange={(e) => {
                 const value = Math.min(50, Math.max(0, Number(e.target.value)));
                 setEsal(value);
-              }} 
+              }}
             />
             ESALs de Diseño en Millones (min 0, max 50)
           </label>
         </div>
-        
-        {/* Tamanio nominal maximo */}
+      ) : (
         <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              type="number"
+              min="0"
+              max="50"
+              value={vfaMin}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setVfaMin(value);
+              }}
+            />
+            VFA minimo
+            <input 
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2 ml-2"
+              type="number"
+              min="0"
+              max="50"
+              value={vfaMax}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setVfaMax(value);
+              }}
+            />
+            VFA maximo
+          </label>
+        </div>
+      )}
+        
+        {/* Metodo VMA */}
+        <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <select className="border border-gray-300 rounded-lg w-50 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              value={metodoVMA}
+              onChange={(e) => setMetodoVMA(e.target.value)}
+            >
+              <option value="vma">VMA dependiente a tabla</option>
+              <option value="VMAm">VMA manual</option>
+            </select>
+            Seleccione el método de cálculo de VMA
+          </label>
+        </div>
+        {metodoVMA === "vma" ? (
+          <div className="flex flex-col items-center mb-6">
           <label className="flex items-center text-lg text-gray-600">
             <select
               className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
@@ -168,6 +233,33 @@ function Services() {
             Tamaño Máximo Nominal del Agregado (mm)
           </label>
         </div>
+        ) : (
+          <div className="flex flex-col items-center mb-6">
+          <label className="flex items-center text-lg text-gray-600">
+            <input
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2"
+              type="number"
+              value={vmaMin}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setVmaMin(value);
+              }}
+            />
+            VMA minimo
+            <input
+              className="border border-gray-300 rounded-lg w-24 h-10 px-3 text-center focus:ring-2 focus:ring-indigo-400 mr-2 ml-2"
+              type="number"
+              value={vmaMax}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                setVmaMax(value);
+              }}
+            />
+            VMA maximo
+          </label>
+        </div>
+        )}
+
 
         {/* Rango de valores en el eje x */}
         <div className="flex flex-col items-center mb-6">
@@ -238,7 +330,7 @@ function Services() {
               date1={confirmedInput1}
               date2={confirmedInput2}
               date3={confirmedInput3}
-              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax, esal, nominalSize)}
+              xinitial={xinitial(ConfirmedRangeMin, ConfirmedRangeMax, esal, nominalSize, metodoEsal, vfaMin, vfaMax, metodoVMA, vmaMin, vmaMax)}
               tb1={LGmm(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb2={LGmb(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}
               tb3={VFA(confirmedInput1, confirmedInput2, confirmedInput3, ConfirmedRangeMin, ConfirmedRangeMax)}

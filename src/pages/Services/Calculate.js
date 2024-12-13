@@ -6,50 +6,64 @@ function round(value, decimals) {
     return Math.round(value * factor) / factor;
 }
 
-export function xinitial(rx1 , rx2, esal, nominalSize){
+export function xinitial(rx1 , rx2, esal, nominalSize, metodoEsal, vfaMin, vfaMax, metodoVMA, vmaMin, vmaMax){
   Rx1 = rx1;
   Rx2 = rx2;
 
+  if(metodoEsal === "esal")
+  {
+    if(esal < 0.3)
+    {
+      minVFA = 70;
+      maxVFA = 80;
+    }
+    else if(esal >= 0.3 && esal < 3)
+    {
+      minVFA = 65;
+      maxVFA = 78;
+    }
+    else{
+      minVFA = 65;
+      maxVFA = 75;
+    }
+  }
+  else if(metodoEsal === "VFA")
+  {
+    minVFA = vfaMin;
+    maxVFA = vfaMax;
+  }
 
-  if(esal < 0.3)
-  {
-    minVFA = 70;
-    maxVFA = 80;
+  if(metodoVMA === "vma"){
+    if(nominalSize === 37.5)
+    {
+      minVMA = 11;
+      maxVMA = 13;
+    }
+    else if(nominalSize === 25)
+    {
+      minVMA = 12;
+      maxVMA = 14;
+    }
+    else if(nominalSize === 19)
+    {
+      minVMA = 13;
+      maxVMA = 15;
+    }
+    else if(nominalSize === 12.5)
+    {
+      minVMA = 14;
+      maxVMA = 16;
+    }
+    else if(nominalSize === 9.5)
+    {
+      minVMA = 15;
+      maxVMA = 17;
+    }
   }
-  else if(esal >= 0.3 && esal < 3)
+  else if(metodoVMA === "VMAm")
   {
-    minVFA = 65;
-    maxVFA = 78;
-  }
-  else{
-    minVFA = 65;
-    maxVFA = 75;
-  }
-
-  if(nominalSize === 37.5)
-  {
-    minVMA = 11;
-    maxVMA = 13;
-  }
-  else if(nominalSize === 25)
-  {
-    minVMA = 12;
-    maxVMA = 14;
-  }
-  else if(nominalSize === 19)
-  {
-    minVMA = 13;
-    maxVMA = 15;
-  }
-  else if(nominalSize === 12.5)
-  {
-    minVMA = 14;
-    maxVMA = 16;
-  }
-  else if(nominalSize === 9.5)
-  {
-    minVMA = 15;
-    maxVMA = 17;
+    minVMA = vmaMin;
+    maxVMA = vmaMax;
   }
 
   gmm.splice(0, gmm.length);

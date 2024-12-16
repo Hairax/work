@@ -1,6 +1,14 @@
-import React from 'react';
-import { Chart } from "react-google-charts";
+import React, { useEffect } from 'react';
 import Latex from "react-latex-next";
+
+import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Filler, Title, Tooltip, Legend } from "chart.js";
+import { gmm, Vam16 } from './Calculate';
+
+// Registro de los componentes necesarios para Chart.js, incluyendo Filler
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Title, Tooltip, Legend);
+
+
 
 function NewOptions(BeforeOptions, nameTable, nameX, nameY) {
   return {
@@ -79,14 +87,271 @@ const serieslist = [
 ];
 
 
-export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2,esal,nominalSize, options }) {
+export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2all, pol1, pol2,esal,nominalSize,lx,ly,gmm,va3,va4,va5,
+   vma14, vma16, vfa65, vfa75,vmaMin,vmaMax,vfaMin,vfaMax,puntosJSx, puntosJSy, options}) {
+  
+  const data = {
+    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo"], // Etiquetas del eje X
+    datasets: [
+      {
+        label: "Ventas (Línea)",
+        data: [65, 59, 80, 81, 56], // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(75, 192, 192)", // Color de la línea
+        tension: 0.1, // Curvatura de la línea
+      },
+      {
+        label: "Gastos (Área)",
+        data: [40, 45, 50, 55, 60], // Datos para el eje Y
+        fill: true, // Rellenar el área debajo de la línea
+        borderColor: "rgb(255, 99, 132)", // Color de la línea
+        backgroundColor: "rgba(255, 99, 132, 0.2)", // Color de fondo del área
+        tension: 0.1, // Curvatura de la línea
+      },
+      {
+        label: "Puntos (Ventas)",
+        data: [50, 60, 75, 65, 45], // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(53, 162, 235)", // Color de los puntos
+        backgroundColor: "rgb(53, 162, 235)", // Color de fondo de los puntos
+        radius: 5, // Tamaño de los puntos
+        pointStyle: "circle", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+    ],
+  };
+
+  const data1 = {
+   
+    labels: lx, // Etiquetas del eje X
+    datasets: [
+      {
+        label: "Gmm",
+        data: gmm, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(211, 20, 52)", // Color de los puntos
+        backgroundColor: "rgb(211, 20, 52)", // Color de fondo de los puntos
+        radius: 2, // Tamaño de los puntos
+        pointStyle: "circle", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "Va = 0%",
+        data: gmm, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(53, 162, 235)", // Color de los puntos
+        backgroundColor: "rgb(53, 162, 235)", // Color de fondo de los puntos
+        radius: 10, // Tamaño de los puntos
+        pointStyle: "cross", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "Va = 3%",
+        data: va3, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(19, 247, 76)", // Color de los puntos
+        backgroundColor: "rgb(19, 247, 76)", // Color de fondo de los puntos
+        radius: 5, // Tamaño de los puntos
+        pointStyle: "rectRot", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "Va = 4%",
+        data: va4, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(38, 209, 252)", // Color de los puntos
+        backgroundColor: "rgb(38, 209, 252)", // Color de fondo de los puntos
+        radius: 10, // Tamaño de los puntos
+        pointStyle: "star", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "Va = 5%",
+        data: va5, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(255, 157, 10)", // Color de los puntos
+        backgroundColor: "rgb(255, 157, 10)", // Color de fondo de los puntos
+        radius: 8, // Tamaño de los puntos
+        pointStyle: "triangle", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+    ],
+  };
+  
+  const data2 = {
+   
+    labels: lx, // Etiquetas del eje X
+    datasets: [
+      {
+        label: "VMA = "+ vmaMin+ "%",
+        data: vma14, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(53, 162, 235)", // Color de los puntos
+        backgroundColor: "rgb(53, 162, 235)", // Color de fondo de los puntos
+        radius: 10, // Tamaño de los puntos
+        pointStyle: "cross", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "VMA = "+vmaMax+ "%",
+        data: vma16, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(19, 247, 76)", // Color de los puntos
+        backgroundColor: "rgb(19, 247, 76)", // Color de fondo de los puntos
+        radius: 5, // Tamaño de los puntos
+        pointStyle: "rectRot", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+
+    ],
+  };
+
+  const data3 = {
+   
+    labels: lx, // Etiquetas del eje X
+    datasets: [
+      {
+        label: "Gmm",
+        data: gmm, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(211, 20, 52)", // Color de los puntos
+        backgroundColor: "rgb(211, 20, 52)", // Color de fondo de los puntos
+        radius: 2, // Tamaño de los puntos
+        pointStyle: "circle", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "VFA = "+ vfaMin+ "%",
+        data: vfa65, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(53, 162, 235)", // Color de los puntos
+        backgroundColor: "rgb(53, 162, 235)", // Color de fondo de los puntos
+        radius: 10, // Tamaño de los puntos
+        pointStyle: "cross", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+      {
+        label: "VFA = "+vfaMax+ "%",
+        data: vfa75, // Datos para el eje Y
+        fill: false, // No llenar el área debajo de la línea
+        borderColor: "rgb(19, 247, 76)", // Color de los puntos
+        backgroundColor: "rgb(19, 247, 76)", // Color de fondo de los puntos
+        radius: 5, // Tamaño de los puntos
+        pointStyle: "rectRot", // Estilo de los puntos
+        tension: 0, // Sin curvatura (puntos con líneas rectas)
+        showLine: false, // No mostrar la línea entre los puntos
+      },
+
+    ],
+  };
+
+
+const puntosJSnames = ["A", "B", "C", "D","E",""]; // Nombres de los puntos
+
+// Combina las coordenadas y nombres en una estructura de puntos
+const puntosJS = puntosJSx.map((x, index) => ({
+  x: x,
+  y: puntosJSy[index],
+  name: puntosJSnames[index],
+}));
+
+// Configuración de los datos para el gráfico
+const pol = {
+  labels: puntosJSnames, // Usamos los nombres para las etiquetas
+  datasets: [
+    {
+      label: "Polígono",
+      data: puntosJS, // Usamos los puntos con x, y, y name
+      borderColor: "rgb(60, 255, 0)",
+      backgroundColor: "rgba(40, 218, 5, 0.4)",
+      fill: true, // Llenamos el área del polígono
+      pointStyle: "rect", // Estilo de los puntos
+      radius: 6, // Tamaño de los puntos
+      showLine: true, // Mostrar la línea conectando los puntos
+    },
+    {
+      label: "Centroide",
+      data: [
+        {
+          x: pol2.at(-1)[0].toFixed(3),  // Coordenada X del último punto
+          y: pol2.at(-1)[1].toFixed(3),  // Coordenada Y del último punto
+          name: "Centroide",             // Nombre del punto
+        },
+      ],
+      borderColor: "rgb(0, 78, 247)",
+      backgroundColor: "rgba(3, 94, 214, 0.4)",
+      pointStyle: "rectRot", // Estilo de los puntos
+      radius: 6, // Tamaño de los puntos
+    },
+  ],
+};
+
+// Configuración de las opciones del gráfico
+const opti = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      type: "linear",
+      title: {
+        display: true,  // Mostrar el título del eje X
+        text: 'Pb',  // Título para el eje X
+        font: {
+          size: 20,
+          weight: 'bold',  // Hacer el texto en negrita
+        },
+        color : "black"
+      },
+      min: lx[0], // Establecer min en el valor mínimo de X
+      max: lx[lx.length], // Establecer max en el valor máximo de X
+    },
+    y: {
+      title: {
+        display: true,  // Mostrar el título del eje X
+        text: 'Gmm',  // Título para el eje X
+        font: {
+          size: 20,
+          weight: 'bold',  // Hacer el texto en negrita
+        },
+        color: "black"
+      },
+      
+      min: Math.min(...puntosJSy) - 0.005, // Establecer min en el valor mínimo de Y
+      max: Math.max(...puntosJSy) + 0.005, // Establecer max en el valor máximo de Y
+    },
+  },
+  plugins: {
+    legend: {
+      position: "top",
+    },
+    tooltip: {
+      callbacks: {
+        label: (context) => {
+          const { x, y, name } = context.raw;
+          return `${name}: (${x}, ${y})`; // Mostrar el nombre y las coordenadas en el tooltip
+        },
+      },
+    },
+  },
+};
+
   return (
     <div className="flex flex-col items-center w-full px-6 ">
 
       {[
-        { table: tb1[0], chartData: tb1[1], title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
-        { table: tb2[0], chartData: tb2[1], title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VMA)" },
-        { table: tb3[0], chartData: tb3[1], title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
+        { table: tb1[0], chartData: data1, title: "Isolíneas de Porcentaje de Vacíos de Aire (%Va)" },
+        { table: tb2[0], chartData: data2, title: "Isolíneas de Porcentaje de Vacíos en el Agregado Mineral (%VMA)" },
+        { table: tb3[0], chartData: data3, title: "Isolíneas de Porcentaje de Vacíos Llenos de Asfalto (%VFA)" }
       ].map((item, index) => (
         <div key={index} className="w-full flex flex-col items-center gap-6 py-30 graph-container">
           {index === 0 &&
@@ -131,16 +396,11 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
               </table>
             </div>
             <div className="w-full lg:w-1/2 p-4">
-              <Chart
-                chartType="ComboChart" 
-                width="100%" 
-                height="500px" 
-                data={item.chartData} 
-                options={{...NewOptions(options,"", "Pb", "Gmb") ,
-                  series: serieslist[index] ,
-                  chartArea:{left:75,top:60,width:'70%',height:'70%'},
-                }}
-              />
+                <div style={{ height: "600px", width: "auto", margin: "auto" }}>
+                <Line data={item.chartData} options={options} />
+                </div>
+              <Line data={item.chartData} options={options} />
+
             </div>
           </div>
         </div>
@@ -176,22 +436,12 @@ export default function Graphics({ date1,date2, date3,tb1, tb2, tb3, tb1all, tb2
           <h1 className="text-[30px] font-bold text-blue-600 text-center my-6">
                 Polígono de Vacíos
           </h1>
-          <Chart 
-            chartType="ComboChart" 
-            width="100%" 
-            height="600px" 
-            data={pol2} 
-            options={{
-              ...NewOptions(options,"", "Pb", "Gmb"),
-              seriesType: "scatter",
-              series: { 0: { color: "#00FA32"},
-                1: { type: "area", color: "#70FA07"} },
-              legend: { position: 'none' },
-              chartArea:{ top:'10', width:'80%',height:'80%'},
-              
-              
-            }} 
-          />
+          
+          <div style={{ height: "400px", width: "600px", margin: "auto" }}>
+             <Line data={pol} options={opti} />
+         </div>
+          
+
         </div>
 
         <div>

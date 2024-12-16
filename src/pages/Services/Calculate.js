@@ -123,6 +123,10 @@ export let SumX2 = 0;
 export let SXX = 0;
 export let PromX = 0;
 
+export let puntosJSx=[];
+export let puntosJSy=[];
+
+
 function regLineal(PromX, SXX, x, y) {
     let fSumX = x.reduce((acc, xi) => acc + xi, 0);
     let fSumY = y.reduce((acc, yi) => acc + yi, 0);
@@ -177,6 +181,7 @@ for (let k = 0; k < gmm.length; k++) {
       result2.push([pb[k], gmm[k], gmm[k], Va3[k], Va4[k], Va5[k], (F_gmm[0]+(pb[k]*F_gmm[1] )) ,
       (F_Va3[0]+(pb[k]*F_Va3[1])), (F_Va4[0]+(pb[k]*F_Va4[1])), (F_Va5[0]+(pb[k]*F_Va5[1])) ]);
     }
+ 
 
     return [result1,result2]; 
 }
@@ -298,6 +303,7 @@ function Intersección(li1,li2) {
 }
 
 export function poligono(){
+  
   const pA = Intersección(Vam14,VFA65);
   const pB = Intersección(Vam14,VFA75);
   const pC = Intersección(VFA75,Vam16);
@@ -328,13 +334,16 @@ export function poligono(){
 
 
   const mp = [["","","",{ role: 'annotation' }]];
-
   mp.push([pA[0],pA[1],pA[1],"A"]);
   mp.push([pB[0],pB[1],pB[1],"B"]);
   mp.push([pC[0],pC[1],pC[1],"C"]);
   mp.push([pD[0],pD[1],pD[1],"D"]);
   mp.push([pE[0],pE[1],pE[1],"E"]);
   mp.push([pA[0],pA[1],pA[1],null]);
+
+  puntosJSx = [pA[0], pB[0], pC[0], pD[0], pE[0], pA[0]];
+  puntosJSy = [pA[1], pB[1], pC[1], pD[1], pE[1], pA[1]];
+
 
 
   let areaPol = mp.slice(1).map(([x, y]) => [x, y]);
@@ -366,7 +375,14 @@ export function poligono(){
   Cy = Sy / (6 * CalArea);
 
   mp.push([Cx,Cy,null,"Centroide"]);
-
+  
 
   return {rt:rt , mp:mp,  CalArea:CalArea};
+}
+
+export function crt(){
+
+  return {pb:pb, gmm:gmm , Va3:Va3, Va4:Va4, Va5:Va5, Vam14:Vam14 , Vam16:Vam16 , VFA65:VFA65 , VFA75:VFA75
+    , minVMA:minVMA, maxVMA:maxVMA , minVFA:minVFA, maxVFA:maxVFA , puntosJSx:puntosJSx, puntosJSy:puntosJSy
+  } 
 }

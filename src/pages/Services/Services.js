@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './Services.css';
 import Graphics from './Graphics';
-import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial} from './Calculate';
+import { ALLresult, LGmb, LGmm, poligono, VFA , xinitial , crt} from './Calculate';
 import { FaSpinner } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -339,15 +339,71 @@ function Services() {
               pol1={poligono().rt}
               pol2={poligono().mp}
               CalArea={poligono().CalArea}
+              lx={crt().pb}
+              gmm={crt().gmm}
+              va3={crt().Va3}
+              va4={crt().Va4}
+              va5={crt().Va5}
+              vma14={crt().Vam14}
+              vma16={crt().Vam16}
+              vfa65={crt().VFA65}
+              vfa75={crt().VFA75}
+              vmaMin={crt().minVMA}
+              vmaMax={crt().maxVMA}
+              vfaMin={crt().minVFA}
+              vfaMax={crt().maxVFA}
+              puntosJSx={crt().puntosJSx}
+              puntosJSy={crt().puntosJSy}
               options={{
-                title: 'Company Performance',
-                titleTextStyle: { color: '#2C3E50', fontSize: 20 },
-                legend: { position: 'bottom' },
-                hAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
-                vAxis: { titleTextStyle: { bold: true }, textStyle: { color: '#111', bold: true } },
-              }}
-          /*    x1= {rangeMin}
-              x2= {rangeMax} */
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                    labels: {
+                      padding: 5, // Este padding puede no afectar como esperas en algunos casos
+                    },
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: (tooltipItem) => {
+                        return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`; // Formato del tooltip
+                      },
+                    },
+                  },
+                },
+                layout: {
+                  padding: {
+                    left: 10, // Puedes ajustar este valor para dar más espacio entre la leyenda y el gráfico
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,  // Mostrar el título del eje X
+                      text: 'Pb',  // Título para el eje X
+                      font: {
+                        size: 20,
+                        weight: 'bold',  // Hacer el texto en negrita
+                      },
+                      color: 'black',
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,  // Mostrar el título del eje Y
+                      text: 'Gmb',  // Título para el eje Y
+                      font: {
+                        
+                        size: 20,
+                        weight: 'bold',  // Hacer el texto en negrita
+                      },
+                      color: 'black',
+                    },
+                    beginAtZero: false, // El eje Y comienza desde el valor mínimo de los datos
+                  },
+                },
+              }}              
+
             />
           </div>
         )}

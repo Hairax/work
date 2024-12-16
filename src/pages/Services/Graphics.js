@@ -399,7 +399,7 @@ const opti = {
                 <div style={{ height: "600px", width: "auto", margin: "auto" }}>
                 <Line data={item.chartData} options={options} />
                 </div>
-              <Line data={item.chartData} options={options} />
+             
 
             </div>
           </div>

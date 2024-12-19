@@ -408,7 +408,7 @@ function Services() {
           </div>
         )}
 
-        {showGraphics && (
+        {/*{showGraphics && (
           <div className="flex justify-center mt-6">
             <button
               className="bg-green-500 text-white text-[20px] font-semibold py-2 px-6 rounded-full hover:bg-green-600 focus:outline-none mb-6"
@@ -419,7 +419,7 @@ function Services() {
           </div>
         )}
 
-        {showExportOptions && (
+        {/*{showExportOptions && (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg">
               <h3 className="text-xl font-bold mb-4">Opciones de Exportación</h3>
@@ -480,7 +480,7 @@ function Services() {
               </div>
             </div>
           </div>
-        )}
+        )}*/}
       </div>
     </div>
   );

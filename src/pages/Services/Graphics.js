@@ -444,7 +444,7 @@ const opti = {
 
         </div>
 
-        <div>
+        <div className='w-auto py-10'>
           <h1 className="text-[30px] font-bold text-green-600 text-center my-6">
             Resultados
           </h1>

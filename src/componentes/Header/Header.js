@@ -25,22 +25,24 @@ function Sidebar() {
           <img src="/logoAba.jpg" alt="logo" className="w-12 h-12 rounded-full" />
         </div>
       </div>
-      <ul className="flex flex-col items-center space-y-6">
-        {menuItems.map((item, index) => (
-          <li key={index} className="relative group">
-            <a
-              href={item.href}
-              className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass(item.href)}`}
-            >
-              {item.icon}
-            </a>
-            {/* Tooltip */}
-            <span className="absolute left-14 top-1/2 transform -translate-y-1/2 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
-              {item.label}
-            </span>
-          </li>
-        ))}
-      </ul>
+      <div className="overflow-y-scroll overflow-x-hidden flex-1 scrollbar-hidden">
+        <ul className="flex flex-col items-center space-y-6">
+          {menuItems.map((item, index) => (
+            <li key={index} className="relative group">
+              <a
+                href={item.href}
+                className={`flex items-center justify-center w-12 h-12 rounded-full ${getIconClass(item.href)}`}
+              >
+                {item.icon}
+              </a>
+              {/* Tooltip */}
+              <span className="absolute left-14 top-1/2 transform -translate-y-1/2 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md">
+                {item.label}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 }
